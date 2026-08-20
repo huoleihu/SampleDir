@@ -9,7 +9,7 @@
 Turn the audio samples scattered across your disks into a searchable, auditionable, annotated library — no cloud, no account, no lock-in.
 
 ![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Windows-informational)
-![Version](https://img.shields.io/badge/version-1.0.0-22c55e)
+![Version](https://img.shields.io/badge/version-1.0.3-22c55e)
 ![License](https://img.shields.io/badge/license-Proprietary-lightgrey)
 
 [Highlights](#highlights) · [Features](#features) · [FAQ](#faq) · [License](#license)
