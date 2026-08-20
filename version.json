@@ -1,0 +1,7 @@
+{
+  "version": "1.0.0",
+  "url": "https://1815611961.share.123pan.cn/123pan/LR9zVv-nmBiH",
+  "url2": "https://pan.quark.cn/s/14a6be2d0202",
+  "notes_zh": "• 采样支持拖拽导出到 Logic Pro / GarageBand / Finder\n• 修复从 git 拉取后首次启动 NPE 崩溃\n• 品牌更名 SampleDir",
+  "notes_en": "• Drag samples to Logic Pro / GarageBand / Finder\n• Fixed NPE crash on first launch after git pull\n• Rebranded to SampleDir"
+}

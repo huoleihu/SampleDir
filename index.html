@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n-title="meta.title">SampleDir · macOS 采样素材库管理器</title>
+  <meta name="description" data-i18n-meta="meta.desc" content="SampleDir 是一款为音乐制作人打造的 macOS 采样素材库管理器：本地优先、可视化波形、智能试听、标签收藏，所有元数据随文件夹走。" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+  <!-- ===== 顶部导航 ===== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="brand" href="#top" data-i18n-aria="nav.home">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeTE9IjAiIHgyPSI1MTIiIHkyPSI1MTIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMTIxMjIwIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzFhMWEyZSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0id2F2ZSIgeDE9IjY0IiB5MT0iMjU2IiB4Mj0iNDQ4IiB5Mj0iMjU2IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzAwRTY3NiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMxREU5QjYiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHg9IjE2IiB5PSIxNiIgd2lkdGg9IjQ4MCIgaGVpZ2h0PSI0ODAiIHJ4PSIxMDQiIGZpbGw9InVybCgjYmcpIi8+CiAgPHJlY3QgeD0iMTYiIHk9IjE2IiB3aWR0aD0iNDgwIiBoZWlnaHQ9IjQ4MCIgcng9IjEwNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMmEyYTQwIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8ZyBzdHJva2U9InVybCgjd2F2ZSkiIHN0cm9rZS13aWR0aD0iMjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CiAgICA8bGluZSB4MT0iOTYiICB5MT0iMjU2IiB4Mj0iOTYiICB5Mj0iMjU2Ii8+CiAgICA8bGluZSB4MT0iMTM0IiB5MT0iMjAwIiB4Mj0iMTM0IiB5Mj0iMzEyIi8+CiAgICA8bGluZSB4MT0iMTcyIiB5MT0iMTU4IiB4Mj0iMTcyIiB5Mj0iMzU0Ii8+CiAgICA8bGluZSB4MT0iMjEwIiB5MT0iMTIwIiB4Mj0iMjEwIiB5Mj0iMzkyIi8+CiAgICA8bGluZSB4MT0iMjQ4IiB5MT0iMTc2IiB4Mj0iMjQ4IiB5Mj0iMzM2Ii8+CiAgICA8bGluZSB4MT0iMjg2IiB5MT0iOTYiICB4Mj0iMjg2IiB5Mj0iNDE2Ii8+CiAgICA8bGluZSB4MT0iMzI0IiB5MT0iMTU4IiB4Mj0iMzI0IiB5Mj0iMzU0Ii8+CiAgICA8bGluZSB4MT0iMzYyIiB5MT0iMjA4IiB4Mj0iMzYyIiB5Mj0iMzA0Ii8+CiAgICA8bGluZSB4MT0iNDAwIiB5MT0iMjQwIiB4Mj0iNDAwIiB5Mj0iMjcyIi8+CiAgICA8bGluZSB4MT0iNDM4IiB5MT0iMjU2IiB4Mj0iNDM4IiB5Mj0iMjU2Ii8+CiAgPC9nPgo8L3N2Zz4K" alt="SampleDir" width="34" height="34" />
+        <span class="brand__name">SampleDir</span>
+      </a>
+      <nav class="nav__links" id="navLinks">
+        <a href="#features" data-i18n="nav.features">功能</a>
+        <a href="#showcase" data-i18n="nav.showcase">界面</a>
+        <a href="#how" data-i18n="nav.how">上手</a>
+        <a href="#download" data-i18n="nav.download">下载</a>
+        <a href="#contact" data-i18n="nav.contact">联系方式</a>
+        <a href="https://github.com/huoleihu/SampleDir" target="_blank" rel="noopener" data-i18n="nav.github">GitHub</a>
+      </nav>
+      <select class="lang" id="langSelect" aria-label="Language / 语言">
+        <option value="zh">中文</option>
+        <option value="en">English</option>
+        <option value="ko">한국어</option>
+        <option value="ja">日本語</option>
+      </select>
+      <a href="#download" class="btn btn--ghost nav__cta" data-i18n="nav.cta">免费下载</a>
+      <button class="nav__toggle" id="navToggle" aria-label="菜单">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="top">
+    <div class="hero__wave" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="hero__content">
+      <span class="pill" data-i18n="hero.pill">为音乐制作人打造</span>
+      <h1 class="hero__title" data-i18n-html="hero.title">把采样素材库<br/>整理得像作品一样干净</h1>
+      <p class="hero__sub" data-i18n="hero.sub">
+        SampleDir 是一款本地优先的采样素材库管理器。可视化波形、智能试听、
+        标签与收藏，所有备注和标记都随文件夹一起走——换电脑也不丢。
+      </p>
+      <div class="hero__actions">
+        <a href="#download" class="btn btn--primary" data-i18n="hero.download">下载 for macOS</a>
+        <a href="#features" class="btn btn--ghost" data-i18n="hero.explore">了解功能</a>
+      </div>
+      <div class="hero__meta">
+        <span id="heroVersion">v1.0 · Apple Silicon</span>
+        <span class="dot">·</span>
+        <span data-i18n="hero.nocloud">无账号 · 无云端</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 信任条 ===== -->
+  <section class="strip">
+    <div class="strip__item">
+      <b data-i18n="strip1.b">本地优先</b>
+      <span data-i18n="strip1.s">数据存你硬盘，不上传任何云端</span>
+    </div>
+    <div class="strip__item">
+      <b data-i18n="strip2.b">随文件夹走</b>
+      <span data-i18n="strip2.s">元数据写在 .sampledir.json 里</span>
+    </div>
+    <div class="strip__item">
+      <b data-i18n="strip3.b">极速试听</b>
+      <span data-i18n="strip3.s">双击即播，方向键连续试听</span>
+    </div>
+    <div class="strip__item">
+      <b data-i18n="strip4.b">内置引擎</b>
+      <span data-i18n="strip4.s">自带 JRE 与 ffmpeg，开箱即用</span>
+    </div>
+  </section>
+
+  <!-- ===== 功能特性 ===== -->
+  <section class="section" id="features">
+    <div class="section__head">
+      <h2 data-i18n="features.h2">一站式管理你的采样</h2>
+      <p data-i18n="features.p">从扫描到试听，从标记到检索，SampleDir 把零散的采样变成可检索的素材库。</p>
+    </div>
+    <div class="grid">
+      <article class="card reveal">
+        <div class="card__icon">
+          <svg viewBox="0 0 24 24"><path d="M3 7h6l2 2h10v10H3z"/></svg>
+        </div>
+        <h3 data-i18n="c1.h">文件夹即库</h3>
+        <p data-i18n="c1.p">把任意文件夹加入库，自动递归扫描 WAV / AIFF / MP3 / FLAC，按 BPM、Key 自动识别命名规律。</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__icon">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <h3 data-i18n="c2.h">双击即试听</h3>
+        <p data-i18n="c2.p">双击任意采样立即播放；↑↓ 方向键连续试听，Enter 从头重播，Space 暂停 / 恢复。</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__icon">
+          <svg viewBox="0 0 24 24"><path d="M4 12h3l2-7 4 14 2-7h5"/></svg>
+        </div>
+        <h3 data-i18n="c3.h">可视化波形</h3>
+        <p data-i18n="c3.p">1200 点 RMS 波形精准呈现，点击波形任意位置即可从该处跳播，听段落更顺手。</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__icon">
+          <svg viewBox="0 0 24 24"><path d="M11 4a7 7 0 1 0 4.2 12.6L20 20M11 7a4 4 0 0 1 0 8"/></svg>
+        </div>
+        <h3 data-i18n="c4.h">搜索与筛选</h3>
+        <p data-i18n="c4.p">按文件名、备注、标签关键词秒搜；左侧标签云一键筛选，⌘F 聚焦、Esc 清空。</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__icon">
+          <svg viewBox="0 0 24 24"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg>
+        </div>
+        <h3 data-i18n="c5.h">收藏与评分</h3>
+        <p data-i18n="c5.p">行首一键收藏，支持命名收藏夹分组；五星评分，优质素材一眼锁定。</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__icon">
+          <svg viewBox="0 0 24 24"><path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/></svg>
+        </div>
+        <h3 data-i18n="c6.h">备注与标签</h3>
+        <p data-i18n="c6.p">选中即写备注、打标签，2 秒自动防抖保存，全部可搜索、可筛选。</p>
+      </article>
+
+      <article class="card reveal">
+        <div class="card__icon">
+          <svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M6 6l12 12M18 6L6 18"/></svg>
+        </div>
+        <h3 data-i18n="c8.h">随文件夹走</h3>
+        <p data-i18n="c8.p">备注、标签、评分、收藏写入文件夹内的 .sampledir.json，复制 / 备份 / 换机零丢失。</p>
+      </article>
+
+      <article class="card reveal card--disabled">
+        <div class="card__icon">
+          <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h7M18 15l3 3-3 3"/></svg>
+        </div>
+        <h3 data-i18n="c7.h">自定义列表（即将上线）</h3>
+        <p data-i18n="c7.p">表头拖拽调顺序、调宽度、显隐列，点击排序；所有布局配置持久化保存。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== 界面展示 ===== -->
+  <section class="section section--alt" id="showcase">
+    <div class="section__head">
+      <h2 data-i18n="show.h2">所见即所得的三栏工作台</h2>
+      <p data-i18n="show.p">左侧目录与标签，中间海量采样列表，右侧详情与波形——一切尽在掌握。</p>
+    </div>
+
+    <div class="showcase">
+      <img
+        src="assets/img/screenshot.png"
+        alt="SampleDir 主界面"
+        class="screenshot reveal"
+        width="1960"
+        height="1304"
+        loading="lazy"
+      />
+      <ul class="showcase__points">
+        <li data-i18n-html="sp1"><b>智能试听</b>双击即播，方向键连续试听整张素材库。</li>
+        <li data-i18n-html="sp2"><b>波形跳播</b>点击波形任意位置从该处开始播放。</li>
+        <li data-i18n-html="sp3"><b>信息密集</b>时长、Key、BPM、格式、大小、评分一屏尽览。</li>
+        <li data-i18n-html="sp4"><b>专注检索</b>左侧标签云与收藏夹，快速定位想要的声音。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== 上手步骤 ===== -->
+  <section class="section" id="how">
+    <div class="section__head">
+      <h2 data-i18n="how.h2">三步，把素材库跑起来</h2>
+      <p data-i18n="how.p">无需注册、无需配置，下载即用。</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step__num">1</div>
+        <h3 data-i18n="step1.h">添加文件夹</h3>
+        <p data-i18n="step1.p">点击左侧 + 或菜单「功能 → 添加文件夹」，选择你的采样目录，SampleDir 自动递归扫描。</p>
+      </div>
+      <div class="step reveal">
+        <div class="step__num">2</div>
+        <h3 data-i18n="step2.h">试听与标记</h3>
+        <p data-i18n="step2.p">双击试听、方向键连续播放；给好素材加星、写备注、打标签，随手整理。</p>
+      </div>
+      <div class="step reveal">
+        <div class="step__num">3</div>
+        <h3 data-i18n="step3.h">随时检索</h3>
+        <p data-i18n="step3.p">搜索框输入关键词，或点左侧标签 / 收藏夹秒筛；元数据随文件夹永久保存。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 下载 ===== -->
+  <section class="section section--alt" id="download">
+    <div class="section__head">
+      <h2 data-i18n="dl.h2">下载 SampleDir</h2>
+      <p data-i18n="dl.p">支持 Apple Silicon（M 系列）macOS。两种分发方式，按你的习惯选。</p>
+      <p class="beta-note">当前为 Beta 期，软件完全免费。</p>
+    </div>
+    <div class="downloads">
+      <div class="dl reveal">
+        <div class="dl__icon">
+          <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+        </div>
+        <h3>123云盘</h3>
+        <p>通过 123云盘分享下载，解压即用，支持 macOS 11+（Apple Silicon）。</p>
+        <a id="dl123" href="https://1815611961.share.123pan.cn/123pan/LR9zVv-nmBiH" class="btn btn--primary" target="_blank" rel="noopener">123云盘下载</a>
+        <span class="dl__req">约 152 MB · macOS 11+</span>
+      </div>
+      <div class="dl reveal">
+        <div class="dl__icon">
+          <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zm0 5v4l3 2"/></svg>
+        </div>
+        <h3>夸克网盘</h3>
+        <p>通过夸克网盘分享下载，解压即用，支持 macOS 11+（Apple Silicon）。</p>
+        <a id="dlQuark" href="https://pan.quark.cn/s/14a6be2d0202" class="btn btn--ghost" target="_blank" rel="noopener">夸克网盘下载</a>
+        <span class="dl__req">约 152 MB · macOS 11+</span>
+      </div>
+    </div>
+    <p class="downloads__note" data-i18n-html="dl.note">
+      ⚠️ 软件当前为<strong>未签名</strong>版本。首次打开若被系统拦截，请在「访达」中
+      <strong>右键 → 打开</strong>，或在终端执行 <code>xattr -cr /Applications/SampleDir.app</code> 解除隔离。
+    </p>
+  </section>
+
+  <!-- ===== 联系方式 ===== -->
+  <section class="section section--alt" id="contact">
+    <div class="section__head">
+      <h2 data-i18n="contact.h2">联系方式</h2>
+      <p data-i18n="contact.p">产品建议、问题反馈，欢迎邮件联系。</p>
+    </div>
+    <p class="contact__mail"><a href="mailto:hhztiger@gmail.com">hhztiger@gmail.com</a></p>
+  </section>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCIgeTE9IjAiIHgyPSI1MTIiIHkyPSI1MTIiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMTIxMjIwIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzFhMWEyZSIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0id2F2ZSIgeDE9IjY0IiB5MT0iMjU2IiB4Mj0iNDQ4IiB5Mj0iMjU2IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzAwRTY3NiIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMxREU5QjYiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHg9IjE2IiB5PSIxNiIgd2lkdGg9IjQ4MCIgaGVpZ2h0PSI0ODAiIHJ4PSIxMDQiIGZpbGw9InVybCgjYmcpIi8+CiAgPHJlY3QgeD0iMTYiIHk9IjE2IiB3aWR0aD0iNDgwIiBoZWlnaHQ9IjQ4MCIgcng9IjEwNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMmEyYTQwIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8ZyBzdHJva2U9InVybCgjd2F2ZSkiIHN0cm9rZS13aWR0aD0iMjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CiAgICA8bGluZSB4MT0iOTYiICB5MT0iMjU2IiB4Mj0iOTYiICB5Mj0iMjU2Ii8+CiAgICA8bGluZSB4MT0iMTM0IiB5MT0iMjAwIiB4Mj0iMTM0IiB5Mj0iMzEyIi8+CiAgICA8bGluZSB4MT0iMTcyIiB5MT0iMTU4IiB4Mj0iMTcyIiB5Mj0iMzU0Ii8+CiAgICA8bGluZSB4MT0iMjEwIiB5MT0iMTIwIiB4Mj0iMjEwIiB5Mj0iMzkyIi8+CiAgICA8bGluZSB4MT0iMjQ4IiB5MT0iMTc2IiB4Mj0iMjQ4IiB5Mj0iMzM2Ii8+CiAgICA8bGluZSB4MT0iMjg2IiB5MT0iOTYiICB4Mj0iMjg2IiB5Mj0iNDE2Ii8+CiAgICA8bGluZSB4MT0iMzI0IiB5MT0iMTU4IiB4Mj0iMzI0IiB5Mj0iMzU0Ii8+CiAgICA8bGluZSB4MT0iMzYyIiB5MT0iMjA4IiB4Mj0iMzYyIiB5Mj0iMzA0Ii8+CiAgICA8bGluZSB4MT0iNDAwIiB5MT0iMjQwIiB4Mj0iNDAwIiB5Mj0iMjcyIi8+CiAgICA8bGluZSB4MT0iNDM4IiB5MT0iMjU2IiB4Mj0iNDM4IiB5Mj0iMjU2Ii8+CiAgPC9nPgo8L3N2Zz4K" alt="SampleDir" width="30" height="30" />
+        <span>SampleDir</span>
+      </div>
+      <nav class="footer__links">
+        <a href="#features" data-i18n="nav.features">功能</a>
+        <a href="#showcase" data-i18n="nav.showcase">界面</a>
+        <a href="#download" data-i18n="nav.download">下载</a>
+        <a href="help.html" id="helpLink" data-i18n="footer.help">帮助文档</a>
+      </nav>
+      <p class="footer__copy" data-i18n="footer.copy">© 2026 SampleDir · 本地优先的采样素材库管理器 · Made for music producers</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/track.js"></script>
+</body>
+</html>

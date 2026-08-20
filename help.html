@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SampleDir 使用帮助</title>
+<style>
+  body { font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Hiragino Sans GB", "Microsoft YaHei", sans-serif; max-width: 680px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.7; }
+  h1 { font-size: 22px; border-bottom: 2px solid #3b82f6; padding-bottom: 8px; }
+  h2 { font-size: 16px; margin-top: 28px; color: #3b82f6; }
+  kbd { background: #f0f0f0; border: 1px solid #ccc; border-radius: 4px; padding: 1px 6px; font-size: 13px; }
+  code { background: #f5f5f5; padding: 1px 4px; border-radius: 3px; }
+  li { margin: 6px 0; }
+</style>
+</head>
+<body>
+
+<h1>SampleDir 使用帮助</h1>
+
+<h2>添加采样文件夹</h2>
+<ul>
+  <li>左侧「FOLDERS」区点击 <kbd>+</kbd> 按钮，选择一个文件夹加入库。</li>
+  <li>支持拖拽文件夹或单个音频文件到窗口。</li>
+  <li>菜单「功能 → 添加文件夹」同样可用。</li>
+</ul>
+
+<h2>浏览与试听</h2>
+<ul>
+  <li>点击左侧文件夹树展开子目录，右侧列表显示当前目录下的所有采样。</li>
+  <li><strong>双击</strong>任意行即可试听；再次双击或按 <kbd>Space</kbd> 暂停 / 恢复。</li>
+  <li><kbd>↑</kbd> <kbd>↓</kbd> 方向键上下切换采样（自动试听），<kbd>Enter</kbd> 从头重播。</li>
+</ul>
+
+<h2>搜索与筛选</h2>
+<ul>
+  <li>顶部搜索框输入关键词即可按文件名搜索（空格分隔多个词）。</li>
+  <li>点击左侧标签（TAGS）区域可筛选该标签下的采样。</li>
+  <li><kbd>⌘F</kbd> 快速聚焦搜索框，<kbd>Esc</kbd> 清除全部筛选。</li>
+</ul>
+
+<h2>收藏</h2>
+<ul>
+  <li>点击行首 ⭐ 即可收藏 / 取消收藏。</li>
+  <li>左侧「ALL FAVORITES」显示全部收藏，「默认收藏」仅显示直接收藏的采样。</li>
+  <li>可创建命名收藏夹：点击 ALL FAVORITES 旁的 <kbd>+</kbd> 并命名。</li>
+  <li>详情面板中可快速将当前采样加入任意收藏夹。</li>
+</ul>
+
+<h2>备注与标签</h2>
+<ul>
+  <li>选中采样后在右侧详情面板可写备注（自动保存，2 秒防抖）。</li>
+  <li>备注支持搜索，输入任意关键词即可匹配。</li>
+  <li>下方「添加标签」按钮可为采样打标，标签同样可搜索和筛选。</li>
+</ul>
+
+<h2>列表排序与列设置</h2>
+<ul>
+  <li>点击表头即可按该列排序（再次点击切换升序 / 降序）。</li>
+  <li>表头右键可自定义列的显示 / 隐藏、拖拽调整宽度和顺序。</li>
+</ul>
+
+<h2>波形与跳播</h2>
+<ul>
+  <li>详情面板下半部分显示当前采样的波形（1200 点 RMS）。</li>
+  <li>点击波形图任意位置可从该处开始播放。</li>
+  <li>波形引擎可在设置中切换（Java Sound / ffmpeg）。</li>
+</ul>
+
+<h2>键盘快捷键</h2>
+<ul>
+  <li><kbd>Space</kbd> — 播放 / 暂停</li>
+  <li><kbd>↑</kbd> <kbd>↓</kbd> — 上下选择采样</li>
+  <li><kbd>Enter</kbd> — 从头重播选中的采样</li>
+  <li><kbd>⌘F</kbd> — 聚焦搜索框</li>
+  <li><kbd>⌘,</kbd> — 打开设置</li>
+  <li><kbd>Esc</kbd> — 清除所有筛选</li>
+</ul>
+
+<h2>设置</h2>
+<ul>
+  <li>点击右上角 ⚙ 图标或 <kbd>⌘,</kbd> 打开设置面板。</li>
+  <li>语言：中文 / English 即时切换。</li>
+  <li>外观：跟随系统 / 浅色 / 深色。</li>
+  <li>字体大小：等比缩放界面文字。</li>
+  <li>波形引擎：Java Sound 或 ffmpeg（ffmpeg 对 MPEG 编码的 .wav 更准）。</li>
+  <li>显示文件扩展名：列表文件名末尾是否显示 .wav 等后缀。</li>
+</ul>
+
+  <script src="assets/js/track.js"></script>
+</body>
+</html>
