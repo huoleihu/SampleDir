@@ -1,85 +1,58 @@
-/**
- * SampleDir 官网访客统计上报（非阻塞、静默失败）。
- *
- * 设计原则：
- *  - 无论后端是否可达、是否报错，都绝不影响页面正常展示与交互。
- *  - 优先用 navigator.sendBeacon（页面切换也不丢），回退到 fetch(keepalive)，
- *    二者均异步、不阻塞渲染；任何异常全部 try/catch 吞掉。
- *
- * 上报内容：
- *  - 页面加载：event=page_view
- *  - 点击 #dl123 / #dlQuark：event=download_click，target=123 / quark
- *
- * IP / 浏览器 / 操作系统由后端从请求头提取，前端只传 page / event / target。
+/*!
+ * SampleDir website — 点击埋点
+ * 仅上报「动作 + 页面 + 浏览器语言」，不存 IP / UA / Cookie / PII
+ * 失败静默：不打扰用户、不报错
  */
 (function () {
   'use strict';
 
-  // 上报接口地址。
-  // 若官网与后端（mydaox_plus）同源或经反向代理同一域名，使用相对路径即可；
-  // 若官网是独立域名 / GitHub Pages / CDN，请改成后端完整地址，例如：
-  //   window.SAMPLE_DIR_TRACK_ENDPOINT = 'https://api.yourdomain.com/api/track';
-  var TRACK_ENDPOINT =
-    (window.SAMPLE_DIR_TRACK_ENDPOINT) || '/api/track';
+  // 仅一次性：日志里能看到埋点模块加载
+  if (window.console && console.debug) console.debug('[track] loaded');
 
-  function buildPayload(extra) {
-    extra = extra || {};
-    return {
-      page: location.pathname || '/',
-      event: extra.event || 'page_view',
-      target: extra.target || null
+  function send(action, extra) {
+    var data = {
+      action: String(action || 'unknown').slice(0, 64),
+      page: String(location.pathname || '').slice(0, 128),
+      ref: String(document.referrer || '').slice(0, 256),
+      lang: String((document.documentElement.lang || '').slice(0, 16)),
+      ts: Date.now(),
     };
-  }
+    if (extra && typeof extra === 'object') {
+      for (var k in extra) if (Object.prototype.hasOwnProperty.call(extra, k)) {
+        data[k] = String(extra[k]).slice(0, 128);
+      }
+    }
 
-  function send(payload) {
+    // sendBeacon：浏览器关闭也能送达，不阻塞返回
     try {
-      var body = JSON.stringify(payload);
-      if (navigator.sendBeacon) {
-        var blob = new Blob([body], { type: 'application/json' });
-        var ok = navigator.sendBeacon(TRACK_ENDPOINT, blob);
-        if (ok) {
-          return;
-        }
-        // sendBeacon 队列满时返回 false，降级到 fetch
-      }
-      if (typeof fetch === 'function') {
-        fetch(TRACK_ENDPOINT, {
+      var payload = new Blob([JSON.stringify(data)], { type: 'application/json' });
+      if (!navigator.sendBeacon('/api/track', payload)) {
+        // 兜底：fetch keepalive
+        fetch('/api/track', {
           method: 'POST',
+          body: JSON.stringify(data),
           headers: { 'Content-Type': 'application/json' },
-          body: body,
-          keepalive: true
-        }).catch(function () {
-          // 静默失败：不影响页面
-        });
+          keepalive: true,
+        }).catch(function () {});
       }
-    } catch (e) {
-      // 任何异常都吞掉，绝不影响页面
-    }
+    } catch (_) { /* 失败静默 */ }
   }
 
-  function trackPageView() {
-    send(buildPayload({ event: 'page_view' }));
-  }
+  // ① 点击埋点：监听带 data-track 的元素
+  document.addEventListener('click', function (e) {
+    var el = (e.target && e.target.closest) ? e.target.closest('[data-track]') : null;
+    if (!el) return;
+    // 跳过置灰/禁用按钮（不计入"点击"）
+    if (el.classList && el.classList.contains('btn--disabled')) return;
+    if (el.getAttribute && el.getAttribute('aria-disabled') === 'true') return;
+    send(el.dataset.track);
+  }, { passive: true });
 
-  function bindDownload(id, target) {
-    var el = document.getElementById(id);
-    if (!el) {
-      return;
-    }
-    el.addEventListener('click', function () {
-      send(buildPayload({ event: 'download_click', target: target }));
-    });
-  }
-
-  function init() {
-    trackPageView();
-    bindDownload('dl123', '123');
-    bindDownload('dlQuark', 'quark');
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  // ② PV：页面加载 + history.pushState 切换时各打一次
+  function pv() { send('__pv'); }
+  window.addEventListener('load', pv, { once: true });
+  // 单页 hash 跳转（本站是 hash 锚点，不触发 pushState，但保留通用支持）
+  var _push = history.pushState;
+  history.pushState = function () { var r = _push.apply(this, arguments); pv(); return r; };
+  window.addEventListener('popstate', pv);
 })();

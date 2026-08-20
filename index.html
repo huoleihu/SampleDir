@@ -23,7 +23,7 @@
         <a href="#how" data-i18n="nav.how">上手</a>
         <a href="#download" data-i18n="nav.download">下载</a>
         <a href="#contact" data-i18n="nav.contact">联系方式</a>
-        <a href="https://github.com/huoleihu/SampleDir" target="_blank" rel="noopener" data-i18n="nav.github">GitHub</a>
+        <a href="https://github.com/huoleihu/SampleDir" target="_blank" rel="noopener" data-i18n="nav.github" data-track="gh-nav">GitHub</a>
       </nav>
       <select class="lang" id="langSelect" aria-label="Language / 语言">
         <option value="zh">中文</option>
@@ -33,7 +33,7 @@
       </select>
       <!-- TODO: 购买暂未开放（置灰）。开放时：移除 btn--disabled/aria-disabled/tabindex，把 href="#" 替换为真实商店地址 -->
       <a href="#" class="btn btn--ghost nav__cta btn--disabled" data-i18n="nav.buy" title="暂不支持购买" aria-disabled="true" tabindex="-1">购买</a>
-      <a href="#download" class="btn btn--ghost nav__cta" data-i18n="nav.cta">免费下载</a>
+      <a href="#download" class="btn btn--ghost nav__cta" data-i18n="nav.cta" data-track="dl-cta-free">免费下载</a>
       <button class="nav__toggle" id="navToggle" aria-label="菜单">
         <span></span><span></span><span></span>
       </button>
@@ -58,10 +58,10 @@
         标签与收藏，所有备注和标记都随文件夹一起走——换电脑也不丢。
       </p>
       <div class="hero__actions">
-        <a href="#download" class="btn btn--primary" data-i18n="hero.download">下载 for macOS</a>
+        <a href="#download" class="btn btn--primary" data-i18n="hero.download" data-track="dl-hero">下载 for macOS</a>
         <!-- TODO: 购买暂未开放（置灰）。开放时移除 btn--disabled 并替换 href 为真实商店地址 -->
         <a href="#" class="btn btn--ghost btn--disabled" data-i18n="hero.buy" title="暂不支持购买" aria-disabled="true" tabindex="-1">购买</a>
-        <a href="#features" class="btn btn--ghost" data-i18n="hero.explore">了解功能</a>
+        <a href="#features" class="btn btn--ghost" data-i18n="hero.explore" data-track="explore-hero">了解功能</a>
       </div>
       <div class="hero__meta">
         <span id="heroVersion">v1.0 · Apple Silicon</span>
@@ -228,7 +228,7 @@
         </div>
         <h3>123云盘</h3>
         <p>通过 123云盘分享下载，解压即用，支持 macOS 11+（Apple Silicon）。</p>
-        <a id="dl123" href="https://1815611961.share.123pan.cn/123pan/LR9zVv-nmBiH" class="btn btn--primary" target="_blank" rel="noopener">123云盘下载</a>
+        <a id="dl123" href="https://1815611961.share.123pan.cn/123pan/LR9zVv-nmBiH" class="btn btn--primary" target="_blank" rel="noopener" data-track="dl-123">123云盘下载</a>
         <span class="dl__req">约 152 MB · macOS 11+</span>
       </div>
       <div class="dl reveal">
@@ -237,7 +237,7 @@
         </div>
         <h3>夸克网盘</h3>
         <p>通过夸克网盘分享下载，解压即用，支持 macOS 11+（Apple Silicon）。</p>
-        <a id="dlQuark" href="https://pan.quark.cn/s/14a6be2d0202" class="btn btn--ghost" target="_blank" rel="noopener">夸克网盘下载</a>
+        <a id="dlQuark" href="https://pan.quark.cn/s/14a6be2d0202" class="btn btn--ghost" target="_blank" rel="noopener" data-track="dl-quark">夸克网盘下载</a>
         <span class="dl__req">约 152 MB · macOS 11+</span>
       </div>
     </div>
@@ -253,7 +253,7 @@
       <h2 data-i18n="contact.h2">联系方式</h2>
       <p data-i18n="contact.p">产品建议、问题反馈，欢迎邮件联系。</p>
     </div>
-    <p class="contact__mail"><a href="mailto:hhztiger@gmail.com">hhztiger@gmail.com</a></p>
+    <p class="contact__mail"><a href="mailto:hhztiger@gmail.com" data-track="contact-mail">hhztiger@gmail.com</a></p>
   </section>
 
   <!-- ===== 页脚 ===== -->
@@ -267,7 +267,7 @@
         <a href="#features" data-i18n="nav.features">功能</a>
         <a href="#showcase" data-i18n="nav.showcase">界面</a>
         <a href="#download" data-i18n="nav.download">下载</a>
-        <a href="help.html" id="helpLink" data-i18n="footer.help">帮助文档</a>
+        <a href="help.html" id="helpLink" data-i18n="footer.help" data-track="help-footer">帮助文档</a>
       </nav>
       <p class="footer__copy" data-i18n="footer.copy">© 2026 SampleDir · 本地优先的采样素材库管理器 · Made for music producers</p>
     </div>

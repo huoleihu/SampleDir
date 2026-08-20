@@ -1,0 +1,13 @@
+# SampleDir website —— Cloudflare Pages 配置
+# pages_build_output_dir 指向根目录（HTML/CSS/JS 直接是静态资产）
+# [[analytics_engine_datasets]] 声明 Analytics Engine 绑定，
+# Functions 里通过 env.ANALYTICS.writeDataPoint() 写入
+#
+# 注意：Pages 项目本身的 name/pages_build_output_dir 通常在
+# Cloudflare Dashboard 配置；这里主要声明 Analytics Engine 绑定。
+
+pages_build_output_dir = "."
+
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
+dataset = "sampledir_clicks"
