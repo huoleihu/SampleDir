@@ -1,6 +1,6 @@
 <div align="center">
 
-▁▂▃▄▅▆▇█████▇▆▅▄▃▂▁
+<img src="logo.svg" width="84" height="84" alt="SampleDir" />
 
 # SampleDir
 
