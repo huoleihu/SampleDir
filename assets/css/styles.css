@@ -269,7 +269,8 @@ select.lang:focus { border-color: var(--green); }
 .footer__links { display: flex; gap: 22px; font-size: 14px; color: var(--text-dim); }
 .footer__links a:hover { color: var(--green); }
 .footer__copy { font-size: 13px; color: var(--text-mute); }
-#contact { scroll-margin-top: 72px; }
+#contact { scroll-margin-top: 72px; padding: 56px 24px 60px; }
+#contact .section__head { margin-bottom: 22px; }
 .contact__mail { text-align: center; font-size: clamp(20px, 3.5vw, 30px); }
 .contact__mail a { color: var(--green); text-decoration: none; font-weight: 800; letter-spacing: -.3px; }
 .contact__mail a:hover { text-decoration: underline; }

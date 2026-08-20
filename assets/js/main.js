@@ -258,8 +258,25 @@
     var saved = null;
     try { saved = localStorage.getItem(STORE_KEY); } catch (e) {}
     if (LANGS.indexOf(saved) !== -1) return saved;
-    // 首次访问：根据浏览器语言自动选择
-    var nav = (navigator.language || 'zh').toLowerCase();
+
+    // 首次访问：根据机器区域自动选择（优先系统区域，浏览器语言兜底）
+    // ① Intl 的 resolvedOptions 反映系统区域设置（比 navigator.language 更接近"机器区域"）
+    var locale = '';
+    try { locale = (Intl.DateTimeFormat().resolvedOptions().locale || '').toLowerCase(); } catch (e) {}
+    if (locale.indexOf('zh') === 0) return 'zh';
+    if (locale.indexOf('ko') === 0) return 'ko';
+    if (locale.indexOf('ja') === 0) return 'ja';
+
+    // ② 时区兜底：系统时区在上海/首尔/东京时区，语言大概率也对应（浏览器可能被设成英文）
+    var tz = '';
+    try { tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '').toLowerCase(); } catch (e) {}
+    if (tz.indexOf('shanghai') !== -1 || tz.indexOf('chongqing') !== -1 ||
+        tz.indexOf('harbin') !== -1 || tz.indexOf('urumqi') !== -1) return 'zh';
+    if (tz.indexOf('seoul') !== -1) return 'ko';
+    if (tz.indexOf('tokyo') !== -1) return 'ja';
+
+    // ③ 最后兜底浏览器语言
+    var nav = (navigator.language || '').toLowerCase();
     if (nav.indexOf('zh') === 0) return 'zh';
     if (nav.indexOf('ko') === 0) return 'ko';
     if (nav.indexOf('ja') === 0) return 'ja';
