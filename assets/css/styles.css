@@ -87,6 +87,15 @@ select.lang:focus { border-color: var(--green); }
   background: var(--surface-2); color: var(--text); border-color: var(--border);
 }
 .btn--ghost:hover { border-color: var(--green); color: var(--green); }
+/* 禁用态（如"购买"暂未开放） */
+.btn--disabled,
+.btn--disabled:hover {
+  opacity: .45;
+  cursor: not-allowed;
+  pointer-events: none;
+  border-color: var(--border);
+  color: var(--text-mute);
+}
 
 /* ====== Hero ====== */
 .hero {
