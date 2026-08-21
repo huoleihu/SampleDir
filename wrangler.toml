@@ -11,16 +11,3 @@ pages_build_output_dir = "."
 [[analytics_engine_datasets]]
 binding = "ANALYTICS"
 dataset = "sampledir_clicks"
-
-# ===== 留言板：Cloudflare D1 数据库（SQLite）=====
-# 创建方式：先跑 `npx wrangler d1 create sampledir_messages`
-# 会返回一个 database_id，把它填到下面 database_id 里。
-# 建表：`npx wrangler d1 execute sampledir_messages --remote --file=migrations/0001_init.sql`
-[[d1_databases]]
-binding = "DB"
-database_name = "sampledir_messages"
-database_id = "REPLACE_WITH_DATABASE_ID"
-
-# 非敏感配置（敏感项 RESEND_API_KEY / ADMIN_SECRET / ADMIN_EMAIL 用 secret，不进 git）
-[vars]
-RESEND_FROM = "SampleDir <onboarding@resend.dev>"

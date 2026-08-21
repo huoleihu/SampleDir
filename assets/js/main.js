@@ -63,19 +63,7 @@
       'dl2.btn': '下载 .dmg', 'dl2.req': '需运行 packageDmg 构建',
       'dl.note': '⚠️ 软件当前为<strong>未签名</strong>版本。首次打开若被系统拦截，请在「访达」中<strong>右键 → 打开</strong>，或在终端执行 <code>xattr -cr /Applications/SampleDir.app</code> 解除隔离。',
       'footer.help': '帮助文档',
-      'footer.copy': '© 2026 SampleDir · 本地优先的采样素材库管理器 · Made by ssxm',
-      'gb.h2': '留言板',
-      'gb.p': '有什么建议或想说的话？欢迎留言，审核通过后会展示在下方。',
-      'gb.name': '昵称（可选）',
-      'gb.email': '邮箱（可选，不公开）',
-      'gb.content': '写下你的留言…',
-      'gb.submit': '提交留言',
-      'gb.empty': '还没有留言，来做第一个吧。',
-      'gb.ok': '留言已提交，审核通过后会展示',
-      'gb.errEmpty': '请填写留言内容',
-      'gb.errRate': '提交太频繁，请稍后再试',
-      'gb.errEmail': '邮箱格式不正确',
-      'gb.err': '提交失败，请稍后再试'
+      'footer.copy': '© 2026 SampleDir · 本地优先的采样素材库管理器 · Made by ssxm'
     },
     en: {
       'meta.title': 'SampleDir · macOS Sample Library Manager',
@@ -136,19 +124,7 @@
       'dl2.btn': 'Download .dmg', 'dl2.req': 'Built via packageDmg',
       'dl.note': '⚠️ The app is currently <strong>unsigned</strong>. If macOS blocks the first launch, right-click → Open in Finder, or run <code>xattr -cr /Applications/SampleDir.app</code> in Terminal to remove the quarantine.',
       'footer.help': 'Help',
-      'footer.copy': '© 2026 SampleDir · A local-first sample library manager · Made by ssxm',
-      'gb.h2': 'Guestbook',
-      'gb.p': 'Have a suggestion or something to say? Leave a message — it will appear below once approved.',
-      'gb.name': 'Name (optional)',
-      'gb.email': 'Email (optional, not shown publicly)',
-      'gb.content': 'Write your message…',
-      'gb.submit': 'Post message',
-      'gb.empty': 'No messages yet — be the first!',
-      'gb.ok': 'Submitted! It will appear after approval.',
-      'gb.errEmpty': 'Please write a message',
-      'gb.errRate': 'Too many submissions, please wait a moment',
-      'gb.errEmail': 'Invalid email address',
-      'gb.err': 'Failed to submit, please try again later'
+      'footer.copy': '© 2026 SampleDir · A local-first sample library manager · Made by ssxm'
     },
     ko: {
       'meta.title': 'SampleDir · macOS 샘플 라이브러리 매니저',
@@ -209,19 +185,7 @@
       'dl2.btn': '.dmg 다운로드', 'dl2.req': 'packageDmg 빌드 필요',
       'dl.note': '⚠️ 현재 <strong>서명되지 않은</strong> 버전입니다. 처음 실행이 차단되면 Finder에서 <strong>우클릭 → 열기</strong>를 하거나, 터미널에서 <code>xattr -cr /Applications/SampleDir.app</code>을 실행해 격리를 해제하세요.',
       'footer.help': '도움말',
-      'footer.copy': '© 2026 SampleDir · 로컬 우선 샘플 라이브러리 매니저 · Made by ssxm',
-      'gb.h2': '방명록',
-      'gb.p': '제안이나 하고 싶은 말이 있으신가요? 메시지를 남겨주세요. 승인 후 아래에 표시됩니다.',
-      'gb.name': '이름 (선택)',
-      'gb.email': '이메일 (선택, 공개되지 않음)',
-      'gb.content': '메시지를 입력하세요…',
-      'gb.submit': '메시지 남기기',
-      'gb.empty': '아직 메시지가 없습니다. 첫 번째로 남겨보세요!',
-      'gb.ok': '제출되었습니다! 승인 후 표시됩니다.',
-      'gb.errEmpty': '메시지를 입력해주세요',
-      'gb.errRate': '너무 자주 제출했습니다. 잠시 후 다시 시도해주세요',
-      'gb.errEmail': '이메일 형식이 올바르지 않습니다',
-      'gb.err': '제출에 실패했습니다. 나중에 다시 시도해주세요'
+      'footer.copy': '© 2026 SampleDir · 로컬 우선 샘플 라이브러리 매니저 · Made by ssxm'
     },
     ja: {
       'meta.title': 'SampleDir · macOS サンプルライブラリマネージャー',
@@ -282,19 +246,7 @@
       'dl2.btn': '.dmg をダウンロード', 'dl2.req': 'packageDmg でビルドが必要',
       'dl.note': '⚠️ 現在<strong>署名なし</strong>バージョンです。初回起動がブロックされた場合は、Finderで<strong>右クリック → 開く</strong>、またはターミナルで <code>xattr -cr /Applications/SampleDir.app</code> を実行して隔離を解除してください。',
       'footer.help': 'ヘルプ',
-      'footer.copy': '© 2026 SampleDir · ローカル優先のサンプルライブラリマネージャー · Made by ssxm',
-      'gb.h2': 'ゲストブック',
-      'gb.p': 'ご提案やメッセージはこちらへ。承認後に下へ表示されます。',
-      'gb.name': '名前（任意）',
-      'gb.email': 'メール（任意・非公開）',
-      'gb.content': 'メッセージを入力…',
-      'gb.submit': '投稿する',
-      'gb.empty': 'まだメッセージがありません。最初の投稿をどうぞ！',
-      'gb.ok': '送信しました！承認後に表示されます。',
-      'gb.errEmpty': 'メッセージを入力してください',
-      'gb.errRate': '送信が多すぎます。しばらく待ってください',
-      'gb.errEmail': 'メールアドレスの形式が正しくありません',
-      'gb.err': '送信に失敗しました。後でもう一度お試しください'
+      'footer.copy': '© 2026 SampleDir · ローカル優先のサンプルライブラリマネージャー · Made by ssxm'
     }
   };
 
@@ -346,10 +298,6 @@
     document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
       var k = el.getAttribute('data-i18n-aria');
       if (dict[k] != null) el.setAttribute('aria-label', dict[k]);
-    });
-    document.querySelectorAll('[data-i18n-ph]').forEach(function (el) {
-      var k = el.getAttribute('data-i18n-ph');
-      if (dict[k] != null) el.setAttribute('placeholder', dict[k]);
     });
 
     var titleEl = document.querySelector('[data-i18n-title]');
@@ -436,98 +384,5 @@
       .catch(function () {
         // Gitee 连不上时保持页面默认的静态链接，不做任何事
       });
-  })();
-
-  /* ============ 6. 留言板 ============ */
-  (function guestbook() {
-    var form = document.getElementById('gbForm');
-    var list = document.getElementById('gbList');
-    if (!form || !list) return;
-
-    function esc(s) {
-      return String(s).replace(/[&<>"']/g, function (c) {
-        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
-      });
-    }
-    function p2(n) { return (n < 10 ? '0' : '') + n; }
-    function fmtTime(ts) {
-      var d = new Date(ts);
-      return d.getFullYear() + '-' + p2(d.getMonth() + 1) + '-' + p2(d.getDate());
-    }
-    function t(key) { return (I18N[current] && I18N[current][key]) || ''; }
-
-    function render(messages) {
-      if (!messages || !messages.length) {
-        list.innerHTML = '<p class="gb-empty">' + esc(t('gb.empty')) + '</p>';
-        return;
-      }
-      var html = '';
-      messages.forEach(function (m) {
-        html += '<article class="gb-item">' +
-          '<div class="gb-item__head">' +
-            '<span class="gb-item__name">' + esc(m.name || '匿名') + '</span>' +
-            '<span class="gb-item__time">' + fmtTime(m.created_at) + '</span>' +
-          '</div>' +
-          '<p class="gb-item__content">' + esc(m.content) + '</p>' +
-        '</article>';
-      });
-      list.innerHTML = html;
-    }
-
-    function status(msg, ok) {
-      var el = document.getElementById('gbStatus');
-      if (!el) return;
-      el.textContent = msg;
-      el.className = 'gb-status' + (ok ? ' is-ok' : ' is-err');
-      if (ok) setTimeout(function () { el.textContent = ''; el.className = 'gb-status'; }, 6000);
-    }
-
-    // 页面加载：拉取已审核留言
-    fetch('/api/messages')
-      .then(function (r) { return r.json(); })
-      .then(function (d) { if (d && d.ok) render(d.messages); })
-      .catch(function () {});
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var content = document.getElementById('gbContent').value.trim();
-      if (!content) { status(t('gb.errEmpty') || '请填写留言内容', false); return; }
-
-      var btn = form.querySelector('button[type="submit"]');
-      if (btn) btn.disabled = true;
-
-      var payload = {
-        name: document.getElementById('gbName').value.trim(),
-        email: document.getElementById('gbEmail').value.trim(),
-        content: content,
-        website: document.getElementById('gbWebsite').value,
-        lang: current
-      };
-
-      fetch('/api/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      })
-        .then(function (r) { return r.json(); })
-        .then(function (d) {
-          if (d && d.ok) {
-            status(t('gb.ok') || '留言已提交，审核通过后会展示', true);
-            form.reset();
-          } else if (d && d.error === 'rate') {
-            status(t('gb.errRate') || '提交太频繁，请稍后再试', false);
-          } else if (d && d.error === 'email') {
-            status(t('gb.errEmail') || '邮箱格式不正确', false);
-          } else {
-            status(t('gb.err') || '提交失败，请稍后再试', false);
-          }
-        })
-        .catch(function () {
-          status(t('gb.err') || '提交失败，请稍后再试', false);
-        })
-        .then(function () {
-          if (btn) btn.disabled = false;
-        });
-    });
   })();
 })();

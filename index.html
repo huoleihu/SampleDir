@@ -256,29 +256,6 @@
     <p class="contact__mail"><a href="mailto:hhztiger@gmail.com" data-track="contact-mail">hhztiger@gmail.com</a></p>
   </section>
 
-  <!-- ===== 留言板 ===== -->
-  <section class="section" id="guestbook">
-    <div class="section__head">
-      <h2 data-i18n="gb.h2">留言板</h2>
-      <p data-i18n="gb.p">有什么建议或想说的话？欢迎留言，审核通过后会展示在下方。</p>
-    </div>
-    <div class="guestbook">
-      <form class="gb-form" id="gbForm" novalidate>
-        <div class="gb-form__row">
-          <input type="text" id="gbName" name="name" maxlength="60" autocomplete="name" placeholder="昵称（可选）" data-i18n-ph="gb.name" />
-          <input type="email" id="gbEmail" name="email" maxlength="200" autocomplete="email" placeholder="邮箱（可选，不公开）" data-i18n-ph="gb.email" />
-        </div>
-        <textarea id="gbContent" name="content" rows="4" maxlength="2000" required placeholder="写下你的留言…" data-i18n-ph="gb.content"></textarea>
-        <input type="text" id="gbWebsite" name="website" class="gb-hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
-        <div class="gb-form__foot">
-          <button type="submit" class="btn btn--primary" data-i18n="gb.submit">提交留言</button>
-          <span class="gb-status" id="gbStatus" role="status" aria-live="polite"></span>
-        </div>
-      </form>
-      <div class="gb-list" id="gbList"></div>
-    </div>
-  </section>
-
   <!-- ===== 页脚 ===== -->
   <footer class="footer">
     <div class="footer__inner">
