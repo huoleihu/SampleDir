@@ -4,8 +4,7 @@
 # Functions 里通过 env.ANALYTICS.writeDataPoint() 写入
 #
 # 注意：Pages 项目本身的 name/pages_build_output_dir 通常在
-# Cloudflare Dashboard 配置；这里主要声明 Analytics Engine 绑定。
-
+name = "sampledir"
 pages_build_output_dir = "."
 
 [[analytics_engine_datasets]]
