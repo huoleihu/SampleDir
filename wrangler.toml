@@ -7,6 +7,3 @@
 name = "sampledir"
 pages_build_output_dir = "."
 
-[[analytics_engine_datasets]]
-binding = "ANALYTICS"
-dataset = "sampledir_clicks"
