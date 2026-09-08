@@ -31,8 +31,8 @@
 # =============================================================================
 set -e
 
-MAIN_PROJECT="/Users/huoleihu/ai_workbuddy/kotlin_sampleDir"
-RELEASES_REPO="/Users/huoleihu/ai_workbuddy/webs/SampleDir"
+MAIN_PROJECT="${MAIN_PROJECT:-$HOME/ai_workbuddy/kotlin_sampleDir}"
+RELEASES_REPO="${RELEASES_REPO:-$HOME/ai_workbuddy/webs/SampleDir}"
 GH_REPO="huoleihu/SampleDir"
 DESKTOP="$HOME/Desktop"
 
@@ -123,7 +123,8 @@ for f in "${PRODUCTS[@]}"; do
   esac
 done
 
-PUBDATE="$(date -u +"%a, %d %b %Y %H:%M:%S +0000")"
+PUBDATE="$(TZ=Asia/Shanghai LC_ALL=C date +"%a, %d %b %Y %H:%M:%S %z")"
+PUB_CNDATE="$(TZ=Asia/Shanghai LC_ALL=C date +"%Y-%m-%d %H:%M:%S")"
 if [ "$PUBLISH_RELEASE" = "true" ]; then
   BASE="https://github.com/$GH_REPO/releases/download/$TAG"
 else
@@ -147,6 +148,7 @@ echo "    <title>SampleDir</title>"
 echo "    <item>"
 echo "      <title>$VERSION</title>"
 echo "      <pubDate>$PUBDATE</pubDate>"
+echo "      <pubCnDate>$PUB_CNDATE</pubCnDate>"
 echo "      <sparkle:version>$VERSION</sparkle:version>"
 [ -n "$MAC_DMG" ] && gen_enc "$BASE/$(basename "$MAC_DMG")" "macos"   "dmg" "$MAC_DMG"
 [ -n "$MAC_PKG" ] && gen_enc "$BASE/$(basename "$MAC_PKG")" "macos"   "pkg" "$MAC_PKG"
