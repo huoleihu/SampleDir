@@ -56,11 +56,13 @@
       'step2.h': '试听与标记', 'step2.p': '双击试听、方向键连续播放；给好素材加星、写备注、打标签，随手整理。',
       'step3.h': '随时检索', 'step3.p': '搜索框输入关键词，或点左侧标签 / 收藏夹秒筛；元数据随文件夹永久保存。',
       'dl.h2': '下载 SampleDir',
-      'dl.p': '支持 Apple Silicon（M 系列）macOS。两种分发方式，按你的习惯选。',
-      'dl1.h': '便携版（推荐）', 'dl1.p': '自带 JRE 与 ffmpeg，解压后双击 SampleDir.sh 即可运行，无需安装。',
-      'dl1.btn': '下载 .zip', 'dl1.req': '约 160 MB · macOS 12+',
-      'dl2.h': '安装版 .dmg', 'dl2.p': '标准 macOS 安装包，拖入 Applications 即可。需先执行打包脚本生成。',
-      'dl2.btn': '下载 .dmg', 'dl2.req': '需运行 packageDmg 构建',
+      'dl.p': '支持 Apple Silicon（M 系列）macOS。三种下载方式，按你的网络环境选。',
+      'dl1.h': '123云盘', 'dl1.p': '通过 123云盘分享下载，适合国内网络。',
+      'dl1.btn': '123云盘下载', 'dl1.req': '约 160 MB · macOS 11+',
+      'dl2.h': '夸克网盘', 'dl2.p': '通过夸克网盘分享下载，适合国内网络。',
+      'dl2.btn': '夸克网盘下载', 'dl2.req': '约 160 MB · macOS 11+',
+      'dl3.h': 'GitHub Release', 'dl3.p': '从 GitHub Release 下载最新版 dmg，适合海外网络或需要历史版本的用户。',
+      'dl3.btn': 'GitHub 下载', 'dl3.req': '约 160 MB · macOS 11+',
       'dl.note': '⚠️ 软件当前为<strong>未签名</strong>版本。首次打开若被系统拦截，请在「访达」中<strong>右键 → 打开</strong>，或在终端执行 <code>xattr -cr /Applications/SampleDir.app</code> 解除隔离。',
       'footer.help': '帮助文档',
       'footer.copy': '© 2026 SampleDir · 本地优先的采样素材库管理器 · Made by ssxm'
@@ -117,11 +119,13 @@
       'step2.h': 'Audition & tag', 'step2.p': 'Double-click to audition, arrow keys to play continuously; star, note, and tag your best material as you go.',
       'step3.h': 'Retrieve anytime', 'step3.p': 'Type a keyword in the search box, or click a tag / favorite folder to filter instantly; metadata is saved with the folder forever.',
       'dl.h2': 'Download SampleDir',
-      'dl.p': 'For Apple Silicon (M-series) macOS. Two distribution options — pick your preference.',
-      'dl1.h': 'Portable (recommended)', 'dl1.p': 'Ships with JRE & ffmpeg; unzip and double-click SampleDir.sh to run — no installation needed.',
-      'dl1.btn': 'Download .zip', 'dl1.req': '~160 MB · macOS 12+',
-      'dl2.h': 'Installer .dmg', 'dl2.p': 'Standard macOS installer, drag into Applications. Requires running the packaging script first.',
-      'dl2.btn': 'Download .dmg', 'dl2.req': 'Built via packageDmg',
+      'dl.p': 'For Apple Silicon (M-series) macOS. Three download options — pick what works for your network.',
+      'dl1.h': '123 Cloud', 'dl1.p': 'Download via 123 Cloud. Best for users in mainland China.',
+      'dl1.btn': 'Download from 123', 'dl1.req': '~160 MB · macOS 11+',
+      'dl2.h': 'Quark Cloud', 'dl2.p': 'Download via Quark Cloud. Best for users in mainland China.',
+      'dl2.btn': 'Download from Quark', 'dl2.req': '~160 MB · macOS 11+',
+      'dl3.h': 'GitHub Release', 'dl3.p': 'Download the latest dmg from GitHub Release. Best for overseas networks or users who want older releases.',
+      'dl3.btn': 'Download from GitHub', 'dl3.req': '~160 MB · macOS 11+',
       'dl.note': '⚠️ The app is currently <strong>unsigned</strong>. If macOS blocks the first launch, right-click → Open in Finder, or run <code>xattr -cr /Applications/SampleDir.app</code> in Terminal to remove the quarantine.',
       'footer.help': 'Help',
       'footer.copy': '© 2026 SampleDir · A local-first sample library manager · Made by ssxm'
@@ -178,11 +182,13 @@
       'step2.h': '프리뷰 & 태그', 'step2.p': '더블클릭으로 프리뷰, 방향키로 연속 재생. 좋은 소재에 별점, 메모, 태그를 붙여가며 정리하세요.',
       'step3.h': '언제든 검색', 'step3.p': '검색창에 키워드를 입력하거나 태그 / 즐겨찾기 폴더를 클릭해 즉시 필터. 메타데이터는 폴더와 함께 영구 저장됩니다.',
       'dl.h2': 'SampleDir 다운로드',
-      'dl.p': 'Apple Silicon(M 시리즈) macOS를 지원합니다. 취향에 맞는 두 가지 배포 방식.',
-      'dl1.h': '포터블 (권장)', 'dl1.p': 'JRE와 ffmpeg 포함, 압축 해제 후 SampleDir.sh를 더블클릭하면 실행됩니다. 설치 불필요.',
-      'dl1.btn': '.zip 다운로드', 'dl1.req': '약 160 MB · macOS 12+',
-      'dl2.h': '설치형 .dmg', 'dl2.p': '표준 macOS 설치 패키지, Applications에 드래그하면 끝. 먼저 패키징 스크립트를 실행해야 합니다.',
-      'dl2.btn': '.dmg 다운로드', 'dl2.req': 'packageDmg 빌드 필요',
+      'dl.p': 'Apple Silicon(M 시리즈) macOS를 지원합니다. 네트워크 상황에 맞는 세 가지 다운로드 방법.',
+      'dl1.h': '123 클라우드', 'dl1.p': '123 클라우드를 통해 다운로드. 중국 본토 사용자에게 적합.',
+      'dl1.btn': '123에서 다운로드', 'dl1.req': '약 160 MB · macOS 11+',
+      'dl2.h': '콰크 클라우드', 'dl2.p': '콰크 클라우드를 통해 다운로드. 중국 본토 사용자에게 적합.',
+      'dl2.btn': '콰크에서 다운로드', 'dl2.req': '약 160 MB · macOS 11+',
+      'dl3.h': 'GitHub Release', 'dl3.p': 'GitHub Release에서 최신 dmg를 다운로드. 해외 네트워크 또는 이전 버전이 필요한 사용자에게 적합.',
+      'dl3.btn': 'GitHub에서 다운로드', 'dl3.req': '약 160 MB · macOS 11+',
       'dl.note': '⚠️ 현재 <strong>서명되지 않은</strong> 버전입니다. 처음 실행이 차단되면 Finder에서 <strong>우클릭 → 열기</strong>를 하거나, 터미널에서 <code>xattr -cr /Applications/SampleDir.app</code>을 실행해 격리를 해제하세요.',
       'footer.help': '도움말',
       'footer.copy': '© 2026 SampleDir · 로컬 우선 샘플 라이브러리 매니저 · Made by ssxm'
@@ -239,11 +245,13 @@
       'step2.h': '試聴とタグ付け', 'step2.p': 'ダブルクリックで試聴、矢印キーで連続再生。良い素材に星・メモ・タグを付けながら整理しましょう。',
       'step3.h': 'いつでも検索', 'step3.p': '検索ボックスにキーワードを入力するか、タグ / お気に入りフォルダをクリックして即フィルター。メタデータはフォルダと一緒に永久保存されます。',
       'dl.h2': 'SampleDir をダウンロード',
-      'dl.p': 'Apple Silicon（Mシリーズ）macOSに対応。お好みの2つの配布方法。',
-      'dl1.h': 'ポータブル版（推奨）', 'dl1.p': 'JREとffmpeg同梱。解凍して SampleDir.sh をダブルクリックするだけ。インストール不要。',
-      'dl1.btn': '.zip をダウンロード', 'dl1.req': '約160 MB · macOS 12+',
-      'dl2.h': 'インストーラー .dmg', 'dl2.p': '標準のmacOSインストールパッケージ。Applicationsへドラッグするだけ。事前にパッケージングスクリプトの実行が必要です。',
-      'dl2.btn': '.dmg をダウンロード', 'dl2.req': 'packageDmg でビルドが必要',
+      'dl.p': 'Apple Silicon（Mシリーズ）macOSに対応。ネットワーク環境に応じて3つのダウンロード方法から選べます。',
+      'dl1.h': '123クラウド', 'dl1.p': '123クラウド経由でダウンロード。中国大陸のユーザー向け。',
+      'dl1.btn': '123からダウンロード', 'dl1.req': '約160 MB · macOS 11+',
+      'dl2.h': 'クァーククラウド', 'dl2.p': 'クァーククラウド経由でダウンロード。中国大陸のユーザー向け。',
+      'dl2.btn': 'クァークからダウンロード', 'dl2.req': '約160 MB · macOS 11+',
+      'dl3.h': 'GitHub Release', 'dl3.p': 'GitHub Releaseから最新のdmgをダウンロード。海外ネットワークや過去のバージョンが必要なユーザー向け。',
+      'dl3.btn': 'GitHubからダウンロード', 'dl3.req': '約160 MB · macOS 11+',
       'dl.note': '⚠️ 現在<strong>署名なし</strong>バージョンです。初回起動がブロックされた場合は、Finderで<strong>右クリック → 開く</strong>、またはターミナルで <code>xattr -cr /Applications/SampleDir.app</code> を実行して隔離を解除してください。',
       'footer.help': 'ヘルプ',
       'footer.copy': '© 2026 SampleDir · ローカル優先のサンプルライブラリマネージャー · Made by ssxm'
@@ -359,42 +367,34 @@
       nav.style.boxShadow = (window.scrollY > 8) ? '0 6px 20px rgba(0,0,0,.35)' : 'none';
     }, { passive: true });
   }
-  /* ============ 5. 从 appcast.xml 拉取最新版本号（Cloudflare Pages 同源） ============ */
-  (function fetchVersionFromAppcast() {
-    fetch('/appcast.xml')
-      .then(function (r) { return r.text(); })
-      .then(function (xml) {
-        var parser = new DOMParser();
-        var doc = parser.parseFromString(xml, 'application/xml');
-        var item = doc.querySelector('channel > item');
-        var v = item ? (item.querySelector('title') || {}).textContent : '';
-        if (!v) return;
-        var heroVer = document.getElementById('heroVersion');
-        if (heroVer) heroVer.textContent = 'v' + v + ' \u00B7 Apple Silicon';
-      })
-      .catch(function () {
-        // appcast.xml 读不到时保持页面默认静态版本号
-      });
-  })();
-
-  /* ============ 6. 从 Gitee 拉取最新下载链接 ============ */
-  (function fetchDownloadLinks() {
-    var API = 'https://gitee.com/api/v5/repos/huoleihu/myversion/contents/kt_SampleDir.txt';
-    fetch(API)
+  /* ============ 5. 从 version.json 拉取最新版本号与下载链接 ============ */
+  (function fetchVersionJson() {
+    fetch('/version.json')
       .then(function (r) { return r.json(); })
-      .then(function (data) {
-        var json = JSON.parse(atob(data.content));
+      .then(function (json) {
+        var v = json.version || '';
+        var downloads = json.downloads || {};
+
+        // 更新 Hero 区版本号
+        if (v) {
+          var heroVer = document.getElementById('heroVersion');
+          if (heroVer) heroVer.textContent = 'v' + v + ' \u00B7 Apple Silicon';
+        }
 
         // 更新 123 云盘下载按钮
         var dl123 = document.getElementById('dl123');
-        if (dl123 && json.url) dl123.setAttribute('href', json.url);
+        if (dl123 && downloads['123']) dl123.setAttribute('href', downloads['123']);
 
         // 更新夸克网盘下载按钮
         var dlQuark = document.getElementById('dlQuark');
-        if (dlQuark && json.url2) dlQuark.setAttribute('href', json.url2);
+        if (dlQuark && downloads.kuake) dlQuark.setAttribute('href', downloads.kuake);
+
+        // 更新 GitHub 下载按钮
+        var dlGithub = document.getElementById('dlGithub');
+        if (dlGithub && downloads.github) dlGithub.setAttribute('href', downloads.github);
       })
       .catch(function () {
-        // Gitee 连不上时保持页面默认的静态链接，不做任何事
+        // version.json 读不到时保持页面默认静态文案与链接
       });
   })();
 })();

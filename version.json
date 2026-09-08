@@ -1,7 +1,12 @@
 {
-  "version": "1.0.3",
-  "url": "https://1815611961.share.123pan.cn/123pan/LR9zVv-nmBiH",
-  "url2": "https://pan.quark.cn/s/14a6be2d0202",
-  "notes_zh": "• 采样支持拖拽导出到 Logic Pro / GarageBand / Finder\n• 修复从 git 拉取后首次启动 NPE 崩溃\n• 品牌更名 SampleDir",
-  "notes_en": "• Drag samples to Logic Pro / GarageBand / Finder\n• Fixed NPE crash on first launch after git pull\n• Rebranded to SampleDir"
+  "version": "1.0.1",
+  "downloads": {
+    "123": "https://1815611961.share.123pan.cn/123pan/LR9zVv-F06zH",
+    "kuake": "https://pan.quark.cn/s/46c9a8932c97",
+    "github": "https://github.com/huoleihu/SampleDir/releases/download/v1.0.1/SampleDir-1.0.1-arm64.dmg"
+  },
+  "notes": {
+    "zh": "• 采样支持拖拽导出到 Logic Pro / GarageBand / Finder\n• 修复从 git 拉取后首次启动 NPE 崩溃\n• 品牌更名 SampleDir",
+    "en": "• Drag samples to Logic Pro / GarageBand / Finder\n• Fixed NPE crash on first launch after git pull\n• Rebranded to SampleDir"
+  }
 }

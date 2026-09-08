@@ -161,10 +161,33 @@ echo '</rss>'
 echo "[ok] 生成 appcast.xml (mac: ${MAC_DMG:-无}/${MAC_PKG:-无}  win: ${WIN_EXE:-无}/${WIN_MSI:-无})"
 echo "      appcast.xml 提交到 SampleDir 仓库后由 Cloudflare Pages 部署，检测更新国内直连"
 
+# ---- 5.5) 同步更新 version.json（保留 123/kuake 网盘链接，仅更新 version 与 github dmg 直链） ----
+VERSION_JSON="$RELEASES_REPO/version.json"
+if [ -f "$VERSION_JSON" ] && [ -n "$MAC_DMG" ]; then
+  echo "[*] 同步更新 version.json 的 version 与 downloads.github ..."
+  GITHUB_ASSET_NAME="$(basename "$MAC_DMG")"
+  python3 - "$VERSION_JSON" "$VERSION" "$BASE" "$GITHUB_ASSET_NAME" <<'PY'
+import json, sys
+path, version, base, asset = sys.argv[1:5]
+with open(path, 'r', encoding='utf-8') as f:
+    data = json.load(f)
+data['version'] = version
+downloads = data.get('downloads', {})
+if not isinstance(downloads, dict):
+    downloads = {}
+downloads['github'] = base + '/' + asset
+data['downloads'] = downloads
+with open(path, 'w', encoding='utf-8') as f:
+    json.dump(data, f, ensure_ascii=False, indent=2)
+    f.write('\n')
+PY
+  echo "[ok] version.json 已更新: version=$VERSION, downloads.github=$BASE/$GITHUB_ASSET_NAME"
+fi
+
 # ---- 6) 提交 + 打 tag(同版本重发可覆盖) + 推送 ----
-# 注意：只提交「源文件」（appcast.xml + 官网源），安装包(dmg/pkg/exe/msi)走 GitHub Release，不进 git
+# 注意：只提交「源文件」（appcast.xml + version.json + 官网源），安装包(dmg/pkg/exe/msi)走 GitHub Release，不进 git
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-git add appcast.xml assets/js/main.js downloads/README.md "$0"
+git add appcast.xml version.json assets/js/main.js downloads/README.md "$0"
 git commit -m "Release $TAG" || echo "[warn] 无新变更提交"
 
 if git rev-parse "$TAG" >/dev/null 2>&1; then

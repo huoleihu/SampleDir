@@ -247,17 +247,18 @@ select.lang:focus { border-color: var(--green); }
 .step p { font-size: 14px; color: var(--text-dim); }
 
 /* ====== 下载 ====== */
-.downloads { display: grid; grid-template-columns: repeat(2,1fr); gap: 22px; max-width: 760px; margin: 0 auto; }
-.dl { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px 28px; text-align: center; }
+.downloads { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; max-width: 1100px; margin: 0 auto; }
+.dl { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px 24px; text-align: center; }
 .dl__icon { width: 52px; height: 52px; border-radius: 14px; background: var(--green-soft); display: grid; place-items: center; margin: 0 auto 16px; }
 .dl__icon svg { width: 26px; height: 26px; fill: none; stroke: var(--green); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.dl--github .dl__icon svg { fill: var(--green); stroke: none; }
 .dl h3 { font-size: 19px; margin-bottom: 10px; }
 .dl p { font-size: 14px; color: var(--text-dim); margin-bottom: 20px; }
 .dl code, .downloads__note code { background: var(--bg-3); padding: 2px 7px; border-radius: 5px; font-size: 13px; color: var(--green-2); }
 .dl .btn { width: 100%; }
 .dl__req { display: block; margin-top: 14px; font-size: 12px; color: var(--text-mute); }
 .downloads__note {
-  max-width: 760px; margin: 30px auto 0; padding: 16px 20px; font-size: 14px; color: var(--text-dim);
+  max-width: 1100px; margin: 30px auto 0; padding: 16px 20px; font-size: 14px; color: var(--text-dim);
   background: rgba(255,189,46,.08); border: 1px solid rgba(255,189,46,.3); border-radius: 12px;
 }
 .downloads__note strong { color: #ffd166; }
