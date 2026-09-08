@@ -10,7 +10,7 @@
 ## 更新版本时的操作
 1. 重新打包，得到新的 `SampleDir-portable.zip`。
 2. 覆盖本目录同名文件即可，官网页面无需改动。
-3. 如需更换版本号，改 `index.html` 里 Hero 区域的 `v1.0` 文案。
+3. 版本号由 `assets/js/main.js` 自动从根目录 `appcast.xml` 读取并更新到 Hero 区域；只有 appcast.xml 读不到时才回退为 `index.html` 里的默认文案。
 
 > 注意：便携版与 dmg 当前均为**未签名**产物。首次打开若被系统拦截，请右键 → 打开，
 > 或执行 `xattr -cr /Applications/SampleDir.app` 解除隔离。

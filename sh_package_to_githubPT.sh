@@ -162,9 +162,9 @@ echo "[ok] 生成 appcast.xml (mac: ${MAC_DMG:-无}/${MAC_PKG:-无}  win: ${WIN_
 echo "      appcast.xml 提交到 SampleDir 仓库后由 Cloudflare Pages 部署，检测更新国内直连"
 
 # ---- 6) 提交 + 打 tag(同版本重发可覆盖) + 推送 ----
-# 注意：只提交 appcast.xml，安装包走 GitHub Release，不进 git
+# 注意：只提交「源文件」（appcast.xml + 官网源），安装包(dmg/pkg/exe/msi)走 GitHub Release，不进 git
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-git add appcast.xml
+git add appcast.xml assets/js/main.js downloads/README.md "$0"
 git commit -m "Release $TAG" || echo "[warn] 无新变更提交"
 
 if git rev-parse "$TAG" >/dev/null 2>&1; then

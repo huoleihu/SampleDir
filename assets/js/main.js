@@ -359,19 +359,31 @@
       nav.style.boxShadow = (window.scrollY > 8) ? '0 6px 20px rgba(0,0,0,.35)' : 'none';
     }, { passive: true });
   }
-  /* ============ 5. 从 Gitee 拉取最新版本信息，动态更新下载链接 ============ */
-  (function fetchVersion() {
+  /* ============ 5. 从 appcast.xml 拉取最新版本号（Cloudflare Pages 同源） ============ */
+  (function fetchVersionFromAppcast() {
+    fetch('/appcast.xml')
+      .then(function (r) { return r.text(); })
+      .then(function (xml) {
+        var parser = new DOMParser();
+        var doc = parser.parseFromString(xml, 'application/xml');
+        var item = doc.querySelector('channel > item');
+        var v = item ? (item.querySelector('title') || {}).textContent : '';
+        if (!v) return;
+        var heroVer = document.getElementById('heroVersion');
+        if (heroVer) heroVer.textContent = 'v' + v + ' \u00B7 Apple Silicon';
+      })
+      .catch(function () {
+        // appcast.xml 读不到时保持页面默认静态版本号
+      });
+  })();
+
+  /* ============ 6. 从 Gitee 拉取最新下载链接 ============ */
+  (function fetchDownloadLinks() {
     var API = 'https://gitee.com/api/v5/repos/huoleihu/myversion/contents/kt_SampleDir.txt';
     fetch(API)
       .then(function (r) { return r.json(); })
       .then(function (data) {
-        // Gitee API 返回 base64 编码的文件内容
         var json = JSON.parse(atob(data.content));
-        var v = json.version || '';
-
-        // 更新 Hero 区的版本号
-        var heroVer = document.getElementById('heroVersion');
-        if (heroVer && v) heroVer.textContent = 'v' + v + ' \u00B7 Apple Silicon';
 
         // 更新 123 云盘下载按钮
         var dl123 = document.getElementById('dl123');
