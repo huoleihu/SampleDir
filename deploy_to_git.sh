@@ -19,6 +19,7 @@
 #    ./deploy_to_git.sh                 # 仅提交 + 推送 main
 #    PUBLISH_TAG=1 ./deploy_to_git.sh   # 额外按 version.json 的 version 打 tag vX.Y.Z 并推送
 #    ./deploy_to_git.sh "文案微调"       # 自定义 commit 说明
+#    FORCE_DEPLOY=1 ./deploy_to_git.sh  # 无改动时也打一个空提交强制触发 Cloudflare 重新部署
 #
 #  设计原则:
 #    • 安装包(dmg/pkg/exe/msi) 绝不进 git；若被误加入暂存区，脚本直接中止。
@@ -32,11 +33,15 @@ log() { echo "$(date +'%H:%M:%S') $*"; }
 RELEASES_REPO="${RELEASES_REPO:-$HOME/ai_workbuddy/webs/SampleDir}"
 BRANCH="main"
 PUBLISH_TAG="${PUBLISH_TAG:-0}"
+FORCE_DEPLOY="${FORCE_DEPLOY:-0}"
 COMMIT_MSG="${1:-Deploy site update}"
 
 # ---- 1) 进入仓库 ----
 log "[1/3] 进入仓库 $RELEASES_REPO ..."
 cd "$RELEASES_REPO"
+
+# 清理可能残留的 index.lock（上次 git 异常退出/并发进程会留下，否则后续 git 直接 fatal 静默退出）
+rm -f .git/index.lock 2>/dev/null || true
 
 # ---- 2) 暂存全部网站源文件(遵循 .gitignore)，并防御二进制 ----
 log "[2/3] 暂存改动并防御性检查 ..."
@@ -51,20 +56,25 @@ if [ -n "$BAD" ]; then
   exit 1
 fi
 
-# 没有任何变更则直接结束
+# 没有任何变更则视情况处理
 if git diff --cached --quiet; then
-  log "[完成] 没有可提交的改动，仓库已是最新"
-  exit 0
-fi
-
-log "      本次将提交以下文件:"
-git diff --cached --name-only | sed 's/^/      /'
-
-if git commit -m "$COMMIT_MSG" >/dev/null 2>&1; then
-  log "[ok] 已提交: $COMMIT_MSG"
+  if [ "$FORCE_DEPLOY" = "1" ]; then
+    log "[提示] 无改动，按 FORCE_DEPLOY 打空提交以触发 Cloudflare 重新部署 ..."
+    git commit --allow-empty -m "chore: force redeploy"
+  else
+    log "[完成] 没有可提交的改动，仓库已是最新 (Cloudflare 不会重新部署)"
+    log "        如需强制重新部署，运行: FORCE_DEPLOY=1 $0 \"说明\""
+    exit 0
+  fi
 else
-  log "[错误] 提交失败"
-  exit 1
+  log "      本次将提交以下文件:"
+  git diff --cached --name-only | sed 's/^/      /'
+  if git commit -m "$COMMIT_MSG"; then
+    log "[ok] 已提交: $COMMIT_MSG"
+  else
+    log "[错误] 提交失败 (详见上方 git 报错)"
+    exit 1
+  fi
 fi
 
 # ---- 3) 推送 + 可选 tag ----
