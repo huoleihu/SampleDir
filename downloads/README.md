@@ -19,7 +19,15 @@
    - `downloads.123`：123云盘分享链接。
    - `downloads.kuake`：夸克网盘分享链接。
    - `downloads.github`：GitHub Release dmg 直链，例如 `https://github.com/huoleihu/SampleDir/releases/download/v1.0.1/SampleDir-1.0.1-arm64.dmg`。
-4. 提交并推送 `version.json`，官网会自动读取最新版本号与下载链接。
+   - `notes`：更新日志，**数组结构**，按语言分键、每条为一项，例如：
+     ```json
+     "notes": {
+       "zh": ["修复 XX 问题", "新增 XX 功能"],
+       "en": ["Fixed XX", "Added XX"]
+     }
+     ```
+     官网下载区会按当前语言自动渲染为「更新日志」列表；`ko`/`ja` 缺省时回退到 `en`。
+4. 提交并推送 `version.json`，官网会自动读取最新版本号、下载链接与更新日志。
 
 > 注意：dmg 当前为**未签名**产物。首次打开若被系统拦截，请右键 → 打开，
 > 或执行 `xattr -cr /Applications/SampleDir.app` 解除隔离。

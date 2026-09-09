@@ -6,7 +6,15 @@
     "github": "https://github.com/huoleihu/SampleDir/releases/download/v1.0.2/SampleDir-1.0.2-arm64.dmg"
   },
   "notes": {
-    "zh": "• 采样支持拖拽导出到 Logic Pro / GarageBand / Finder\n• 修复从 git 拉取后首次启动 NPE 崩溃\n• 品牌更名 SampleDir",
-    "en": "• Drag samples to Logic Pro / GarageBand / Finder\n• Fixed NPE crash on first launch after git pull\n• Rebranded to SampleDir"
+    "zh": [
+      "采样支持拖拽导出到 Logic Pro / GarageBand / Finder",
+      "修复从 git 拉取后首次启动 NPE 崩溃",
+      "品牌更名 SampleDir"
+    ],
+    "en": [
+      "Drag samples to Logic Pro / GarageBand / Finder",
+      "Fixed NPE crash on first launch after git pull",
+      "Rebranded to SampleDir"
+    ]
   }
 }

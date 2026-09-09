@@ -63,6 +63,7 @@
       'dl2.btn': '夸克网盘下载', 'dl2.req': '约 160 MB · macOS 11+',
       'dl3.h': 'GitHub Release', 'dl3.p': '从 GitHub Release 下载最新版 dmg，适合海外网络或需要历史版本的用户。',
       'dl3.btn': 'GitHub 下载', 'dl3.req': '约 160 MB · macOS 11+',
+      'dl.notes.h': '更新日志',
       'dl.note': '⚠️ 软件当前为<strong>未签名</strong>版本。首次打开若被系统拦截，请在「访达」中<strong>右键 → 打开</strong>，或在终端执行 <code>xattr -cr /Applications/SampleDir.app</code> 解除隔离。',
       'footer.help': '帮助文档',
       'footer.copy': '© 2026 SampleDir · 本地优先的采样素材库管理器 · Made by ssxm'
@@ -126,6 +127,7 @@
       'dl2.btn': 'Download from Quark', 'dl2.req': '~160 MB · macOS 11+',
       'dl3.h': 'GitHub Release', 'dl3.p': 'Download the latest dmg from GitHub Release. Best for overseas networks or users who want older releases.',
       'dl3.btn': 'Download from GitHub', 'dl3.req': '~160 MB · macOS 11+',
+      'dl.notes.h': "What's New",
       'dl.note': '⚠️ The app is currently <strong>unsigned</strong>. If macOS blocks the first launch, right-click → Open in Finder, or run <code>xattr -cr /Applications/SampleDir.app</code> in Terminal to remove the quarantine.',
       'footer.help': 'Help',
       'footer.copy': '© 2026 SampleDir · A local-first sample library manager · Made by ssxm'
@@ -189,6 +191,7 @@
       'dl2.btn': '콰크에서 다운로드', 'dl2.req': '약 160 MB · macOS 11+',
       'dl3.h': 'GitHub Release', 'dl3.p': 'GitHub Release에서 최신 dmg를 다운로드. 해외 네트워크 또는 이전 버전이 필요한 사용자에게 적합.',
       'dl3.btn': 'GitHub에서 다운로드', 'dl3.req': '약 160 MB · macOS 11+',
+      'dl.notes.h': '업데이트 내역',
       'dl.note': '⚠️ 현재 <strong>서명되지 않은</strong> 버전입니다. 처음 실행이 차단되면 Finder에서 <strong>우클릭 → 열기</strong>를 하거나, 터미널에서 <code>xattr -cr /Applications/SampleDir.app</code>을 실행해 격리를 해제하세요.',
       'footer.help': '도움말',
       'footer.copy': '© 2026 SampleDir · 로컬 우선 샘플 라이브러리 매니저 · Made by ssxm'
@@ -252,6 +255,7 @@
       'dl2.btn': 'クァークからダウンロード', 'dl2.req': '約160 MB · macOS 11+',
       'dl3.h': 'GitHub Release', 'dl3.p': 'GitHub Releaseから最新のdmgをダウンロード。海外ネットワークや過去のバージョンが必要なユーザー向け。',
       'dl3.btn': 'GitHubからダウンロード', 'dl3.req': '約160 MB · macOS 11+',
+      'dl.notes.h': '更新履歴',
       'dl.note': '⚠️ 現在<strong>署名なし</strong>バージョンです。初回起動がブロックされた場合は、Finderで<strong>右クリック → 開く</strong>、またはターミナルで <code>xattr -cr /Applications/SampleDir.app</code> を実行して隔離を解除してください。',
       'footer.help': 'ヘルプ',
       'footer.copy': '© 2026 SampleDir · ローカル優先のサンプルライブラリマネージャー · Made by ssxm'
@@ -322,6 +326,9 @@
     if (sel && sel.value !== lang) sel.value = lang;
 
     try { localStorage.setItem(STORE_KEY, lang); } catch (e) {}
+
+    // 语言切换时同步重渲染「更新日志」（数据来自 version.json.notes）
+    if (typeof renderReleaseNotes === 'function') renderReleaseNotes();
   }
 
   var current = getLang();
@@ -368,6 +375,28 @@
     }, { passive: true });
   }
   /* ============ 5. 从 version.json 拉取最新版本号与下载链接 ============ */
+  // 缓存的更新日志（语言切换时按当前语言重渲染）
+  var RELEASE_NOTES = null;
+
+  function renderReleaseNotes() {
+    var box = document.getElementById('releaseNotes');
+    var list = document.getElementById('releaseNotesList');
+    if (!box || !list || !RELEASE_NOTES) return;
+
+    // document.documentElement.lang 形如 zh-CN / en / ko-KR / ja-JP
+    var short = (document.documentElement.lang || 'zh-CN').slice(0, 2).toLowerCase();
+    var arr = RELEASE_NOTES[short] || RELEASE_NOTES.en || RELEASE_NOTES.zh || [];
+    if (!arr.length) { box.hidden = true; return; }
+
+    list.innerHTML = '';
+    arr.forEach(function (line) {
+      var li = document.createElement('li');
+      li.textContent = line;
+      list.appendChild(li);
+    });
+    box.hidden = false;
+  }
+
   (function fetchVersionJson() {
     fetch('/version.json')
       .then(function (r) { return r.json(); })
@@ -392,6 +421,10 @@
         // 更新 GitHub 下载按钮
         var dlGithub = document.getElementById('dlGithub');
         if (dlGithub && downloads.github) dlGithub.setAttribute('href', downloads.github);
+
+        // 缓存更新日志并按当前语言渲染
+        RELEASE_NOTES = json.notes || null;
+        renderReleaseNotes();
       })
       .catch(function () {
         // version.json 读不到时保持页面默认静态文案与链接
