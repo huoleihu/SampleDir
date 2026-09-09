@@ -1,6 +1,6 @@
 #!/bin/bash
 # =============================================================================
-#  deploy_to_git.sh — SampleDir 官网「仅部署到 git」脚本
+#  sh_deploy_to_git.sh — SampleDir 官网「仅部署到 git」脚本
 #
 #  与 sh_package_to_githubPT.sh 的区别:
 #    那个脚本是「打包 → 收集产物 → 生成 appcast.xml → 同步 version.json
@@ -16,10 +16,10 @@
 #    • 想在不发新版的情况下，把 appcast.xml/version.json 的修改推上去。
 #
 #  用法:
-#    ./deploy_to_git.sh                 # 仅提交 + 推送 main
-#    PUBLISH_TAG=1 ./deploy_to_git.sh   # 额外按 version.json 的 version 打 tag vX.Y.Z 并推送
-#    ./deploy_to_git.sh "文案微调"       # 自定义 commit 说明
-#    FORCE_DEPLOY=1 ./deploy_to_git.sh  # 无改动时也打一个空提交强制触发 Cloudflare 重新部署
+#    ./sh_deploy_to_git.sh                 # 仅提交 + 推送 main
+#    PUBLISH_TAG=1 ./sh_deploy_to_git.sh   # 额外按 version.json 的 version 打 tag vX.Y.Z 并推送
+#    ./sh_deploy_to_git.sh "文案微调"       # 自定义 commit 说明
+#    FORCE_DEPLOY=1 ./sh_deploy_to_git.sh  # 无改动时也打一个空提交强制触发 Cloudflare 重新部署
 #
 #  设计原则:
 #    • 安装包(dmg/pkg/exe/msi) 绝不进 git；若被误加入暂存区，脚本直接中止。
