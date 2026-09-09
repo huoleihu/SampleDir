@@ -31,6 +31,10 @@
 # =============================================================================
 set -e
 
+# ---- 日志 ----
+# 统一日志格式: [HH:MM:SS] [步骤] 内容
+log() { echo "$(date +'%H:%M:%S') $*"; }
+
 MAIN_PROJECT="${MAIN_PROJECT:-$HOME/ai_workbuddy/kotlin_sampleDir}"
 RELEASES_REPO="${RELEASES_REPO:-$HOME/ai_workbuddy/webs/SampleDir}"
 GH_REPO="huoleihu/SampleDir"
@@ -49,70 +53,83 @@ read_version_from_gradle() {
 
 # ---- 前置检查 ----
 if [ "$PUBLISH_RELEASE" = "true" ] && ! command -v gh >/dev/null 2>&1; then
-  echo "[error] 需要 gh CLI 来创建 Release，请先: gh auth login"
+  log "[错误] 需要 gh CLI 来创建 Release，请先: gh auth login"
   exit 1
 fi
+log "[0/7] 前置检查通过 (gh=$(command -v gh >/dev/null 2>&1 && echo 已安装 || echo 缺失), PUBLISH_RELEASE=$PUBLISH_RELEASE)"
 
 # ---- 1) 打包 macOS (dmg + pkg 一并产出到桌面) ----
-echo "[1/5] 打包 macOS ..."
+log "[1/7] 开始打包 macOS (调用 macPackageDMG.sh，产物将输出到 $DESKTOP) ..."
 ( cd "$MAIN_PROJECT" && ./macPackageDMG.sh )
+log "[1/7] macOS 打包完成"
 
 # ---- 2) 推断版本号 (默认读 gradle.properties，参数可覆盖) ----
-if [ -z "$VERSION" ]; then
-  VERSION="$(read_version_from_gradle)"
+log "[2/7] 推断版本号 ..."
+if [ -n "$VERSION" ]; then
+  log "      手动指定版本号: $VERSION"
+elif VERSION="$(read_version_from_gradle)"; [ -n "$VERSION" ]; then
+  log "      从 gradle.properties(sampledir.version) 读取: $VERSION"
 fi
 if [ -z "$VERSION" ]; then
   FIRST=$(ls "$DESKTOP"/SampleDir-*.dmg "$DESKTOP"/SampleDir-*.pkg "$DESKTOP"/SampleDir-*.exe 2>/dev/null | head -1)
   if [ -z "$FIRST" ]; then
-    echo "[error] 无法从 gradle.properties 读取 sampledir.version，且桌面无产物，请先打包"
+    log "[错误] 无法从 gradle.properties 读取 sampledir.version，且桌面无产物，请先打包"
     exit 1
   fi
   VERSION="$(basename "$FIRST" | sed -E 's/.*SampleDir-([0-9]+\.[0-9]+\.[0-9]+).*/\1/')"
-  echo "[warn] 用桌面文件名推断版本=$VERSION（建议配置 gradle.properties 的 sampledir.version）"
+  log "[警告] 用桌面文件名推断版本=$VERSION（建议配置 gradle.properties 的 sampledir.version）"
 fi
 TAG="v$VERSION"
-echo "[ok] 版本=$VERSION  tag=$TAG"
+log "[2/7] 版本号确定: 版本=$VERSION  tag=$TAG"
 
 # ---- 3) 收集当前版本桌面产物 (不含便携版) ----
+log "[3/7] 收集桌面产物 ($DESKTOP/SampleDir-${VERSION}-*) ..."
 PRODUCTS=()
 for ext in dmg pkg exe msi; do
   for f in "$DESKTOP"/SampleDir-${VERSION}-*.$ext; do [ -e "$f" ] && PRODUCTS+=("$f"); done
 done
 
 if [ ${#PRODUCTS[@]} -eq 0 ]; then
-  echo "[error] 桌面未找到 SampleDir-${VERSION}-* 安装包(dmg/pkg/exe/msi)，请先打包"
+  log "[错误] 桌面未找到 SampleDir-${VERSION}-* 安装包(dmg/pkg/exe/msi)，请先打包"
   exit 1
 fi
-echo "[ok] 收集到 ${#PRODUCTS[@]} 个产物:"
+log "[3/7] 收集到 ${#PRODUCTS[@]} 个产物:"
 printf '      %s\n' "${PRODUCTS[@]/#$DESKTOP/~/Desktop}"
 
 # mac 至少要有 dmg 或 pkg
 if ! ls "$DESKTOP"/SampleDir-${VERSION}-*.dmg >/dev/null 2>&1 && \
    ! ls "$DESKTOP"/SampleDir-${VERSION}-*.pkg >/dev/null 2>&1; then
-  echo "[error] macOS 安装包未生成，打包可能失败，请检查 macPackageDMG.sh 输出"
+  log "[错误] macOS 安装包未生成，打包可能失败，请检查 macPackageDMG.sh 输出"
   exit 1
 fi
+log "[3/7] macOS 安装包校验通过"
 
 # ---- 4) 进入 SampleDir 仓库，防御性清理(安装包绝不该进 git) ----
+log "[4/7] 进入仓库 $RELEASES_REPO 并做防御性清理 ..."
 cd "$RELEASES_REPO"
 
 # 仓库根下若残留安装包(理论上不会，因为从不复制进去)，清掉以免误提交
-echo "[*] 防御性清理仓库根安装包 ..."
+N_DEL=0
 for ext in dmg pkg exe msi; do
   for old in "$RELEASES_REPO"/SampleDir-*.$ext; do
     [ -e "$old" ] || continue
-    echo "    [del] $(basename "$old")"
+    log "      [删除] 仓库根残留安装包 $(basename "$old")"
     git rm -f --ignore-unmatch --quiet "$old" 2>/dev/null || rm -f "$old"
+    N_DEL=$((N_DEL+1))
   done
 done
+[ "$N_DEL" -eq 0 ] && log "      仓库根无残留安装包 (无需清理)"
 
 # 移除任何可能的 LFS 规则：安装包不再走 git-lfs
 if grep -q "filter=lfs" .gitattributes 2>/dev/null; then
   git rm -f --ignore-unmatched --quiet .gitattributes 2>/dev/null || rm -f .gitattributes
-  echo "[ok] 已移除 .gitattributes LFS 规则（安装包不再进 git）"
+  log "[4/7] 已移除 .gitattributes LFS 规则（安装包不再进 git）"
+else
+  log "[4/7] 无 LFS 规则 (安装包不会进 git)"
 fi
 
 # ---- 5) 生成 appcast.xml (显式区分 dmg / pkg / exe / msi) ----
+log "[5/7] 生成 appcast.xml ..."
 MAC_DMG=""; MAC_PKG=""; WIN_EXE=""; WIN_MSI=""
 for f in "${PRODUCTS[@]}"; do
   case "$f" in
@@ -122,6 +139,10 @@ for f in "${PRODUCTS[@]}"; do
     *.msi) WIN_MSI="$f";;
   esac
 done
+[ -n "$MAC_DMG" ]  && log "      mac dmg: $(basename "$MAC_DMG")"
+[ -n "$MAC_PKG" ]  && log "      mac pkg: $(basename "$MAC_PKG")"
+[ -n "$WIN_EXE" ]  && log "      win exe: $(basename "$WIN_EXE")"
+[ -n "$WIN_MSI" ]  && log "      win msi: $(basename "$WIN_MSI")"
 
 PUBDATE="$(TZ=Asia/Shanghai LC_ALL=C date +"%a, %d %b %Y %H:%M:%S %z")"
 PUB_CNDATE="$(TZ=Asia/Shanghai LC_ALL=C date +"%Y-%m-%d %H:%M:%S")"
@@ -130,6 +151,7 @@ if [ "$PUBLISH_RELEASE" = "true" ]; then
 else
   BASE="https://raw.githubusercontent.com/$GH_REPO/$TAG"
 fi
+log "      下载基址 BASE=$BASE"
 
 sha256_of() { [ -f "$1" ] && shasum -a 256 "$1" | awk '{print $1}' || echo ""; }
 gen_enc() {
@@ -158,13 +180,14 @@ echo '    </item>'
 echo '  </channel>'
 echo '</rss>'
 } > appcast.xml
-echo "[ok] 生成 appcast.xml (mac: ${MAC_DMG:-无}/${MAC_PKG:-无}  win: ${WIN_EXE:-无}/${WIN_MSI:-无})"
-echo "      appcast.xml 提交到 SampleDir 仓库后由 Cloudflare Pages 部署，检测更新国内直连"
+log "[5/7] 生成 appcast.xml 完成 (mac: ${MAC_DMG:-无}/${MAC_PKG:-无}  win: ${WIN_EXE:-无}/${WIN_MSI:-无})"
+log "      pubDate=$PUBDATE | pubCnDate=$PUB_CNDATE"
+log "      appcast.xml 提交到 SampleDir 仓库后由 Cloudflare Pages 部署，检测更新国内直连"
 
 # ---- 5.5) 同步更新 version.json（保留 123/kuake 网盘链接，仅更新 version 与 github dmg 直链） ----
 VERSION_JSON="$RELEASES_REPO/version.json"
 if [ -f "$VERSION_JSON" ] && [ -n "$MAC_DMG" ]; then
-  echo "[*] 同步更新 version.json 的 version 与 downloads.github ..."
+  log "[5.5/7] 同步 version.json: version=$VERSION, downloads.github=$BASE/$(basename "$MAC_DMG") ..."
   GITHUB_ASSET_NAME="$(basename "$MAC_DMG")"
   python3 - "$VERSION_JSON" "$VERSION" "$BASE" "$GITHUB_ASSET_NAME" <<'PY'
 import json, sys
@@ -181,49 +204,67 @@ with open(path, 'w', encoding='utf-8') as f:
     json.dump(data, f, ensure_ascii=False, indent=2)
     f.write('\n')
 PY
-  echo "[ok] version.json 已更新: version=$VERSION, downloads.github=$BASE/$GITHUB_ASSET_NAME"
+  log "[5.5/7] version.json 更新完成"
+elif [ ! -f "$VERSION_JSON" ]; then
+  log "[5.5/7] 跳过: $VERSION_JSON 不存在"
+elif [ -z "$MAC_DMG" ]; then
+  log "[5.5/7] 跳过: 无 mac dmg，无法确定 github 直链"
 fi
 
 # ---- 6) 提交 + 打 tag(同版本重发可覆盖) + 推送 ----
 # 注意：只提交「源文件」（appcast.xml + version.json + 官网源），安装包(dmg/pkg/exe/msi)走 GitHub Release，不进 git
+log "[6/7] 提交并推送 (只提交源文件，安装包走 GitHub Release 不进 git) ..."
 BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+log "      当前分支=$BRANCH，暂存: appcast.xml version.json assets/js/main.js downloads/README.md 脚本本身"
 git add appcast.xml version.json assets/js/main.js downloads/README.md "$0"
-git commit -m "Release $TAG" || echo "[warn] 无新变更提交"
+if git commit -m "Release $TAG" >/dev/null 2>&1; then
+  log "      [ok] 已提交 commit: Release $TAG"
+else
+  log "      [提示] 无新变更，跳过提交"
+fi
 
 if git rev-parse "$TAG" >/dev/null 2>&1; then
   EXISTING="$(git rev-parse "$TAG")"
   CURRENT="$(git rev-parse HEAD)"
   if [ "$EXISTING" != "$CURRENT" ]; then
-    echo "[warn] tag $TAG 已存在且指向旧 commit，强制覆盖 (re-release)"
+    log "      [提示] tag $TAG 已存在且指向旧 commit，强制覆盖 (re-release)"
     git tag -f "$TAG"
     git push -f origin "$TAG"
+    log "      [ok] tag $TAG 已强制推送"
   else
-    echo "[ok] tag $TAG 已指向当前 commit，跳过"
+    log "      [ok] tag $TAG 已指向当前 commit，跳过"
   fi
 else
   git tag "$TAG"
-  echo "[ok] 打 tag $TAG"
+  log "      [ok] 打 tag $TAG"
   git push origin "$TAG"
 fi
+log "      推送分支 $BRANCH 到 origin ..."
 git push origin "$BRANCH"
+log "[6/7] 提交与推送完成"
 
 # ---- 7) 创建 GitHub Release (下载链接最稳，无 LFS 带宽配额) ----
 if [ "$PUBLISH_RELEASE" = "true" ]; then
+  log "[7/7] 创建/更新 GitHub Release ($TAG) 并上传安装包 ..."
   if gh release view "$TAG" >/dev/null 2>&1; then
-    echo "[ok] Release $TAG 已存在，更新 asset"
+    log "      Release $TAG 已存在，追加/覆盖 asset"
   else
     gh release create "$TAG" --title "SampleDir $TAG" --notes "SampleDir $TAG"
+    log "      [ok] 创建 Release $TAG"
   fi
   for f in "${PRODUCTS[@]}"; do
     if [ -e "$f" ]; then
-      echo "[*] 上传 Release asset: $(basename "$f") ..."
+      log "      [上传] $(basename "$f") → Release $TAG ..."
       gh release upload "$TAG" "$f" --clobber
+      log "      [ok] 已上传 $(basename "$f")"
     fi
   done
+else
+  log "[7/7] 跳过 Release 创建 (PUBLISH_RELEASE=false)"
 fi
 
-echo ""
-echo "[done] tag=$TAG  仓库=$GH_REPO"
-echo "       appcast.xml 已生成并提交到 SampleDir (Cloudflare Pages 托管)"
-echo "       安装包作为 Release asset 上传 (不走 git LFS)"
-echo "       下载链接: $BASE"
+log ""
+log "[完成] tag=$TAG  仓库=$GH_REPO"
+log "       appcast.xml 已生成并提交到 SampleDir (Cloudflare Pages 托管)"
+log "       安装包作为 Release asset 上传 (不走 git LFS)"
+log "       下载链接: $BASE"
