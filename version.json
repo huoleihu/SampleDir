@@ -1,12 +1,12 @@
 {
-  "version": "1.0.2",
+  "version": "1.0.3",
   "online": true,
   "github_index": "https://github.com/huoleihu/SampleDir",
   "detail": "https://www.sampledir.com",
   "downloads": {
     "123": "https://1815611961.share.123pan.cn/123pan/LR9zVv-F06zH",
     "kuake": "https://pan.quark.cn/s/46c9a8932c97",
-    "github": "https://github.com/huoleihu/SampleDir/releases/download/v1.0.2/SampleDir-1.0.2-arm64.dmg"
+    "github": "https://github.com/huoleihu/SampleDir/releases/download/v1.0.3/SampleDir-1.0.3-arm64.dmg"
   },
   "notes": {
     "zh": [

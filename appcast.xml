@@ -3,12 +3,12 @@
   <channel>
     <title>SampleDir</title>
     <item>
-      <title>1.0.2</title>
-      <pubDate>Thu, 10 Sep 2026 10:34:11 +0800</pubDate>
-      <pubCnDate>2026-09-10 10:34:11</pubCnDate>
-      <sparkle:version>1.0.2</sparkle:version>
-    <enclosure url="https://github.com/huoleihu/SampleDir/releases/download/v1.0.2/SampleDir-1.0.2-arm64.dmg" sparkle:os="macos" installerType="dmg" length="159473749" type="application/octet-stream" sparkle:version="1.0.2" sha256="880afd73ef5e804a9d4f51541280cacfe2008956d0b0a0d4f44060ad2d0a1033" />
-    <enclosure url="https://github.com/huoleihu/SampleDir/releases/download/v1.0.2/SampleDir-1.0.2-arm64.pkg" sparkle:os="macos" installerType="pkg" length="151645372" type="application/octet-stream" sparkle:version="1.0.2" sha256="579a662c8b703a3f1c33e180e8837d39338318362f826a419c78ca337320fe62" />
+      <title>1.0.3</title>
+      <pubDate>Thu, 10 Sep 2026 10:36:38 +0800</pubDate>
+      <pubCnDate>2026-09-10 10:36:38</pubCnDate>
+      <sparkle:version>1.0.3</sparkle:version>
+    <enclosure url="https://github.com/huoleihu/SampleDir/releases/download/v1.0.3/SampleDir-1.0.3-arm64.dmg" sparkle:os="macos" installerType="dmg" length="159467181" type="application/octet-stream" sparkle:version="1.0.3" sha256="93f82fc8aedd50af2bc93c458c70bf59ad351b1082b24a3285107b710cbd4e12" />
+    <enclosure url="https://github.com/huoleihu/SampleDir/releases/download/v1.0.3/SampleDir-1.0.3-arm64.pkg" sparkle:os="macos" installerType="pkg" length="151644765" type="application/octet-stream" sparkle:version="1.0.3" sha256="ba4bacdbfd2fd7af99b045f827ad8c01629c9147f341e8b4cb47eb788d707a1d" />
     </item>
   </channel>
 </rss>
