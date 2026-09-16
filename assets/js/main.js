@@ -57,8 +57,8 @@
       'step3.h': '随时检索', 'step3.p': '搜索框输入关键词，或点左侧标签 / 收藏夹秒筛；元数据随文件夹永久保存。',
       'dl.h2': '下载 SampleDir',
       'dl.p': '支持 Apple Silicon（M 系列）macOS。三种下载方式，按你的网络环境选。',
-      'dl1.h': '123云盘', 'dl1.p': '通过 123云盘分享下载，适合国内网络。',
-      'dl1.btn': '123云盘下载', 'dl1.req': '约 160 MB · macOS 11+',
+      'dl1.h': '官方直连', 'dl1.p': '官方服务器直连下载，国内速度稳定。',
+      'dl1.btn': '官方直连下载', 'dl1.req': '约 160 MB · macOS 11+',
       'dl2.h': '夸克网盘', 'dl2.p': '通过夸克网盘分享下载，适合国内网络。',
       'dl2.btn': '夸克网盘下载', 'dl2.req': '约 160 MB · macOS 11+',
       'dl3.h': 'GitHub Release', 'dl3.p': '从 GitHub Release 下载最新版 dmg，适合海外网络或需要历史版本的用户。',
@@ -121,8 +121,8 @@
       'step3.h': 'Retrieve anytime', 'step3.p': 'Type a keyword in the search box, or click a tag / favorite folder to filter instantly; metadata is saved with the folder forever.',
       'dl.h2': 'Download SampleDir',
       'dl.p': 'For Apple Silicon (M-series) macOS. Three download options — pick what works for your network.',
-      'dl1.h': '123 Cloud', 'dl1.p': 'Download via 123 Cloud. Best for users in mainland China.',
-      'dl1.btn': 'Download from 123', 'dl1.req': '~160 MB · macOS 11+',
+      'dl1.h': 'Direct Download', 'dl1.p': 'Download directly from the official server. Fast and reliable.',
+      'dl1.btn': 'Direct Download', 'dl1.req': '~160 MB · macOS 11+',
       'dl2.h': 'Quark Cloud', 'dl2.p': 'Download via Quark Cloud. Best for users in mainland China.',
       'dl2.btn': 'Download from Quark', 'dl2.req': '~160 MB · macOS 11+',
       'dl3.h': 'GitHub Release', 'dl3.p': 'Download the latest dmg from GitHub Release. Best for overseas networks or users who want older releases.',
@@ -185,8 +185,8 @@
       'step3.h': '언제든 검색', 'step3.p': '검색창에 키워드를 입력하거나 태그 / 즐겨찾기 폴더를 클릭해 즉시 필터. 메타데이터는 폴더와 함께 영구 저장됩니다.',
       'dl.h2': 'SampleDir 다운로드',
       'dl.p': 'Apple Silicon(M 시리즈) macOS를 지원합니다. 네트워크 상황에 맞는 세 가지 다운로드 방법.',
-      'dl1.h': '123 클라우드', 'dl1.p': '123 클라우드를 통해 다운로드. 중국 본토 사용자에게 적합.',
-      'dl1.btn': '123에서 다운로드', 'dl1.req': '약 160 MB · macOS 11+',
+      'dl1.h': '공식 직접 다운로드', 'dl1.p': '공식 서버에서 직접 다운로드. 빠르고 안정적.',
+      'dl1.btn': '직접 다운로드', 'dl1.req': '약 160 MB · macOS 11+',
       'dl2.h': '콰크 클라우드', 'dl2.p': '콰크 클라우드를 통해 다운로드. 중국 본토 사용자에게 적합.',
       'dl2.btn': '콰크에서 다운로드', 'dl2.req': '약 160 MB · macOS 11+',
       'dl3.h': 'GitHub Release', 'dl3.p': 'GitHub Release에서 최신 dmg를 다운로드. 해외 네트워크 또는 이전 버전이 필요한 사용자에게 적합.',
@@ -249,8 +249,8 @@
       'step3.h': 'いつでも検索', 'step3.p': '検索ボックスにキーワードを入力するか、タグ / お気に入りフォルダをクリックして即フィルター。メタデータはフォルダと一緒に永久保存されます。',
       'dl.h2': 'SampleDir をダウンロード',
       'dl.p': 'Apple Silicon（Mシリーズ）macOSに対応。ネットワーク環境に応じて3つのダウンロード方法から選べます。',
-      'dl1.h': '123クラウド', 'dl1.p': '123クラウド経由でダウンロード。中国大陸のユーザー向け。',
-      'dl1.btn': '123からダウンロード', 'dl1.req': '約160 MB · macOS 11+',
+      'dl1.h': '公式ダウンロード', 'dl1.p': '公式サーバーから直接ダウンロード。高速で安定。',
+      'dl1.btn': '直接ダウンロード', 'dl1.req': '約160 MB · macOS 11+',
       'dl2.h': 'クァーククラウド', 'dl2.p': 'クァーククラウド経由でダウンロード。中国大陸のユーザー向け。',
       'dl2.btn': 'クァークからダウンロード', 'dl2.req': '約160 MB · macOS 11+',
       'dl3.h': 'GitHub Release', 'dl3.p': 'GitHub Releaseから最新のdmgをダウンロード。海外ネットワークや過去のバージョンが必要なユーザー向け。',
@@ -410,9 +410,9 @@
           if (heroVer) heroVer.textContent = 'v' + v + ' \u00B7 Apple Silicon';
         }
 
-        // 更新 123 云盘下载按钮
-        var dl123 = document.getElementById('dl123');
-        if (dl123 && downloads['123']) dl123.setAttribute('href', downloads['123']);
+        // 更新官方直连下载按钮 (55 内网分发, 经 Cloudflare tunnel, version.json 由发布脚本自动同步)
+        var dlLocal = document.getElementById('dlLocal');
+        if (dlLocal && downloads.local) dlLocal.setAttribute('href', downloads.local);
 
         // 更新夸克网盘下载按钮
         var dlQuark = document.getElementById('dlQuark');

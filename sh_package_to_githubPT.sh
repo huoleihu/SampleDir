@@ -185,10 +185,10 @@ log "[5/7] 生成 appcast.xml 完成 (mac: ${MAC_DMG:-无}/${MAC_PKG:-无}  win:
 log "      pubDate=$PUBDATE | pubCnDate=$PUB_CNDATE"
 log "      appcast.xml 提交到 SampleDir 仓库后由 Cloudflare Pages 部署，检测更新国内直连"
 
-# ---- 5.5) 同步更新 version.json（保留 123/kuake 网盘链接，仅更新 version 与 github dmg 直链） ----
+# ---- 5.5) 同步更新 version.json（更新 version、github 直链与官方直连 local(55 分发)，移除已下线的 123pan） ----
 VERSION_JSON="$RELEASES_REPO/version.json"
 if [ -f "$VERSION_JSON" ] && [ -n "$MAC_DMG" ]; then
-  log "[5.5/7] 同步 version.json: version=$VERSION, downloads.github=$BASE/$(basename "$MAC_DMG") ..."
+  log "[5.5/7] 同步 version.json: version=$VERSION, downloads.github=$BASE/$(basename "$MAC_DMG"), downloads.local=https://api.sampledir.com/download/$(basename "$MAC_DMG") ..."
   GITHUB_ASSET_NAME="$(basename "$MAC_DMG")"
   python3 - "$VERSION_JSON" "$VERSION" "$BASE" "$GITHUB_ASSET_NAME" <<'PY'
 import json, sys
@@ -200,6 +200,8 @@ downloads = data.get('downloads', {})
 if not isinstance(downloads, dict):
     downloads = {}
 downloads['github'] = base + '/' + asset
+downloads['local'] = 'https://api.sampledir.com/download/' + asset
+downloads.pop('123', None)
 data['downloads'] = downloads
 with open(path, 'w', encoding='utf-8') as f:
     json.dump(data, f, ensure_ascii=False, indent=2)
