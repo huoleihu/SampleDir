@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:#dfe4ea; display:flex; align-items:center; justify-content:center; min-height:100vh; padding:30px;
+    font-family:-apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Segoe UI", "PingFang SC", sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* 信用卡形状：880x555 ≈ 1.586 比例，大圆角 */
+  .card {
+    width:880px; height:555px; border-radius:36px; position:relative; overflow:hidden;
+    background:linear-gradient(135deg, #ffffff 0%, #f3f6f5 60%, #eafaf2 100%);
+    border:1px solid rgba(0,0,0,.08);
+    box-shadow:0 30px 80px rgba(20,40,35,.18), inset 0 1px 0 rgba(255,255,255,.9);
+    color:#16302a; padding:36px 48px 28px; display:flex; flex-direction:column; gap:14px;
+  }
+  .card::before {
+    content:""; position:absolute; right:-120px; top:-120px; width:360px; height:360px;
+    background:radial-gradient(circle, rgba(0,200,120,.14), transparent 70%);
+  }
+  .head { display:flex; justify-content:space-between; align-items:center; gap:24px; position:relative; z-index:1; }
+  .brand { display:flex; align-items:center; gap:16px; }
+  .brandtext { display:flex; flex-direction:column; gap:8px; }
+  .logo { width:60px; height:60px; border-radius:14px; background:#0c0c16; border:1px solid #2a2a40; display:flex; align-items:center; justify-content:center; }
+  .logo svg { width:40px; height:40px; }
+  .brandname { font-size:38px; font-weight:800; letter-spacing:.3px; color:#101b17; }
+  .badge { font-size:16px; letter-spacing:2px; color:#008a4a; text-transform:uppercase; font-weight:700; border:1.5px solid rgba(0,138,74,.4); padding:8px 18px; border-radius:999px; align-self:flex-start; }
+
+  .price-right { text-align:right; }
+  .price { font-size:72px; font-weight:800; letter-spacing:.5px; line-height:1; color:#101b17; }
+  .price .cur { font-size:38px; font-weight:700; opacity:.7; }
+  .sub { font-size:20px; color:#3f5d52; letter-spacing:.2px; margin-top:8px; white-space:nowrap; }
+
+  .feats { flex:1; display:flex; flex-direction:column; justify-content:center; gap:14px; position:relative; z-index:1; }
+  .feat { display:flex; gap:14px; align-items:flex-start; }
+  .check { width:26px; height:26px; flex:0 0 auto; margin-top:3px; }
+  .ft { font-size:26px; line-height:1.4; color:#2b3a35; }
+  .ft b { color:#0d1a16; font-weight:700; }
+
+  .slogan { position:relative; z-index:1; text-align:center; font-size:22px; font-weight:700; color:#008a4a; letter-spacing:.5px; border-top:1px solid rgba(0,0,0,.08); padding-top:14px; }
+  .wlogo { fill:none; stroke:#00E676; stroke-width:22; stroke-linecap:round; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="head">
+      <div class="brand">
+        <div class="logo">
+          <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="16" y="16" width="480" height="480" rx="104" fill="#121220"/>
+            <g class="wlogo">
+              <line x1="120" y1="200" x2="120" y2="312"/><line x1="160" y1="158" x2="160" y2="354"/>
+              <line x1="200" y1="120" x2="200" y2="392"/><line x1="240" y1="176" x2="240" y2="336"/>
+              <line x1="280" y1="96"  x2="280" y2="416"/><line x1="320" y1="158" x2="320" y2="354"/>
+              <line x1="360" y1="208" x2="360" y2="304"/><line x1="400" y1="240" x2="400" y2="272"/>
+            </g>
+          </svg>
+        </div>
+        <div class="brandtext">
+          <div class="brandname">SampleDir</div>
+          <div class="badge">软件许可证</div>
+        </div>
+      </div>
+      <div class="price-right">
+        <div class="price">$89<span class="cur"> / €76</span></div>
+        <div class="sub">一次性买断 · 永久授权 · 1 台 Mac 或 PC</div>
+      </div>
+    </div>
+
+    <div class="feats">
+      <div class="feat">
+        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        <div class="ft"><b>拖拽导出</b> — 一键拖入 Logic Pro / GarageBand / 访达，创作不中断。</div>
+      </div>
+      <div class="feat">
+        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        <div class="ft"><b>高清波形</b> — 毫秒级定位采样片段，告别靠耳朵盲找。</div>
+      </div>
+      <div class="feat">
+        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        <div class="ft"><b>智能标签与搜索</b> — 文件名自动识别乐器 / 流派 / 类型，秒搜上千采样。</div>
+      </div>
+      <div class="feat">
+        <svg class="check" viewBox="0 0 24 24" fill="none" stroke="#00C853" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        <div class="ft"><b>本地优先</b> — 采样与元数据均存本机，数据不外传、完全私密。</div>
+      </div>
+    </div>
+
+    <div class="slogan">一次买断，专注你的声音。</div>
+  </div>
+</body>
+</html>

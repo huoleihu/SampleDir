@@ -21,6 +21,7 @@
         <a href="#features" data-i18n="nav.features">功能</a>
         <a href="#showcase" data-i18n="nav.showcase">界面</a>
         <a href="#how" data-i18n="nav.how">上手</a>
+        <a href="#pricing" data-i18n="nav.pricing">价格</a>
         <a href="#download" data-i18n="nav.download">下载</a>
         <a href="#contact" data-i18n="nav.contact">联系方式</a>
         <a href="https://github.com/huoleihu/SampleDir" target="_blank" rel="noopener" data-i18n="nav.github" data-track="gh-nav">GitHub</a>
@@ -33,7 +34,7 @@
       </select>
       <!-- TODO: 购买暂未开放（置灰）。开放时：移除 btn--disabled/aria-disabled/tabindex，把 href="#" 替换为真实商店地址 -->
       <a href="#" class="btn btn--ghost nav__cta btn--disabled" data-i18n="nav.buy" title="暂不支持购买" aria-disabled="true" tabindex="-1">购买</a>
-      <a href="#download" class="btn btn--ghost nav__cta" data-i18n="nav.cta" data-track="dl-cta-free">免费下载</a>
+      <a href="#download" class="btn btn--ghost nav__cta" data-i18n="nav.cta" data-track="dl-cta-free">下载</a>
       <button class="nav__toggle" id="navToggle" aria-label="菜单">
         <span></span><span></span><span></span>
       </button>
@@ -214,31 +215,83 @@
     </div>
   </section>
 
+  <!-- ===== 价格 ===== -->
+  <section class="section section--alt" id="pricing">
+    <div class="section__head">
+      <h2 data-i18n="price.h2">价格</h2>
+      <p data-i18n="price.p">永久买断或按年订阅，先免费试用 14 天，满意再买。</p>
+    </div>
+    <div class="pricing">
+      <!-- 按年订阅 -->
+      <div class="pricing__card is-popular reveal">
+        <div class="pricing__badge" data-i18n="price.2.badge">按年订阅</div>
+        <div class="pricing__amount">
+          <span class="pricing__cur">49</span><span class="pricing__unit">USD<small class="pricing__per" data-i18n="price.2.per">/年</small></span>
+        </div>
+        <div class="pricing__term" data-i18n="price.2.term">每年付费 · 到期可续</div>
+        <ul class="pricing__feats">
+          <li data-i18n="price.2.f1">按年付费，每年 49 USD</li>
+          <li data-i18n="price.2.f2">14 天免费试用，无需注册</li>
+          <li data-i18n="price.2.f3">可随时取消 · 到期停更</li>
+        </ul>
+        <div class="pricing__actions">
+          <a href="#download" class="btn btn--primary pricing__cta" data-i18n="price.2.cta" data-track="pricing-cta-sub">免费试用 14 天</a>
+          <!-- TODO: Creem 年付订阅产品上线后：移除 btn--disabled/aria-disabled/tabindex，href 换成 Creem 结账链接 -->
+          <a href="#" class="btn btn--ghost btn--disabled pricing__cta" data-i18n="price.buy" data-track="pricing-buy-sub" title="暂不支持购买" aria-disabled="true" tabindex="-1">购买</a>
+        </div>
+        <p class="pricing__hint" data-i18n="price.2.hint">与买断版功能完全一致</p>
+      </div>
+      <!-- 永久买断 -->
+      <div class="pricing__card reveal">
+        <div class="pricing__badge pricing__badge--alt" data-i18n="price.badge">永久买断</div>
+        <div class="pricing__amount">
+          <span class="pricing__cur">89</span><span class="pricing__unit">USD</span>
+        </div>
+        <div class="pricing__term" data-i18n="price.term">一次付费 · 终身使用</div>
+        <ul class="pricing__feats">
+          <li data-i18n="price.f1">一次付费，终身使用</li>
+          <li data-i18n="price.f2">14 天免费试用，无需注册</li>
+          <li data-i18n="price.f3">无订阅 · 无隐藏费用</li>
+        </ul>
+        <div class="pricing__actions">
+          <a href="#download" class="btn btn--ghost pricing__cta" data-i18n="price.cta" data-track="pricing-cta">免费试用 14 天</a>
+          <!-- TODO: Creem 买断产品结账链接就绪后：移除 btn--disabled/aria-disabled/tabindex，href 换成 Creem 结账链接 -->
+          <a href="#" class="btn btn--ghost btn--disabled pricing__cta" data-i18n="price.buy" data-track="pricing-buy-lifetime" title="暂不支持购买" aria-disabled="true" tabindex="-1">购买</a>
+        </div>
+        <p class="pricing__hint" data-i18n="price.hint">下载页提供百度网盘 / 夸克网盘 / GitHub 多渠道下载</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== 下载 ===== -->
-  <section class="section section--alt" id="download">
+  <section class="section" id="download" style="padding-top:120px;">
     <div class="section__head">
       <h2 data-i18n="dl.h2">下载 SampleDir</h2>
-      <p data-i18n="dl.p">支持 Apple Silicon（M 系列）macOS。两种分发方式，按你的习惯选。</p>
-      <p class="beta-note">当前为 Beta 期，软件完全免费。</p>
+      <p data-i18n="dl.p">支持 Apple Silicon（M 系列）macOS。三种下载方式，按你的网络环境选。</p>
+      <p class="beta-note" data-i18n="dl.pricingNote">买断 89 USD · 或年付 49 USD/年 · 均支持 14 天免费试用</p>
     </div>
-    <div class="downloads">
+    <div class="dl-tabs" role="tablist" aria-label="平台">
+      <button class="dl-tab is-active" data-platform="macos" role="tab" aria-selected="true" type="button">macOS</button>
+      <button class="dl-tab" data-platform="windows" role="tab" aria-selected="false" type="button">Windows</button>
+    </div>
+    <div class="downloads" id="dlPanelMacos">
       <div class="dl reveal">
         <div class="dl__icon">
-          <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 1 8.94 7.5A4.5 4.5 0 0 1 17 18H7a4.5 4.5 0 0 1-3.94-7.5A9 9 0 0 1 12 3zM12 8v4m0 0l-2.5-2.5M12 12l2.5-2.5"/></svg>
         </div>
-        <h3 data-i18n="dl1.h">123云盘</h3>
-        <p data-i18n="dl1.p">通过 123云盘分享下载，适合国内网络，支持 macOS 11+（Apple Silicon）。</p>
-        <a id="dl123" href="https://1815611961.share.123pan.cn/123pan/LR9zVv-nmBiH" class="btn btn--primary" target="_blank" rel="noopener" data-track="dl-123" data-i18n="dl1.btn">123云盘下载</a>
-        <span class="dl__req" data-i18n="dl1.req">约 160 MB · macOS 11+</span>
+        <h3 data-i18n="dl2.h">百度网盘</h3>
+        <p data-i18n="dl2.p">通过百度网盘分享下载，适合国内网络，支持 macOS 11+（Apple Silicon）。</p>
+        <a id="dlBaidu" href="https://pan.baidu.com/s/1quqxlFlYjygLf_83KnEeig?pwd=1234" class="btn btn--ghost" target="_blank" rel="noopener" data-track="dl-baidu" data-i18n="dl2.btn">百度网盘下载</a>
+        <span class="dl__req" data-i18n="dl2.req">约 160 MB · macOS 11+ · 提取码 1234</span>
       </div>
       <div class="dl reveal">
         <div class="dl__icon">
-          <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zm0 5v4l3 2"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 1 8.94 7.5A4.5 4.5 0 0 1 17 18H7a4.5 4.5 0 0 1-3.94-7.5A9 9 0 0 1 12 3zM12 8v4m0 0l-2.5-2.5M12 12l2.5-2.5"/></svg>
         </div>
-        <h3 data-i18n="dl2.h">夸克网盘</h3>
-        <p data-i18n="dl2.p">通过夸克网盘分享下载，适合国内网络，支持 macOS 11+（Apple Silicon）。</p>
-        <a id="dlQuark" href="https://pan.quark.cn/s/14a6be2d0202" class="btn btn--ghost" target="_blank" rel="noopener" data-track="dl-quark" data-i18n="dl2.btn">夸克网盘下载</a>
-        <span class="dl__req" data-i18n="dl2.req">约 160 MB · macOS 11+</span>
+        <h3 data-i18n="dl4.h">夸克网盘</h3>
+        <p data-i18n="dl4.p">通过夸克网盘分享下载，适合国内网络，支持 macOS 11+（Apple Silicon）。</p>
+        <a id="dlQuark" href="https://pan.quark.cn/s/4c161ab57307" class="btn btn--ghost" target="_blank" rel="noopener" data-track="dl-quark" data-i18n="dl4.btn">夸克网盘下载</a>
+        <span class="dl__req" data-i18n="dl4.req">约 160 MB · macOS 11+</span>
       </div>
       <div class="dl reveal dl--github">
         <div class="dl__icon">
@@ -248,6 +301,16 @@
         <p data-i18n="dl3.p">从 GitHub Release 下载最新版 dmg，适合海外网络或需要历史版本的用户。</p>
         <a id="dlGithub" href="https://github.com/huoleihu/SampleDir/releases" class="btn btn--ghost" target="_blank" rel="noopener" data-track="dl-github" data-i18n="dl3.btn">GitHub 下载</a>
         <span class="dl__req" data-i18n="dl3.req">约 160 MB · macOS 11+</span>
+      </div>
+    </div>
+    <div class="downloads" id="dlPanelWindows" hidden>
+      <div class="dl dl--windows">
+        <div class="dl__icon">
+          <svg viewBox="0 0 24 24"><path d="M3 5.55 10.5 4.5v7H3v-5.95zm0 12.9 7.5 1.05v-7H3v5.95zm8.5 1.17L21 21v-8.5h-9.5v7.12zm0-15.24v7.12H21V3l-9.5 1.38z"/></svg>
+        </div>
+        <h3 data-i18n="dl.win.h">Windows 版</h3>
+        <p data-i18n="dl.win.p">Windows 客户端正在开发中，敬请期待。</p>
+        <span class="dl__req" data-i18n="dl.win.req">即将推出 · Coming Soon</span>
       </div>
     </div>
     <div class="release-notes" id="releaseNotes" hidden>
@@ -261,7 +324,7 @@
   </section>
 
   <!-- ===== 联系方式 ===== -->
-  <section class="section section--alt" id="contact">
+  <section class="section" id="contact">
     <div class="section__head">
       <h2 data-i18n="contact.h2">联系方式</h2>
       <p data-i18n="contact.p">产品建议、问题反馈，欢迎邮件联系。</p>

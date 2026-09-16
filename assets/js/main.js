@@ -13,6 +13,7 @@
       'nav.how': '上手',
       'nav.download': '下载',
       'nav.contact': '联系方式',
+      'nav.pricing': '价格',
       'nav.github': 'GitHub',
       'contact.h2': '联系方式',
       'contact.p': '产品建议、问题反馈，欢迎邮件联系。',
@@ -57,14 +58,28 @@
       'step3.h': '随时检索', 'step3.p': '搜索框输入关键词，或点左侧标签 / 收藏夹秒筛；元数据随文件夹永久保存。',
       'dl.h2': '下载 SampleDir',
       'dl.p': '支持 Apple Silicon（M 系列）macOS。三种下载方式，按你的网络环境选。',
-      'dl1.h': '官方直连', 'dl1.p': '官方服务器直连下载，国内速度稳定。',
-      'dl1.btn': '官方直连下载', 'dl1.req': '约 160 MB · macOS 11+',
-      'dl2.h': '夸克网盘', 'dl2.p': '通过夸克网盘分享下载，适合国内网络。',
-      'dl2.btn': '夸克网盘下载', 'dl2.req': '约 160 MB · macOS 11+',
+      'dl2.h': '百度网盘', 'dl2.p': '通过百度网盘分享下载，适合国内网络。',
+      'dl2.btn': '百度网盘下载', 'dl2.req': '约 160 MB · macOS 11+ · 提取码 1234',
+      'dl4.h': '夸克网盘', 'dl4.p': '通过夸克网盘分享下载，适合国内网络。',
+      'dl4.btn': '夸克网盘下载', 'dl4.req': '约 160 MB · macOS 11+',
       'dl3.h': 'GitHub Release', 'dl3.p': '从 GitHub Release 下载最新版 dmg，适合海外网络或需要历史版本的用户。',
       'dl3.btn': 'GitHub 下载', 'dl3.req': '约 160 MB · macOS 11+',
+      'dl.win.h': 'Windows 版', 'dl.win.p': 'Windows 客户端正在开发中，敬请期待。', 'dl.win.req': '即将推出',
       'dl.notes.h': '更新日志',
       'dl.note': '⚠️ 软件当前为<strong>未签名</strong>版本。首次打开若被系统拦截，请在「访达」中<strong>右键 → 打开</strong>，或在终端执行 <code>xattr -cr /Applications/SampleDir.app</code> 解除隔离。',
+      'dl.pricingNote': '买断 89 USD · 或年付 49 USD/年 · 均支持 14 天免费试用',
+      'price.h2': '价格',
+      'price.p': '永久买断或按年订阅，先免费试用 14 天，满意再买。',
+      'price.badge': '永久买断',
+      'price.term': '89 USD · 一次付费，终身使用',
+      'price.f1': '一次付费，终身使用',
+      'price.f2': '14 天免费试用，无需注册',
+      'price.f3': '无订阅 · 无隐藏费用',
+      'price.cta': '免费试用 14 天',
+      'price.hint': '下载页提供百度网盘 / 夸克网盘 / GitHub 多渠道下载',
+      'price.2.badge': '按年订阅', 'price.2.per': '/年', 'price.2.term': '每年付费 · 到期可续',
+      'price.2.f1': '按年付费，每年 49 USD', 'price.2.f2': '14 天免费试用，无需注册', 'price.2.f3': '可随时取消 · 到期停更',
+      'price.2.cta': '免费试用 14 天', 'price.buy': '购买', 'price.2.hint': '与买断版功能完全一致',
       'footer.help': '帮助文档',
       'footer.copy': '© 2026 SampleDir · 本地优先的采样素材库管理器 · Made by ssxm'
     },
@@ -77,6 +92,7 @@
       'nav.how': 'Get Started',
       'nav.download': 'Download',
       'nav.contact': 'Contact',
+      'nav.pricing': 'Pricing',
       'nav.github': 'GitHub',
       'contact.h2': 'Contact',
       'contact.p': 'Suggestions or feedback? Email us anytime.',
@@ -121,14 +137,28 @@
       'step3.h': 'Retrieve anytime', 'step3.p': 'Type a keyword in the search box, or click a tag / favorite folder to filter instantly; metadata is saved with the folder forever.',
       'dl.h2': 'Download SampleDir',
       'dl.p': 'For Apple Silicon (M-series) macOS. Three download options — pick what works for your network.',
-      'dl1.h': 'Direct Download', 'dl1.p': 'Download directly from the official server. Fast and reliable.',
-      'dl1.btn': 'Direct Download', 'dl1.req': '~160 MB · macOS 11+',
-      'dl2.h': 'Quark Cloud', 'dl2.p': 'Download via Quark Cloud. Best for users in mainland China.',
-      'dl2.btn': 'Download from Quark', 'dl2.req': '~160 MB · macOS 11+',
+      'dl2.h': 'Baidu Netdisk', 'dl2.p': 'Download via Baidu Netdisk. Best for users in mainland China.',
+      'dl2.btn': 'Download from Baidu', 'dl2.req': '~160 MB · macOS 11+ · Code: 1234',
+      'dl4.h': 'Quark Cloud', 'dl4.p': 'Download via Quark Cloud. Best for users in mainland China.',
+      'dl4.btn': 'Download from Quark', 'dl4.req': '~160 MB · macOS 11+',
       'dl3.h': 'GitHub Release', 'dl3.p': 'Download the latest dmg from GitHub Release. Best for overseas networks or users who want older releases.',
       'dl3.btn': 'Download from GitHub', 'dl3.req': '~160 MB · macOS 11+',
+      'dl.win.h': 'Windows Version', 'dl.win.p': 'The Windows client is under development. Stay tuned.', 'dl.win.req': 'Coming Soon',
       'dl.notes.h': "What's New",
       'dl.note': '⚠️ The app is currently <strong>unsigned</strong>. If macOS blocks the first launch, right-click → Open in Finder, or run <code>xattr -cr /Applications/SampleDir.app</code> in Terminal to remove the quarantine.',
+      'dl.pricingNote': 'Buy once 89 USD · or 49 USD/year · both include a 14-day free trial',
+      'price.h2': 'Pricing',
+      'price.p': 'Buy once or subscribe yearly. Try it free for 14 days — buy only if you love it.',
+      'price.badge': 'One-time purchase',
+      'price.term': '89 USD · One payment, lifetime use',
+      'price.f1': 'One payment, lifetime use',
+      'price.f2': '14-day free trial, no sign-up',
+      'price.f3': 'No subscription · No hidden fees',
+      'price.cta': 'Start 14-day free trial',
+      'price.hint': 'Baidu / Quark / GitHub downloads available on the download page',
+      'price.2.badge': 'Yearly', 'price.2.per': '/yr', 'price.2.term': 'Pay yearly · renew anytime',
+      'price.2.f1': 'Pay yearly, 49 USD per year', 'price.2.f2': '14-day free trial, no sign-up', 'price.2.f3': 'Cancel anytime · expires if not renewed',
+      'price.2.cta': 'Start 14-day free trial', 'price.buy': 'Buy Now', 'price.2.hint': 'Same features as the lifetime plan',
       'footer.help': 'Help',
       'footer.copy': '© 2026 SampleDir · A local-first sample library manager · Made by ssxm'
     },
@@ -141,6 +171,7 @@
       'nav.how': '시작하기',
       'nav.download': '다운로드',
       'nav.contact': '연락처',
+      'nav.pricing': '가격',
       'nav.github': 'GitHub',
       'contact.h2': '연락처',
       'contact.p': '제품 제안이나 피드백이 있으시면 언제든 이메일로 연락 주세요.',
@@ -185,14 +216,28 @@
       'step3.h': '언제든 검색', 'step3.p': '검색창에 키워드를 입력하거나 태그 / 즐겨찾기 폴더를 클릭해 즉시 필터. 메타데이터는 폴더와 함께 영구 저장됩니다.',
       'dl.h2': 'SampleDir 다운로드',
       'dl.p': 'Apple Silicon(M 시리즈) macOS를 지원합니다. 네트워크 상황에 맞는 세 가지 다운로드 방법.',
-      'dl1.h': '공식 직접 다운로드', 'dl1.p': '공식 서버에서 직접 다운로드. 빠르고 안정적.',
-      'dl1.btn': '직접 다운로드', 'dl1.req': '약 160 MB · macOS 11+',
-      'dl2.h': '콰크 클라우드', 'dl2.p': '콰크 클라우드를 통해 다운로드. 중국 본토 사용자에게 적합.',
-      'dl2.btn': '콰크에서 다운로드', 'dl2.req': '약 160 MB · macOS 11+',
+      'dl2.h': '바이두 웹디스크', 'dl2.p': '바이두 웹디스크를 통해 다운로드. 중국 본토 사용자에게 적합.',
+      'dl2.btn': '바이두에서 다운로드', 'dl2.req': '약 160 MB · macOS 11+ · 코드: 1234',
+      'dl4.h': '콰크 클라우드', 'dl4.p': '콰크 클라우드를 통해 다운로드. 중국 본토 사용자에게 적합.',
+      'dl4.btn': '콰크에서 다운로드', 'dl4.req': '약 160 MB · macOS 11+',
       'dl3.h': 'GitHub Release', 'dl3.p': 'GitHub Release에서 최신 dmg를 다운로드. 해외 네트워크 또는 이전 버전이 필요한 사용자에게 적합.',
       'dl3.btn': 'GitHub에서 다운로드', 'dl3.req': '약 160 MB · macOS 11+',
+      'dl.win.h': 'Windows 버전', 'dl.win.p': 'Windows 클라이언트가 개발 중입니다. 기대해 주세요.', 'dl.win.req': '곧 출시 예정',
       'dl.notes.h': '업데이트 내역',
       'dl.note': '⚠️ 현재 <strong>서명되지 않은</strong> 버전입니다. 처음 실행이 차단되면 Finder에서 <strong>우클릭 → 열기</strong>를 하거나, 터미널에서 <code>xattr -cr /Applications/SampleDir.app</code>을 실행해 격리를 해제하세요.',
+      'dl.pricingNote': '평생 89 USD · 또는 연 49 USD · 모두 14일 무료 체험 포함',
+      'price.h2': '가격',
+      'price.p': '평생 라이선스 또는 연간 구독. 먼저 14일 무료 체험 후 결정하세요.',
+      'price.badge': '평생 라이선스',
+      'price.term': '89 USD · 한 번 결제, 평생 사용',
+      'price.f1': '한 번 결제, 평생 사용',
+      'price.f2': '14일 무료 체험, 가입 불필요',
+      'price.f3': '구독 없음 · 숨은 비용 없음',
+      'price.cta': '14일 무료 체험 시작',
+      'price.hint': '다운로드 페이지에서 바이두 / 콰크 / GitHub 다운로드 제공',
+      'price.2.badge': '연간 구독', 'price.2.per': '/년', 'price.2.term': '매년 결제 · 기간 만료 시 갱신',
+      'price.2.f1': '연간 결제, 매년 49 USD', 'price.2.f2': '14일 무료 체험, 가입 불필요', 'price.2.f3': '언제든 취소 가능 · 미갱신 시 정지',
+      'price.2.cta': '14일 무료 체험 시작', 'price.buy': '구매', 'price.2.hint': '평생 라이선스와 기능 동일',
       'footer.help': '도움말',
       'footer.copy': '© 2026 SampleDir · 로컬 우선 샘플 라이브러리 매니저 · Made by ssxm'
     },
@@ -205,6 +250,7 @@
       'nav.how': 'はじめ方',
       'nav.download': 'ダウンロード',
       'nav.contact': 'お問い合わせ',
+      'nav.pricing': '料金',
       'nav.github': 'GitHub',
       'contact.h2': 'お問い合わせ',
       'contact.p': 'ご提案やフィードバックは、いつでもメールでお送りください。',
@@ -249,14 +295,28 @@
       'step3.h': 'いつでも検索', 'step3.p': '検索ボックスにキーワードを入力するか、タグ / お気に入りフォルダをクリックして即フィルター。メタデータはフォルダと一緒に永久保存されます。',
       'dl.h2': 'SampleDir をダウンロード',
       'dl.p': 'Apple Silicon（Mシリーズ）macOSに対応。ネットワーク環境に応じて3つのダウンロード方法から選べます。',
-      'dl1.h': '公式ダウンロード', 'dl1.p': '公式サーバーから直接ダウンロード。高速で安定。',
-      'dl1.btn': '直接ダウンロード', 'dl1.req': '約160 MB · macOS 11+',
-      'dl2.h': 'クァーククラウド', 'dl2.p': 'クァーククラウド経由でダウンロード。中国大陸のユーザー向け。',
-      'dl2.btn': 'クァークからダウンロード', 'dl2.req': '約160 MB · macOS 11+',
+      'dl2.h': 'Baidu ネットディスク', 'dl2.p': 'Baidu ネットディスク経由でダウンロード。中国大陸のユーザー向け。',
+      'dl2.btn': 'Baidu からダウンロード', 'dl2.req': '約160 MB · macOS 11+ · コード: 1234',
+      'dl4.h': 'クァーククラウド', 'dl4.p': 'クァーククラウド経由でダウンロード。中国大陸のユーザー向け。',
+      'dl4.btn': 'クァークからダウンロード', 'dl4.req': '約160 MB · macOS 11+',
       'dl3.h': 'GitHub Release', 'dl3.p': 'GitHub Releaseから最新のdmgをダウンロード。海外ネットワークや過去のバージョンが必要なユーザー向け。',
       'dl3.btn': 'GitHubからダウンロード', 'dl3.req': '約160 MB · macOS 11+',
+      'dl.win.h': 'Windows 版', 'dl.win.p': 'Windows クライアントは開発中です。もうしばらくお待ちください。', 'dl.win.req': '近日公開',
       'dl.notes.h': '更新履歴',
       'dl.note': '⚠️ 現在<strong>署名なし</strong>バージョンです。初回起動がブロックされた場合は、Finderで<strong>右クリック → 開く</strong>、またはターミナルで <code>xattr -cr /Applications/SampleDir.app</code> を実行して隔離を解除してください。',
+      'dl.pricingNote': '買い切り 89 USD · または年額 49 USD/年 · いずれも 14 日間無料トライアル付き',
+      'price.h2': '料金',
+      'price.p': '買い切りまたは年額プラン。まずは 14 日間無料でお試しください。',
+      'price.badge': '買い切り',
+      'price.term': '89 USD · 一度の支払いで永久利用',
+      'price.f1': '一度の支払いで永久に使える',
+      'price.f2': '14 日間の無料トライアル、登録不要',
+      'price.f3': 'サブスクなし · 隠れた費用なし',
+      'price.cta': '14 日間無料トライアル',
+      'price.hint': 'ダウンロードページで Baidu / Quark / GitHub から選択できます',
+      'price.2.badge': '年額プラン', 'price.2.per': '/年', 'price.2.term': '年額支払い · 更新可能',
+      'price.2.f1': '年額支払い、年間 49 USD', 'price.2.f2': '14 日間の無料トライアル、登録不要', 'price.2.f3': 'いつでもキャンセル可 · 未更新で停止',
+      'price.2.cta': '14 日間無料トライアル', 'price.buy': '購入', 'price.2.hint': '買い切り版と機能は同じ',
       'footer.help': 'ヘルプ',
       'footer.copy': '© 2026 SampleDir · ローカル優先のサンプルライブラリマネージャー · Made by ssxm'
     }
@@ -366,6 +426,12 @@
   } else {
     reveals.forEach(function (el) { el.classList.add('in'); });
   }
+  // 兜底：若 IntersectionObserver 因缓存/异常未触发，window 加载后强制显示，内容绝不卡在隐形
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      document.querySelectorAll('.reveal:not(.in)').forEach(function (el) { el.classList.add('in'); });
+    }, 1000);
+  });
 
   /* ============ 4. 导航栏滚动加阴影 ============ */
   var nav = document.getElementById('nav');
@@ -397,6 +463,27 @@
     box.hidden = false;
   }
 
+  // 下载区平台 tab 切换 (macOS / Windows)
+  (function initPlatformTabs() {
+    var tabs = document.querySelectorAll('.dl-tab');
+    if (!tabs.length) return;
+    var panelMacos = document.getElementById('dlPanelMacos');
+    var panelWin = document.getElementById('dlPanelWindows');
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        tabs.forEach(function (t) {
+          t.classList.remove('is-active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('is-active');
+        tab.setAttribute('aria-selected', 'true');
+        var isMac = tab.getAttribute('data-platform') === 'macos';
+        if (panelMacos) panelMacos.hidden = !isMac;
+        if (panelWin) panelWin.hidden = isMac;
+      });
+    });
+  })();
+
   (function fetchVersionJson() {
     fetch('/version.json')
       .then(function (r) { return r.json(); })
@@ -410,11 +497,11 @@
           if (heroVer) heroVer.textContent = 'v' + v + ' \u00B7 Apple Silicon';
         }
 
-        // 更新官方直连下载按钮 (55 内网分发, 经 Cloudflare tunnel, version.json 由发布脚本自动同步)
-        var dlLocal = document.getElementById('dlLocal');
-        if (dlLocal && downloads.local) dlLocal.setAttribute('href', downloads.local);
+        // 更新百度网盘下载按钮 (version.json 的 downloads.Baidu 由用户维护)
+        var dlBaidu = document.getElementById('dlBaidu');
+        if (dlBaidu && downloads.Baidu) dlBaidu.setAttribute('href', downloads.Baidu);
 
-        // 更新夸克网盘下载按钮
+        // 更新夸克网盘下载按钮 (version.json 的 downloads.kuake 由用户维护)
         var dlQuark = document.getElementById('dlQuark');
         if (dlQuark && downloads.kuake) dlQuark.setAttribute('href', downloads.kuake);
 
