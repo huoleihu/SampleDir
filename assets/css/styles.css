@@ -310,7 +310,7 @@ select.lang:focus { border-color: var(--green); }
 .dl-tab:hover { color: var(--text); border-color: var(--green); }
 .dl-tab.is-active { background: var(--green-soft); border-color: var(--green); color: var(--green); }
 .dl-tab:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
-.downloads { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; max-width: 1100px; margin: 0 auto; }
+.downloads { display: grid; grid-template-columns: repeat(4,1fr); gap: 22px; max-width: 1100px; margin: 0 auto; }
 .downloads[hidden] { display: none; }
 .dl { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px 24px; text-align: center; }
 .dl__icon { width: 52px; height: 52px; border-radius: 14px; background: var(--green-soft); display: grid; place-items: center; margin: 0 auto 16px; }
@@ -360,6 +360,9 @@ select.lang:focus { border-color: var(--green); }
   .showcase { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }
   .strip { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 960px) {
+  .downloads { grid-template-columns: repeat(2,1fr); }
 }
 @media (max-width: 720px) {
   .nav__links { display: none; position: absolute; top: 100%; left: 0; right: 0;

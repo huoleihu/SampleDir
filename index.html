@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title data-i18n-title="meta.title">SampleDir1 · macOS 采样素材库管理器</title>
+  <title data-i18n-title="meta.title">SampleDir · macOS 采样素材库管理器</title>
   <meta name="description" data-i18n-meta="meta.desc" content="SampleDir 是一款为音乐制作人打造的 macOS 采样素材库管理器：本地优先、可视化波形、智能试听、标签收藏，所有元数据随文件夹走。" />
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="stylesheet" href="assets/css/styles.css" />
@@ -267,7 +267,7 @@
   <section class="section" id="download" style="padding-top:120px;">
     <div class="section__head">
       <h2 data-i18n="dl.h2">下载 SampleDir</h2>
-      <p data-i18n="dl.p">支持 Apple Silicon（M 系列）macOS。三种下载方式，按你的网络环境选。</p>
+      <p data-i18n="dl.p">支持 Apple Silicon（M 系列）macOS。官方下载与多种网盘渠道，按你的网络环境选。</p>
       <p class="beta-note" data-i18n="dl.pricingNote">买断 89 USD · 或年付 49 USD/年 · 均支持 14 天免费试用</p>
     </div>
     <div class="dl-tabs" role="tablist" aria-label="平台">
@@ -275,6 +275,24 @@
       <button class="dl-tab" data-platform="windows" role="tab" aria-selected="false" type="button">Windows</button>
     </div>
     <div class="downloads" id="dlPanelMacos">
+      <div class="dl reveal">
+        <div class="dl__icon">
+          <svg viewBox="0 0 24 24"><path d="M19 18H6a4 4 0 0 1-.7-7.94 5.5 5.5 0 0 1 10.7-1.2A4.5 4.5 0 0 1 19 18z"/></svg>
+        </div>
+        <h3 data-i18n="dl5.h">官方下载</h3>
+        <p data-i18n="dl5.p">由官方服务器全球直发，不限速、无需提取码，支持 macOS 11+（Apple Silicon）。</p>
+        <a id="dlR2" href="#" class="btn btn--primary" target="_blank" rel="noopener" data-track="dl-official" data-i18n="dl5.btn">官方下载</a>
+        <span class="dl__req" data-i18n="dl5.req">约 160 MB · macOS 11+ · 全球直发</span>
+      </div>
+      <div class="dl reveal dl--github">
+        <div class="dl__icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.28 1.08 2.84.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.33 4.67-4.55 4.92.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12c0-5.52-4.48-10-10-10z"/></svg>
+        </div>
+        <h3 data-i18n="dl3.h">GitHub Release</h3>
+        <p data-i18n="dl3.p">从 GitHub Release 下载最新版 dmg，适合海外网络或需要历史版本的用户。</p>
+        <a id="dlGithub" href="https://github.com/huoleihu/SampleDir/releases" class="btn btn--ghost" target="_blank" rel="noopener" data-track="dl-github" data-i18n="dl3.btn">GitHub 下载</a>
+        <span class="dl__req" data-i18n="dl3.req">约 160 MB · macOS 11+</span>
+      </div>
       <div class="dl reveal">
         <div class="dl__icon">
           <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 1 8.94 7.5A4.5 4.5 0 0 1 17 18H7a4.5 4.5 0 0 1-3.94-7.5A9 9 0 0 1 12 3zM12 8v4m0 0l-2.5-2.5M12 12l2.5-2.5"/></svg>
@@ -292,15 +310,6 @@
         <p data-i18n="dl4.p">通过夸克网盘分享下载，适合国内网络，支持 macOS 11+（Apple Silicon）。</p>
         <a id="dlQuark" href="https://pan.quark.cn/s/4c161ab57307" class="btn btn--ghost" target="_blank" rel="noopener" data-track="dl-quark" data-i18n="dl4.btn">夸克网盘下载</a>
         <span class="dl__req" data-i18n="dl4.req">约 160 MB · macOS 11+</span>
-      </div>
-      <div class="dl reveal dl--github">
-        <div class="dl__icon">
-          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.28 1.08 2.84.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.33 4.67-4.55 4.92.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12c0-5.52-4.48-10-10-10z"/></svg>
-        </div>
-        <h3 data-i18n="dl3.h">GitHub Release</h3>
-        <p data-i18n="dl3.p">从 GitHub Release 下载最新版 dmg，适合海外网络或需要历史版本的用户。</p>
-        <a id="dlGithub" href="https://github.com/huoleihu/SampleDir/releases" class="btn btn--ghost" target="_blank" rel="noopener" data-track="dl-github" data-i18n="dl3.btn">GitHub 下载</a>
-        <span class="dl__req" data-i18n="dl3.req">约 160 MB · macOS 11+</span>
       </div>
     </div>
     <div class="downloads" id="dlPanelWindows" hidden>
