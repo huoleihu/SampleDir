@@ -4,3 +4,7 @@
 .kotlin/
 *.log
 .workbuddy/
+
+# 本地密钥（R2 上传凭证等，绝不提交）
+.env
+.env*.local
