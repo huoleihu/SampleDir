@@ -493,7 +493,7 @@
   })();
 
   (function fetchVersionJson() {
-    fetch('/version.json')
+    fetch('version.json')
       .then(function (r) { return r.json(); })
       .then(function (json) {
         var v = json.version || '';
