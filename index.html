@@ -2,6 +2,19 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
+  <script>
+    // GitHub Pages 镜像站（huoleihu.github.io）自动跳转主站 sampledir.com：
+    // 镜像站统计/体验与主站不一致，仅作备用入口，进来即引导到主站。
+    // 放 head 最前，渲染前即跳转，避免镜像站内容闪现。
+    // 注意：仅匹配 *.github.io；sampledir.pages.dev（Cloudflare 预览，功能完整）与 localhost 本地预览均不跳。
+    (function () {
+      var h = location.hostname;
+      if (h === 'huoleihu.github.io' || h.indexOf('.github.io') !== -1) {
+        var p = location.pathname.replace(/^\/SampleDir\/?/, '/');
+        location.replace('https://www.sampledir.com' + p + location.search + location.hash);
+      }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n-title="meta.title">SampleDir · macOS 采样素材库管理器</title>
   <meta name="description" data-i18n-meta="meta.desc" content="SampleDir 是一款为音乐制作人打造的 macOS 采样素材库管理器：本地优先、可视化波形、智能试听、标签收藏，所有元数据随文件夹走。" />
