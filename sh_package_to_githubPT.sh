@@ -5,6 +5,7 @@
 #  流程: 打包(mac dmg+pkg) → 收集桌面产物 → 进入 SampleDir 仓库(webs/SampleDir)
 #        → 生成 appcast.xml(显式区分 dmg/pkg/exe/msi) → 只提交 appcast.xml
 #        → 打 tag + 推送 → 创建 GitHub Release(上传桌面产物为 asset)
+#        → 同步安装包到 55 内网分发目录 /opt/sampledir-dist (经 Cloudflare tunnel 对外下载)
 #
 #  设计原则:
 #    • 安装包(dmg/pkg/exe/msi) **不进 git / 不走 LFS**，直接作为 GitHub Release asset 上传。
@@ -263,8 +264,48 @@ else
   log "[7/7] 跳过 Release 创建 (PUBLISH_RELEASE=false)"
 fi
 
+# ---- 8) 同步到 55 内网分发目录 (/opt/sampledir-dist) ----
+# 说明: 55 上需后端 WebConfig 配置 /download/** → file:/opt/sampledir-dist/ 才对外可下(走现有 Cloudflare tunnel)。
+#       本步只负责把产物推上去。双通道探测: 内网 192.168.200.55 优先, 外网 frps 206.119.172.212:9037 兜底。
+#       失败不致命 (GitHub Release 仍为主分发), 仅在可达时上传。
+UPLOAD_55="${UPLOAD_55:-true}"
+if [ "$UPLOAD_55" = "true" ]; then
+  log "[8/8] 同步安装包到 55 内网分发目录 (/opt/sampledir-dist) ..."
+  SSH_USER="${SSH_USER:-samubt}"
+  SSH_MAIN="${SSH_MAIN:-192.168.200.55}"
+  SSH_BACKUP="${SSH_BACKUP:-206.119.172.212}"
+  SSH_BACKUP_PORT="${SSH_BACKUP_PORT:-9037}"
+  DIST_DIR="/opt/sampledir-dist"
+  SSH_HOST=""; SSH_PORT=""
+  if ssh -o ConnectTimeout=5 -o BatchMode=yes -o StrictHostKeyChecking=no "$SSH_USER@$SSH_MAIN" true 2>/dev/null; then
+    SSH_HOST="$SSH_MAIN"; SSH_PORT=""
+  elif ssh -o ConnectTimeout=5 -o BatchMode=yes -o StrictHostKeyChecking=no -p "$SSH_BACKUP_PORT" "$SSH_USER@$SSH_BACKUP" true 2>/dev/null; then
+    SSH_HOST="$SSH_BACKUP"; SSH_PORT="$SSH_BACKUP_PORT"
+  fi
+  if [ -z "$SSH_HOST" ]; then
+    log "[警告] 55 内网/外网通道均不可达，跳过上传到 55（GitHub Release 仍为主分发）"
+  else
+    ssh_opt=(-o StrictHostKeyChecking=no)
+    [ -n "$SSH_PORT" ] && ssh_opt+=(-p "$SSH_PORT")
+    ssh "${ssh_opt[@]}" "$SSH_USER@$SSH_HOST" "mkdir -p $DIST_DIR && chmod 755 $DIST_DIR" 2>/dev/null || true
+    for f in "${PRODUCTS[@]}"; do
+      [ -e "$f" ] || continue
+      scp_opt=(-o StrictHostKeyChecking=no)
+      [ -n "$SSH_PORT" ] && scp_opt+=(-P "$SSH_PORT")   # scp 端口用大写 -P
+      if scp "${scp_opt[@]}" "$f" "$SSH_USER@$SSH_HOST:$DIST_DIR/"; then
+        log "      [ok] 已上传到 55: $(basename "$f")"
+      else
+        log "[警告] 上传 $(basename "$f") 到 55 失败，跳过（不影响 GitHub Release）"
+      fi
+    done
+  fi
+else
+  log "[8/8] 跳过上传到 55 (UPLOAD_55=false)"
+fi
+
 log ""
 log "[完成] tag=$TAG  仓库=$GH_REPO"
+log "       内网分发(可选): https://api.sampledir.com/download/<文件名> (需 55 后端已配 /download/** → /opt/sampledir-dist/)"
 log "       appcast.xml 已生成并提交到 SampleDir (Cloudflare Pages 托管)"
 log "       安装包作为 Release asset 上传 (不走 git LFS)"
 log "       下载链接: $BASE"
