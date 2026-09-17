@@ -82,7 +82,7 @@
       'price.2.badge': '按年订阅', 'price.2.per': '/年', 'price.2.term': '每年付费 · 到期可续',
       'price.2.f1': '按年付费，每年 49 USD', 'price.2.f2': '14 天免费试用，无需注册', 'price.2.f3': '可随时取消 · 到期停更',
       'price.2.cta': '免费试用 14 天', 'price.buy': '购买', 'price.2.hint': '与买断版功能完全一致',
-      'footer.help': '帮助文档',
+      'footer.help': '帮助文档', 'footer.terms': '用户协议', 'footer.privacy': '隐私政策',
       'footer.copy': '© 2026 SampleDir · 本地优先的采样素材库管理器 · Made by ssxm'
     },
     en: {
@@ -163,7 +163,7 @@
       'price.2.badge': 'Yearly', 'price.2.per': '/yr', 'price.2.term': 'Pay yearly · renew anytime',
       'price.2.f1': 'Pay yearly, 49 USD per year', 'price.2.f2': '14-day free trial, no sign-up', 'price.2.f3': 'Cancel anytime · expires if not renewed',
       'price.2.cta': 'Start 14-day free trial', 'price.buy': 'Buy Now', 'price.2.hint': 'Same features as the lifetime plan',
-      'footer.help': 'Help',
+      'footer.help': 'Help', 'footer.terms': 'Terms of Service', 'footer.privacy': 'Privacy Policy',
       'footer.copy': '© 2026 SampleDir · A local-first sample library manager · Made by ssxm'
     },
     ko: {
@@ -244,7 +244,7 @@
       'price.2.badge': '연간 구독', 'price.2.per': '/년', 'price.2.term': '매년 결제 · 기간 만료 시 갱신',
       'price.2.f1': '연간 결제, 매년 49 USD', 'price.2.f2': '14일 무료 체험, 가입 불필요', 'price.2.f3': '언제든 취소 가능 · 미갱신 시 정지',
       'price.2.cta': '14일 무료 체험 시작', 'price.buy': '구매', 'price.2.hint': '평생 라이선스와 기능 동일',
-      'footer.help': '도움말',
+      'footer.help': '도움말', 'footer.terms': '이용 약관', 'footer.privacy': '개인정보 처리방침',
       'footer.copy': '© 2026 SampleDir · 로컬 우선 샘플 라이브러리 매니저 · Made by ssxm'
     },
     ja: {
@@ -326,6 +326,7 @@
       'price.2.f1': '年額支払い、年間 49 USD', 'price.2.f2': '14 日間の無料トライアル、登録不要', 'price.2.f3': 'いつでもキャンセル可 · 未更新で停止',
       'price.2.cta': '14 日間無料トライアル', 'price.buy': '購入', 'price.2.hint': '買い切り版と機能は同じ',
       'footer.help': 'ヘルプ',
+      'footer.terms': '利用規約', 'footer.privacy': 'プライバシー',
       'footer.copy': '© 2026 SampleDir · ローカル優先のサンプルライブラリマネージャー · Made by ssxm'
     }
   };
