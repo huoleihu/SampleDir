@@ -538,18 +538,19 @@
   // 由 UpdateDialog 的下载按钮打开本页并带标记+锚点，等价于「自动点击页面上的下载按钮」。
   // 普通浏览官网 / 手动敲 #download（无标记）均不会自动下载。
   // 轮询等待 version.json 把 dlR2 的 href 从默认 '#' 填成真实直链后再点，避免点到空链接。
-  var autoDownloadFired = false;
+  // ⚠️ 本标签页只自动下载一次：query 参数 ?autodl=1 在页面内导航时会一直保留
+  // （如 ?autodl=1#contact → 点导航下载 → ?autodl=1#download），若不记账会反复触发。
+  // 用 sessionStorage 记账：同一标签页触发过一次后，页面内任意导航/锚点切换均不再触发；
+  // 只有新开标签页（如再次从 App 点下载）才重新允许。
+  var AUTO_DL_FLAG = 'sampledir_autodl_fired';
   function tryAutoDownload() {
     var h = (location.hash || '').toLowerCase();
     // 仅当同时满足「带 #download 锚点」+「带 ?autodl=1 标记」才自动下载。
     // ?autodl=1 由客户端（App 检查更新的下载按钮）跳转时带上；普通浏览官网、
     // 或用户手动在地址栏敲 #download（不带标记）都不会自动下载。
     var params = new URLSearchParams(location.search);
-    if ((h !== '#download' && h !== '#downloads') || !params.has('autodl')) {
-      autoDownloadFired = false; // 不满足时允许下次（带标记访问）再触发
-      return;
-    }
-    if (autoDownloadFired) return;
+    if ((h !== '#download' && h !== '#downloads') || !params.has('autodl')) return;
+    if (sessionStorage.getItem(AUTO_DL_FLAG)) return; // 本标签页已下载过，不再触发
     var btn = document.getElementById('dlR2');
     if (!btn) return;
     var href = btn.getAttribute('href');
@@ -557,12 +558,11 @@
       setTimeout(tryAutoDownload, 300); // 等 version.json 填充（最多 ~2s）
       return;
     }
-    autoDownloadFired = true;
+    sessionStorage.setItem(AUTO_DL_FLAG, '1'); // 先记账再导航，防 location.assign 失败时重复触发
     // 用同标签导航而非 btn.click()：自动点击发生在 fetch/setTimeout 回调里（非用户手势），
     // 浏览器弹窗拦截器会拦截 target=_blank 的新标签打开，表现为「点了但没反应」。
     // 同标签 assign 不被拦截；且当 href 是真实文件直链时浏览器会直接下载该文件。
-    var target = btn.getAttribute('href');
-    if (target && target !== '#') window.location.assign(target);
+    window.location.assign(href);
   }
   window.addEventListener('hashchange', tryAutoDownload);
   tryAutoDownload(); // 直接带锚点打开页面时初次触发
