@@ -522,6 +522,9 @@
         var dlR2 = document.getElementById('dlR2');
         if (dlR2 && downloads.r2) dlR2.setAttribute('href', downloads.r2);
 
+        // 若是从 App「检查更新」带 #download 锚点进来的，href 填好即自动触发下载
+        tryAutoDownload();
+
         // 缓存更新日志并按当前语言渲染
         RELEASE_NOTES = json.notes || null;
         renderReleaseNotes();
@@ -530,4 +533,28 @@
         // version.json 读不到时保持页面默认静态文案与链接
       });
   })();
+
+  // === 从 App「检查更新」带 #download / #downloads 锚点进入时，自动点击官方下载按钮 ===
+  // 由 UpdateDialog 的下载按钮打开本页并带上锚点，等价于「自动点击页面上的下载按钮」。
+  // 轮询等待 version.json 把 dlR2 的 href 从默认 '#' 填成真实直链后再点，避免点到空链接。
+  var autoDownloadFired = false;
+  function tryAutoDownload() {
+    var h = (location.hash || '').toLowerCase();
+    if (h !== '#download' && h !== '#downloads') {
+      autoDownloadFired = false; // 离开下载锚点后允许下次再触发
+      return;
+    }
+    if (autoDownloadFired) return;
+    var btn = document.getElementById('dlR2');
+    if (!btn) return;
+    var href = btn.getAttribute('href');
+    if (!href || href === '#') {
+      setTimeout(tryAutoDownload, 300); // 等 version.json 填充（最多 ~2s）
+      return;
+    }
+    autoDownloadFired = true;
+    btn.click(); // 触发下载（dlR2 为真实安装包直链，target=_blank）
+  }
+  window.addEventListener('hashchange', tryAutoDownload);
+  tryAutoDownload(); // 直接带锚点打开页面时初次触发
 })();
