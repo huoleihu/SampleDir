@@ -534,14 +534,19 @@
       });
   })();
 
-  // === 从 App「检查更新」带 #download / #downloads 锚点进入时，自动点击官方下载按钮 ===
-  // 由 UpdateDialog 的下载按钮打开本页并带上锚点，等价于「自动点击页面上的下载按钮」。
+  // === 仅从 App「检查更新」跳转（带 ?autodl=1#download 标记）进入时才自动下载 ===
+  // 由 UpdateDialog 的下载按钮打开本页并带标记+锚点，等价于「自动点击页面上的下载按钮」。
+  // 普通浏览官网 / 手动敲 #download（无标记）均不会自动下载。
   // 轮询等待 version.json 把 dlR2 的 href 从默认 '#' 填成真实直链后再点，避免点到空链接。
   var autoDownloadFired = false;
   function tryAutoDownload() {
     var h = (location.hash || '').toLowerCase();
-    if (h !== '#download' && h !== '#downloads') {
-      autoDownloadFired = false; // 离开下载锚点后允许下次再触发
+    // 仅当同时满足「带 #download 锚点」+「带 ?autodl=1 标记」才自动下载。
+    // ?autodl=1 由客户端（App 检查更新的下载按钮）跳转时带上；普通浏览官网、
+    // 或用户手动在地址栏敲 #download（不带标记）都不会自动下载。
+    var params = new URLSearchParams(location.search);
+    if ((h !== '#download' && h !== '#downloads') || !params.has('autodl')) {
+      autoDownloadFired = false; // 不满足时允许下次（带标记访问）再触发
       return;
     }
     if (autoDownloadFired) return;
