@@ -553,7 +553,11 @@
       return;
     }
     autoDownloadFired = true;
-    btn.click(); // 触发下载（dlR2 为真实安装包直链，target=_blank）
+    // 用同标签导航而非 btn.click()：自动点击发生在 fetch/setTimeout 回调里（非用户手势），
+    // 浏览器弹窗拦截器会拦截 target=_blank 的新标签打开，表现为「点了但没反应」。
+    // 同标签 assign 不被拦截；且当 href 是真实文件直链时浏览器会直接下载该文件。
+    var target = btn.getAttribute('href');
+    if (target && target !== '#') window.location.assign(target);
   }
   window.addEventListener('hashchange', tryAutoDownload);
   tryAutoDownload(); // 直接带锚点打开页面时初次触发
