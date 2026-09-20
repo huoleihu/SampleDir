@@ -251,13 +251,13 @@ select.lang:focus { border-color: var(--green); }
 .pricing {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  max-width: 1160px;
+  gap: 20px;
+  max-width: 1080px;
   margin: 48px auto 0;
 }
 .pricing__card {
   position: relative;
-  padding: 44px 38px 32px;
+  padding: 34px 30px 26px;
   text-align: center;
   background: linear-gradient(180deg, var(--surface-2), var(--surface));
   border: 1px solid var(--border);
@@ -286,15 +286,15 @@ select.lang:focus { border-color: var(--green); }
 }
 .pricing__amount { display: flex; align-items: baseline; justify-content: center; gap: 8px; }
 .pricing__cur {
-  font-size: 76px; font-weight: 800; line-height: 1;
+  font-size: 64px; font-weight: 800; line-height: 1;
   background: linear-gradient(135deg, var(--green), var(--green-2));
   -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
 }
-.pricing__unit { font-size: 26px; font-weight: 700; color: var(--green); }
-.pricing__per { font-size: 16px; font-weight: 700; color: var(--text-dim); margin-left: 2px; }
-.pricing__term { margin-top: 12px; font-size: 17px; font-weight: 600; color: var(--text); }
+.pricing__unit { font-size: 22px; font-weight: 700; color: var(--green); }
+.pricing__per { font-size: 15px; font-weight: 700; color: var(--text-dim); margin-left: 2px; }
+.pricing__term { margin-top: 12px; font-size: 15px; font-weight: 600; color: var(--text); }
 .pricing__feats { list-style: none; margin: 24px 0 28px; padding: 0; display: grid; gap: 11px; }
-.pricing__feats li { color: var(--text-dim); font-size: 15px; }
+.pricing__feats li { color: var(--text-dim); font-size: 14px; }
 .pricing__feats li::before { content: '✓'; color: var(--green); font-weight: 800; margin-right: 9px; }
 .pricing__actions { display: flex; gap: 10px; }
 .pricing__actions .pricing__cta { flex: 1; min-width: 0; padding-left: 10px; padding-right: 10px; font-size: 15px; }
