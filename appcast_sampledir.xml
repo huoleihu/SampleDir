@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+  <channel>
+    <title>SampleDir</title>
+    <item>
+      <title>1.0.0</title>
+      <pubDate>Sun, 20 Sep 2026 12:31:52 +0800</pubDate>
+      <pubCnDate>2026-09-20 12:31:53</pubCnDate>
+      <sparkle:version>1.0.0</sparkle:version>
+      <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+    <enclosure url="https://dl.sampledir.com/releases/SampleDir-1.0.0-arm64.dmg" sparkle:os="macos" installerType="dmg" length="159501536" type="application/octet-stream" sparkle:version="1.0.0" sha256="aa067de7c507db14f49229dcd1f3e5ad1cb1ee1d47559e5f063b27d2b6b1a5a8" />
+    <enclosure url="https://dl.sampledir.com/releases/SampleDir-1.0.0-arm64.pkg" sparkle:os="macos" installerType="pkg" length="151657857" type="application/octet-stream" sparkle:version="1.0.0" sha256="8ea43344e4abe96524cae16cdb375e74c39e4d019e01e5a4983da2a3c101aa73" />
+    </item>
+  </channel>
+</rss>
