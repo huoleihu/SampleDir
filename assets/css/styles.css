@@ -250,9 +250,9 @@ select.lang:focus { border-color: var(--green); }
 /* ====== 价格 ====== */
 .pricing {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  max-width: 880px;
+  max-width: 1160px;
   margin: 48px auto 0;
 }
 .pricing__card {
@@ -361,6 +361,9 @@ select.lang:focus { border-color: var(--green); }
   .steps { grid-template-columns: 1fr; }
   .strip { grid-template-columns: repeat(2,1fr); }
 }
+@media (max-width: 1024px) {
+  .pricing { grid-template-columns: 1fr; max-width: 440px; }
+}
 @media (max-width: 960px) {
   .downloads { grid-template-columns: repeat(2,1fr); }
 }
@@ -372,7 +375,6 @@ select.lang:focus { border-color: var(--green); }
   .lang { margin-left: auto; }
   .nav__toggle { display: flex; }
   .downloads { grid-template-columns: 1fr; }
-  .pricing { grid-template-columns: 1fr; max-width: 420px; }
   .mock__body { grid-template-columns: 90px 1fr; }
   .mock__detail { display: none; }
 }
