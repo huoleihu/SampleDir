@@ -4,10 +4,10 @@
   "github_index": "https://github.com/huoleihu/SampleDir",
   "detail": "https://www.sampledir.com",
   "downloads": {
-    "r2": "https://dl.sampledir.com/releases/SampleDir-1.0.0(13)-arm64.dmg",
+    "r2": "https://dl.sampledir.com/releases/SampleDir-1.0.0-arm64.dmg",
     "Baidu": "https://pan.baidu.com/s/1quqxlFlYjygLf_83KnEeig?pwd=1234",
     "kuake": "https://pan.quark.cn/s/4021fe2095ac",
-    "github": "https://github.com/huoleihu/SampleDir/releases/download/v1.0.0/SampleDir-1.0.0(13)-arm64.dmg"
+    "github": "https://github.com/huoleihu/SampleDir/releases/download/v1.0.0/SampleDir-1.0.0-arm64.dmg"
   },
   "notes": {
     "zh": [
