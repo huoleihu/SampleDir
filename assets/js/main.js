@@ -546,6 +546,23 @@
       });
   })();
 
+  // 联系方式邮箱：从后端字典接口拉取（经同源 /api 代理转发到 api.macdh.com，无跨域问题）。
+  // 接口返回 { code, message, data: "邮箱地址" }；拉取成功则替换页面所有 mailto 链接与展示文案；
+  // 失败（如 GitHub Pages 镜像站无 Functions 代理 → 404）时静默保留 HTML 中的硬编码兜底邮箱。
+  (function initContactEmail() {
+    fetch('/api/dict/public/contact_email', { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (json) {
+        var email = json && json.data;
+        if (!email || typeof email !== 'string' || email.indexOf('@') < 0) return;
+        document.querySelectorAll('a[href^="mailto:"]').forEach(function (a) {
+          a.setAttribute('href', 'mailto:' + email);
+          if (a.textContent) a.textContent = email;
+        });
+      })
+      .catch(function () { /* 保留 HTML 硬编码兜底邮箱 */ });
+  })();
+
   // === 仅从 App「检查更新」跳转（带 ?autodl=1#download 标记）进入时才自动下载 ===
   // 由 UpdateDialog 的下载按钮打开本页并带标记+锚点，等价于「自动点击页面上的下载按钮」。
   // 普通浏览官网 / 手动敲 #download（无标记）均不会自动下载。

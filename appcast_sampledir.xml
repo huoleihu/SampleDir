@@ -4,12 +4,12 @@
     <title>SampleDir</title>
     <item>
       <title>1.0.3</title>
-      <pubDate>Sun, 20 Sep 2026 16:42:13 +0800</pubDate>
-      <pubCnDate>2026-09-20 16:42:13</pubCnDate>
+      <pubDate>Thu, 24 Sep 2026 15:28:36 +0800</pubDate>
+      <pubCnDate>2026-09-24 15:28:36</pubCnDate>
       <sparkle:version>1.0.3</sparkle:version>
       <sparkle:shortVersionString>1.0.3</sparkle:shortVersionString>
-    <enclosure url="https://dl.sampledir.com/releases/SampleDir-1.0.3-arm64.dmg" sparkle:os="macos" installerType="dmg" length="159553661" type="application/octet-stream" sparkle:version="1.0.3" sha256="832f4aa0abca20a406574f3ca58d28b4447ba88228360433780e7b8dfa952be7" />
-    <enclosure url="https://dl.sampledir.com/releases/SampleDir-1.0.3-arm64.pkg" sparkle:os="macos" installerType="pkg" length="151656090" type="application/octet-stream" sparkle:version="1.0.3" sha256="46e9ca7afc50c0bd58d022cb17f8e11c2d7d6ec7586ef3859e0df2077a6f2084" />
+    <enclosure url="https://dl.sampledir.com/releases/SampleDir-1.0.3-arm64.dmg" sparkle:os="macos" installerType="dmg" length="159565447" type="application/octet-stream" sparkle:version="1.0.3" sha256="eeeeee9234f5e47de1434702e1545693753421a5d25c58be4af398c1f77ae692" />
+    <enclosure url="https://dl.sampledir.com/releases/SampleDir-1.0.3-arm64.pkg" sparkle:os="macos" installerType="pkg" length="151656555" type="application/octet-stream" sparkle:version="1.0.3" sha256="f05e2b9535641ba69d2180ce1029fe15c74dfc22938b43f6cae1dffecffa8c4d" />
     </item>
   </channel>
 </rss>
