@@ -1,11 +1,11 @@
-// Cloudflare Pages Function：把同源的 /api/* 反向代理到内网后端（经 Cloudflare Tunnel api.sampledir.com）
+// Cloudflare Pages Function：把同源的 /api/* 反向代理到内网后端（经 Cloudflare Tunnel api.macdh.com）
 // 运行在 sampledir.pages.dev 同源，浏览器无 CORS 问题。
 //
 // 作用：SampleDir 官网（静态）通过 stats.js 上报浏览/点击到同源 /api/track，
 // 由本函数转发到 mydaox 后端 POST /api/track，写入 site_visit_log，
 // 管理后台「访问统计」按 site=sampledir 即可看到浏览记录与按钮记录。
 //
-// 与 macdh 官网完全一致的机制；后端地址固定为 api.sampledir.com（命名 Tunnel，永久不变）。
+// 与 macdh 官网完全一致的机制；后端地址固定为 api.macdh.com（命名 Tunnel，永久不变）。
 // 若后端不可达，本函数返回 502，但 stats.js 已对非阻塞上报失败静默处理，
 // 因此无论后端是否存在，静态页面都照常显示、不受影响。
 export async function onRequest(context) {
@@ -13,7 +13,7 @@ export async function onRequest(context) {
 
   // 优先用环境变量覆盖（可选）；否则回退到命名 Tunnel 固定地址。
   const backend = (env.BACKEND_URL || "").replace(/\/+$/, "");
-  const fallback = "https://api.sampledir.com";
+  const fallback = "https://api.macdh.com";
   const target_origin = backend || fallback;
 
   const url = new URL(request.url);
