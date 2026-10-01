@@ -18,6 +18,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n-title="meta.title">SampleDir · macOS 采样素材库管理器</title>
   <meta name="description" data-i18n-meta="meta.desc" content="SampleDir 是一款为音乐制作人打造的 macOS 采样素材库管理器：本地优先、可视化波形、智能试听、标签收藏，所有元数据随文件夹走。" />
+  <!-- 多语言 SEO：按 ?lang= 动态注入 canonical / hreflang，并把 title/description 提前写成对应语言。
+       关键：中文搜"mac 采样管理"走 ?lang=zh、英文搜"mac sample manager"走 ?lang=en，
+       两个语言页 canonical 各自指向自己 + 互相 hreflang 标注，Google 分别独立索引、互不吞权重。 -->
+  <script>
+    (function () {
+      var LANGS = ['zh', 'en', 'ko', 'ja'];
+      var BASE = 'https://www.sampledir.com/';
+      var META = {
+        zh: { t: 'SampleDir · macOS 采样素材库管理器', d: 'SampleDir 是一款为音乐制作人打造的 macOS 采样素材库管理器：本地优先、可视化波形、智能试听、标签收藏，所有元数据随文件夹走。' },
+        en: { t: 'SampleDir · macOS Sample Library Manager', d: 'SampleDir is a macOS sample library manager for music producers: local-first, visual waveforms, smart audition, tags & favorites — all metadata travels with your folders.' },
+        ko: { t: 'SampleDir · macOS 샘플 라이브러리 매니저', d: 'SampleDir은 음악 프로듀서를 위한 macOS 샘플 라이브러리 매니저입니다: 로컬 우선, 시각적 파형, 스마트 프리뷰, 태그 & 즐겨찾기 — 모든 메타데이터가 폴더와 함께 이동합니다.' },
+        ja: { t: 'SampleDir · macOS サンプルライブラリマネージャー', d: 'SampleDirは音楽プロデューサーのためのmacOSサンプルライブラリマネージャーです：ローカル優先、視覚的な波形、スマート試聴、タグ＆お気に入り — すべてのメタデータがフォルダと一緒に移動します。' }
+      };
+      // resolveLang：必须与 assets/js/main.js 的 getLang() 逻辑一致，
+      // 保证 head 注入的 canonical / title / description 与实际渲染语言对齐，
+      // 否则真实英文访客访问根 URL 会「渲染英文却 canonical 指中文」导致 Google 混淆。
+      // 优先级：① ?lang= ② localStorage ③ 爬虫回退 zh ④ 真实用户按区域/浏览器语言。
+      function resolveLang() {
+        var params = null;
+        try { params = new URLSearchParams(location.search); } catch (e) {}
+        if (params) {
+          var ql = params.get('lang');
+          if (LANGS.indexOf(ql) !== -1) return ql;
+        }
+        try {
+          var saved = localStorage.getItem('sampledir_lang');
+          if (LANGS.indexOf(saved) !== -1) return saved;
+        } catch (e) {}
+        var ua = (navigator.userAgent || '').toLowerCase();
+        if (/bot|spider|crawl|slurp|google|bing|baidu|yandex|duckduck|teoma|ia_archiver|facebookexternalhit|preview/.test(ua)) {
+          return 'zh';
+        }
+        var locale = '';
+        try { locale = (Intl.DateTimeFormat().resolvedOptions().locale || '').toLowerCase(); } catch (e) {}
+        if (locale.indexOf('zh') === 0) return 'zh';
+        if (locale.indexOf('ko') === 0) return 'ko';
+        if (locale.indexOf('ja') === 0) return 'ja';
+        var tz = '';
+        try { tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '').toLowerCase(); } catch (e) {}
+        if (tz.indexOf('shanghai') !== -1 || tz.indexOf('chongqing') !== -1 ||
+            tz.indexOf('harbin') !== -1 || tz.indexOf('urumqi') !== -1) return 'zh';
+        if (tz.indexOf('seoul') !== -1) return 'ko';
+        if (tz.indexOf('tokyo') !== -1) return 'ja';
+        var nav = (navigator.language || '').toLowerCase();
+        if (nav.indexOf('zh') === 0) return 'zh';
+        if (nav.indexOf('ko') === 0) return 'ko';
+        if (nav.indexOf('ja') === 0) return 'ja';
+        return 'en';
+      }
+
+      var lang = resolveLang();
+
+      // canonical 指向当前语言 URL（每个语言页自指，不被对方吞权重）
+      var can = document.createElement('link');
+      can.rel = 'canonical';
+      can.href = BASE + '?lang=' + lang;
+      document.head.appendChild(can);
+
+      // hreflang 互相标注：同一内容有 4 个语言版，按用户语言投递；x-default 落主语言中文版
+      var alts = [['zh', 'zh'], ['en', 'en'], ['ko', 'ko'], ['ja', 'ja'], ['x-default', 'zh']];
+      alts.forEach(function (a) {
+        var l = document.createElement('link');
+        l.rel = 'alternate';
+        l.hreflang = a[0];
+        l.href = BASE + '?lang=' + a[1];
+        document.head.appendChild(l);
+      });
+
+      // 把 title / description 提前写成对应语言（不依赖 JS 渲染，初始 HTML 即正确）
+      document.title = META[lang].t;
+      var m = document.querySelector('meta[name="description"]');
+      if (m) m.setAttribute('content', META[lang].d);
+    })();
+  </script>
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
@@ -386,6 +460,9 @@
         <a href="terms.html" id="termsLink" data-i18n="footer.terms" data-track="terms-footer">用户协议</a>
         <a href="privacy.html" id="privacyLink" data-i18n="footer.privacy" data-track="privacy-footer">隐私政策</a>
       </nav>
+      <p class="footer__langs" style="margin-top:14px;font-size:13px;opacity:.8">
+        <a href="https://www.sampledir.com/?lang=zh">中文</a> · <a href="https://www.sampledir.com/?lang=en">English</a> · <a href="https://www.sampledir.com/?lang=ko">한국어</a> · <a href="https://www.sampledir.com/?lang=ja">日本語</a>
+      </p>
       <p class="footer__copy" data-i18n="footer.copy">© 2026 SampleDir · 本地优先的采样素材库管理器 · Made for music producers</p>
     </div>
   </footer>
