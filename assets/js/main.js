@@ -66,7 +66,9 @@
       'dl3.btn': 'GitHub 下载', 'dl3.req': '约 160 MB · macOS 11+',
       'dl5.h': '官方下载', 'dl5.p': '由官方服务器全球直发，不限速、无需提取码，支持 macOS 11+（Apple Silicon）。',
       'dl5.btn': '官方下载', 'dl5.req': '约 160 MB · macOS 11+ · 全球直发',
-      'dl.win.h': 'Windows 版', 'dl.win.p': 'Windows 客户端正在开发中，敬请期待。', 'dl.win.req': '即将推出',
+      'dl.win.h': 'Windows 版', 'dl.win.p': 'Windows x64 安装包由官方 CDN 全球直发，不限速、无需提取码，支持 Windows 10+。', 'dl.win.btn': '官方下载', 'dl.win.req': '约 102 MB · Windows 10+ · x64 · 全球直发',
+      'dl.wingh.h': 'GitHub Release', 'dl.wingh.p': '从 GitHub Release 下载 Windows 安装包，适合海外网络或需要历史版本的用户。', 'dl.wingh.btn': 'GitHub 下载', 'dl.wingh.req': '约 102 MB · Windows 10+ · x64',
+      'dl.winmsi.h': 'Windows MSI 安装包', 'dl.winmsi.p': '面向企业批量部署的 MSI 安装包，同样支持 Windows 10+ x64。', 'dl.winmsi.btn': 'MSI 下载', 'dl.winmsi.req': '仅当发布脚本产出 msi 时显示',
       'dl.notes.h': '更新日志',
       'dl.note': '⚠️ 软件当前为<strong>未签名</strong>版本。首次打开若被系统拦截，请在「访达」中<strong>右键 → 打开</strong>，或在终端执行 <code>xattr -cr /Applications/SampleDir.app</code> 解除隔离。',
       'dl.pricingNote': '买断 89 USD · 或年付 49 USD/年 · 均支持 14 天免费试用',
@@ -150,7 +152,9 @@
       'dl3.btn': 'Download from GitHub', 'dl3.req': '~160 MB · macOS 11+',
       'dl5.h': 'Official Download', 'dl5.p': 'Served directly from our global CDN — no speed limits, no extraction code. Supports macOS 11+ (Apple Silicon).',
       'dl5.btn': 'Official Download', 'dl5.req': '~160 MB · macOS 11+ · Global CDN',
-      'dl.win.h': 'Windows Version', 'dl.win.p': 'The Windows client is under development. Stay tuned.', 'dl.win.req': 'Coming Soon',
+      'dl.win.h': 'Windows Version', 'dl.win.p': 'The Windows x64 installer is served directly from our global CDN — no speed limits, no extraction code. Supports Windows 10+ (x64).', 'dl.win.btn': 'Official Download', 'dl.win.req': '~102 MB · Windows 10+ · x64 · Global CDN',
+      'dl.wingh.h': 'GitHub Release', 'dl.wingh.p': 'Download the latest Windows installer from GitHub Release. Best for overseas networks or users who want older releases.', 'dl.wingh.btn': 'Download from GitHub', 'dl.wingh.req': '~102 MB · Windows 10+ · x64',
+      'dl.winmsi.h': 'Windows MSI Installer', 'dl.winmsi.p': 'The MSI installer for bulk / enterprise deployment. Also supports Windows 10+ x64.', 'dl.winmsi.btn': 'Download MSI', 'dl.winmsi.req': 'Shown only when the release ships an msi',
       'dl.notes.h': "What's New",
       'dl.note': '⚠️ The app is currently <strong>unsigned</strong>. If macOS blocks the first launch, right-click → Open in Finder, or run <code>xattr -cr /Applications/SampleDir.app</code> in Terminal to remove the quarantine.',
       'dl.pricingNote': 'Buy once 89 USD · or 49 USD/year · both include a 14-day free trial',
@@ -234,7 +238,9 @@
       'dl3.btn': 'GitHub에서 다운로드', 'dl3.req': '약 160 MB · macOS 11+',
       'dl5.h': '공식 다운로드', 'dl5.p': '공식 서버에서 전 세계로 직접 전송하며 속도 제한 없이 추출 코드도 필요 없습니다. macOS 11+(Apple Silicon) 지원.',
       'dl5.btn': '공식 다운로드', 'dl5.req': '약 160 MB · macOS 11+ · 전 세계 직발송',
-      'dl.win.h': 'Windows 버전', 'dl.win.p': 'Windows 클라이언트가 개발 중입니다. 기대해 주세요.', 'dl.win.req': '곧 출시 예정',
+      'dl.win.h': 'Windows 버전', 'dl.win.p': 'Windows x64 설치 파일은 공식 CDN에서 제한 없이, 추출 코드 없이 내려받을 수 있습니다. Windows 10+ 지원.', 'dl.win.btn': '공식 다운로드', 'dl.win.req': '약 102 MB · Windows 10+ · x64 · 글로벌 CDN',
+      'dl.wingh.h': 'GitHub Release', 'dl.wingh.p': '해외 네트워크 또는 이전 버전이 필요한 사용자를 위해 GitHub Release에서 Windows 설치 파일을 받을 수 있습니다.', 'dl.wingh.btn': 'GitHub에서 다운로드', 'dl.wingh.req': '약 102 MB · Windows 10+ · x64',
+      'dl.winmsi.h': 'Windows MSI 설치 파일', 'dl.winmsi.p': '기업/대량 배포용 MSI 설치 파일입니다. Windows 10+ x64를 지원합니다.', 'dl.winmsi.btn': 'MSI 다운로드', 'dl.winmsi.req': '릴리스에 msi가 있을 때만 표시',
       'dl.notes.h': '업데이트 내역',
       'dl.note': '⚠️ 현재 <strong>서명되지 않은</strong> 버전입니다. 처음 실행이 차단되면 Finder에서 <strong>우클릭 → 열기</strong>를 하거나, 터미널에서 <code>xattr -cr /Applications/SampleDir.app</code>을 실행해 격리를 해제하세요.',
       'dl.pricingNote': '평생 89 USD · 또는 연 49 USD · 모두 14일 무료 체험 포함',
@@ -318,7 +324,9 @@
       'dl3.btn': 'GitHubからダウンロード', 'dl3.req': '約160 MB · macOS 11+',
       'dl5.h': '公式ダウンロード', 'dl5.p': '公式サーバーから全世界へ直接配信。速度制限なし、抽出コード不要。macOS 11+（Apple Silicon）対応。',
       'dl5.btn': '公式ダウンロード', 'dl5.req': '約160 MB · macOS 11+ · 全世界直送',
-      'dl.win.h': 'Windows 版', 'dl.win.p': 'Windows クライアントは開発中です。もうしばらくお待ちください。', 'dl.win.req': '近日公開',
+      'dl.win.h': 'Windows 版', 'dl.win.p': 'Windows x64 インストーラーは公式 CDN から正方形限なし・抽出コードなしで配信されます。Windows 10+ 対応。', 'dl.win.btn': '公式ダウンロード', 'dl.win.req': '约 102 MB · Windows 10+ · x64 · グローバル CDN',
+      'dl.wingh.h': 'GitHub Release', 'dl.wingh.p': 'GitHub Release から Windows インストーラーをダウンロード。海外回線や過去バージョンが必要な方に最適です。', 'dl.wingh.btn': 'GitHub からダウンロード', 'dl.wingh.req': '约 102 MB · Windows 10+ · x64',
+      'dl.winmsi.h': 'Windows MSI インストーラー', 'dl.winmsi.p': '企業向けの一括配布用 MSI インストーラーです。Windows 10+ x64 に対応します。', 'dl.winmsi.btn': 'MSI をダウンロード', 'dl.winmsi.req': 'msi が included の場合のみ表示',
       'dl.notes.h': '更新履歴',
       'dl.note': '⚠️ 現在<strong>署名なし</strong>バージョンです。初回起動がブロックされた場合は、Finderで<strong>右クリック → 開く</strong>、またはターミナルで <code>xattr -cr /Applications/SampleDir.app</code> を実行して隔離を解除してください。',
       'dl.pricingNote': '買い切り 89 USD · または年額 49 USD/年 · いずれも 14 日間無料トライアル付き',
@@ -558,6 +566,20 @@
         var dlR2 = document.getElementById('dlR2');
         if (dlR2 && downloads.r2) dlR2.setAttribute('href', downloads.r2);
 
+        // 更新 Windows 下载按钮 (version.json 的 downloads.windows 由 win 发布脚本 step5 写入)
+        var winDl = downloads.windows || {};
+        var dlWinR2 = document.getElementById('dlWinR2');
+        if (dlWinR2 && winDl.exe) dlWinR2.setAttribute('href', winDl.exe);
+        var dlWinGithub = document.getElementById('dlWinGithub');
+        if (dlWinGithub && winDl.github) dlWinGithub.setAttribute('href', winDl.github);
+        var dlWinMsi = document.getElementById('dlWinMsi');
+        var dlWinMsiCard = document.getElementById('dlWinMsiCard');
+        // 仅当发布脚本确实产出了 msi 时才显示该卡（默认 HTML 里是 hidden）
+        if (dlWinMsi && winDl.msi) {
+          dlWinMsi.setAttribute('href', winDl.msi);
+          if (dlWinMsiCard) dlWinMsiCard.hidden = false;
+        }
+
         // 若是从 App「检查更新」带 #download 锚点进来的，href 填好即自动触发下载
         tryAutoDownload();
 
@@ -604,7 +626,11 @@
     var params = new URLSearchParams(location.search);
     if ((h !== '#download' && h !== '#downloads') || !params.has('autodl')) return;
     if (sessionStorage.getItem(AUTO_DL_FLAG)) return; // 本标签页已下载过，不再触发
-    var btn = document.getElementById('dlR2');
+    // Windows 访客从 App 点「下载」→ 自动跳 exe 直链；macOS 仍走 dlR2（dmg）。
+    // 客户端 DOWNLOAD_PAGE_URL 是 mac/windows 共用的，这里按浏览器平台分流，
+    // 保证 Windows 用户不会误下到 macOS dmg。
+    var isWin = /Windows|Win32|Win64|Trident/.test(navigator.userAgent || '');
+    var btn = document.getElementById(isWin ? 'dlWinR2' : 'dlR2');
     if (!btn) return;
     var href = btn.getAttribute('href');
     if (!href || href === '#') {
