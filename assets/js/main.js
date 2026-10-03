@@ -57,11 +57,7 @@
       'step2.h': '试听与标记', 'step2.p': '双击试听、方向键连续播放；给好素材加星、写备注、打标签，随手整理。',
       'step3.h': '随时检索', 'step3.p': '搜索框输入关键词，或点左侧标签 / 收藏夹秒筛；元数据随文件夹永久保存。',
       'dl.h2': '下载 SampleDir',
-      'dl.p': '支持 Apple Silicon（M 系列）macOS。官方下载与多种网盘渠道，按你的网络环境选。',
-      'dl2.h': '百度网盘', 'dl2.p': '通过百度网盘分享下载，适合国内网络。',
-      'dl2.btn': '百度网盘下载', 'dl2.req': '约 160 MB · macOS 11+ · 提取码 1234',
-      'dl4.h': '夸克网盘', 'dl4.p': '通过夸克网盘分享下载，适合国内网络。',
-      'dl4.btn': '夸克网盘下载', 'dl4.req': '约 160 MB · macOS 11+',
+      'dl.p': '支持 Apple Silicon（M 系列）macOS。官方 CDN 与 GitHub Release 两种渠道，按你的网络环境选。',
       'dl3.h': 'GitHub Release', 'dl3.p': '从 GitHub Release 下载最新版 dmg，适合海外网络或需要历史版本的用户。',
       'dl3.btn': 'GitHub 下载', 'dl3.req': '约 160 MB · macOS 11+',
       'dl5.h': '官方下载', 'dl5.p': '由官方服务器全球直发，不限速、无需提取码，支持 macOS 11+（Apple Silicon）。',
@@ -80,7 +76,7 @@
       'price.f2': '14 天免费试用，无需注册',
       'price.f3': '无订阅 · 无隐藏费用',
       'price.cta': '免费试用 14 天',
-      'price.hint': '下载页提供官方下载 / 百度网盘 / 夸克网盘 / GitHub 多渠道下载',
+      'price.hint': '下载页提供官方 CDN 与 GitHub Release 两种渠道',
       'price.2.badge': '按年订阅', 'price.2.per': '/年', 'price.2.term': '每年付费 · 到期可续',
       'price.2.f1': '按年付费，每年 49 USD', 'price.2.f2': '14 天免费试用，无需注册', 'price.2.f3': '可随时取消 · 到期停更',
       'price.2.cta': '免费试用 14 天', 'price.buy': '购买', 'price.2.hint': '与买断版功能完全一致',
@@ -143,11 +139,7 @@
       'step2.h': 'Audition & tag', 'step2.p': 'Double-click to audition, arrow keys to play continuously; star, note, and tag your best material as you go.',
       'step3.h': 'Retrieve anytime', 'step3.p': 'Type a keyword in the search box, or click a tag / favorite folder to filter instantly; metadata is saved with the folder forever.',
       'dl.h2': 'Download SampleDir',
-      'dl.p': 'For Apple Silicon (M-series) macOS. Official download plus multiple cloud options — pick what works for your network.',
-      'dl2.h': 'Baidu Netdisk', 'dl2.p': 'Download via Baidu Netdisk. Best for users in mainland China.',
-      'dl2.btn': 'Download from Baidu', 'dl2.req': '~160 MB · macOS 11+ · Code: 1234',
-      'dl4.h': 'Quark Cloud', 'dl4.p': 'Download via Quark Cloud. Best for users in mainland China.',
-      'dl4.btn': 'Download from Quark', 'dl4.req': '~160 MB · macOS 11+',
+      'dl.p': 'For Apple Silicon (M-series) macOS. Official CDN and GitHub Release — pick what works for your network.',
       'dl3.h': 'GitHub Release', 'dl3.p': 'Download the latest dmg from GitHub Release. Best for overseas networks or users who want older releases.',
       'dl3.btn': 'Download from GitHub', 'dl3.req': '~160 MB · macOS 11+',
       'dl5.h': 'Official Download', 'dl5.p': 'Served directly from our global CDN — no speed limits, no extraction code. Supports macOS 11+ (Apple Silicon).',
@@ -166,7 +158,7 @@
       'price.f2': '14-day free trial, no sign-up',
       'price.f3': 'No subscription · No hidden fees',
       'price.cta': 'Start 14-day free trial',
-      'price.hint': 'Official download / Baidu / Quark / GitHub available on the download page',
+      'price.hint': 'Official CDN and GitHub Release available on the download page',
       'price.2.badge': 'Yearly', 'price.2.per': '/yr', 'price.2.term': 'Pay yearly · renew anytime',
       'price.2.f1': 'Pay yearly, 49 USD per year', 'price.2.f2': '14-day free trial, no sign-up', 'price.2.f3': 'Cancel anytime · expires if not renewed',
       'price.2.cta': 'Start 14-day free trial', 'price.buy': 'Buy Now', 'price.2.hint': 'Same features as the lifetime plan',
@@ -229,11 +221,7 @@
       'step2.h': '프리뷰 & 태그', 'step2.p': '더블클릭으로 프리뷰, 방향키로 연속 재생. 좋은 소재에 별점, 메모, 태그를 붙여가며 정리하세요.',
       'step3.h': '언제든 검색', 'step3.p': '검색창에 키워드를 입력하거나 태그 / 즐겨찾기 폴더를 클릭해 즉시 필터. 메타데이터는 폴더와 함께 영구 저장됩니다.',
       'dl.h2': 'SampleDir 다운로드',
-      'dl.p': 'Apple Silicon(M 시리즈) macOS를 지원합니다. 공식 다운로드와 여러 클라우드 채널 중 네트워크에 맞는 방법을 선택하세요.',
-      'dl2.h': '바이두 웹디스크', 'dl2.p': '바이두 웹디스크를 통해 다운로드. 중국 본토 사용자에게 적합.',
-      'dl2.btn': '바이두에서 다운로드', 'dl2.req': '약 160 MB · macOS 11+ · 코드: 1234',
-      'dl4.h': '콰크 클라우드', 'dl4.p': '콰크 클라우드를 통해 다운로드. 중국 본토 사용자에게 적합.',
-      'dl4.btn': '콰크에서 다운로드', 'dl4.req': '약 160 MB · macOS 11+',
+      'dl.p': 'Apple Silicon(M 시리즈) macOS를 지원합니다. 공식 CDN과 GitHub Release 중 네트워크에 맞는 방법을 선택하세요.',
       'dl3.h': 'GitHub Release', 'dl3.p': 'GitHub Release에서 최신 dmg를 다운로드. 해외 네트워크 또는 이전 버전이 필요한 사용자에게 적합.',
       'dl3.btn': 'GitHub에서 다운로드', 'dl3.req': '약 160 MB · macOS 11+',
       'dl5.h': '공식 다운로드', 'dl5.p': '공식 서버에서 전 세계로 직접 전송하며 속도 제한 없이 추출 코드도 필요 없습니다. macOS 11+(Apple Silicon) 지원.',
@@ -252,7 +240,7 @@
       'price.f2': '14일 무료 체험, 가입 불필요',
       'price.f3': '구독 없음 · 숨은 비용 없음',
       'price.cta': '14일 무료 체험 시작',
-      'price.hint': '다운로드 페이지에서 공식 다운로드 / 바이두 / 콰크 / GitHub 제공',
+      'price.hint': '다운로드 페이지에서 공식 CDN / GitHub Release 제공',
       'price.2.badge': '연간 구독', 'price.2.per': '/년', 'price.2.term': '매년 결제 · 기간 만료 시 갱신',
       'price.2.f1': '연간 결제, 매년 49 USD', 'price.2.f2': '14일 무료 체험, 가입 불필요', 'price.2.f3': '언제든 취소 가능 · 미갱신 시 정지',
       'price.2.cta': '14일 무료 체험 시작', 'price.buy': '구매', 'price.2.hint': '평생 라이선스와 기능 동일',
@@ -315,11 +303,7 @@
       'step2.h': '試聴とタグ付け', 'step2.p': 'ダブルクリックで試聴、矢印キーで連続再生。良い素材に星・メモ・タグを付けながら整理しましょう。',
       'step3.h': 'いつでも検索', 'step3.p': '検索ボックスにキーワードを入力するか、タグ / お気に入りフォルダをクリックして即フィルター。メタデータはフォルダと一緒に永久保存されます。',
       'dl.h2': 'SampleDir をダウンロード',
-      'dl.p': 'Apple Silicon（Mシリーズ）macOSに対応。公式ダウンロードと各種クラウド渠道から、ネットワーク環境に合わせて選べます。',
-      'dl2.h': 'Baidu ネットディスク', 'dl2.p': 'Baidu ネットディスク経由でダウンロード。中国大陸のユーザー向け。',
-      'dl2.btn': 'Baidu からダウンロード', 'dl2.req': '約160 MB · macOS 11+ · コード: 1234',
-      'dl4.h': 'クァーククラウド', 'dl4.p': 'クァーククラウド経由でダウンロード。中国大陸のユーザー向け。',
-      'dl4.btn': 'クァークからダウンロード', 'dl4.req': '約160 MB · macOS 11+',
+      'dl.p': 'Apple Silicon（Mシリーズ）macOSに対応。公式CDNとGitHub Releaseから、ネットワーク環境に合わせて選べます。',
       'dl3.h': 'GitHub Release', 'dl3.p': 'GitHub Releaseから最新のdmgをダウンロード。海外ネットワークや過去のバージョンが必要なユーザー向け。',
       'dl3.btn': 'GitHubからダウンロード', 'dl3.req': '約160 MB · macOS 11+',
       'dl5.h': '公式ダウンロード', 'dl5.p': '公式サーバーから全世界へ直接配信。速度制限なし、抽出コード不要。macOS 11+（Apple Silicon）対応。',
@@ -338,7 +322,7 @@
       'price.f2': '14 日間の無料トライアル、登録不要',
       'price.f3': 'サブスクなし · 隠れた費用なし',
       'price.cta': '14 日間無料トライアル',
-      'price.hint': 'ダウンロードページで 公式 / Baidu / Quark / GitHub から選択できます',
+      'price.hint': 'ダウンロードページで 公式CDN / GitHub Release から選択できます',
       'price.2.badge': '年額プラン', 'price.2.per': '/年', 'price.2.term': '年額支払い · 更新可能',
       'price.2.f1': '年額支払い、年間 49 USD', 'price.2.f2': '14 日間の無料トライアル、登録不要', 'price.2.f3': 'いつでもキャンセル可 · 未更新で停止',
       'price.2.cta': '14 日間無料トライアル', 'price.buy': '購入', 'price.2.hint': '買い切り版と機能は同じ',
@@ -551,13 +535,6 @@
         }
 
         // 更新百度网盘下载按钮 (version.json 的 downloads.Baidu 由用户维护)
-        var dlBaidu = document.getElementById('dlBaidu');
-        if (dlBaidu && downloads.Baidu) dlBaidu.setAttribute('href', downloads.Baidu);
-
-        // 更新夸克网盘下载按钮 (version.json 的 downloads.kuake 由用户维护)
-        var dlQuark = document.getElementById('dlQuark');
-        if (dlQuark && downloads.kuake) dlQuark.setAttribute('href', downloads.kuake);
-
         // 更新 GitHub 下载按钮
         var dlGithub = document.getElementById('dlGithub');
         if (dlGithub && downloads.github) dlGithub.setAttribute('href', downloads.github);
