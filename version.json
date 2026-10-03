@@ -9,7 +9,8 @@
     "kuake": "https://pan.quark.cn/s/4021fe2095ac",
     "github": "https://github.com/huoleihu/SampleDir/releases/download/v1.0.4/SampleDir-1.0.4-arm64.dmg",
     "windows": {
-      "exe": "https://dl.sampledir.com/releases/SampleDir-1.0.4-x64.exe"
+      "exe": "https://dl.sampledir.com/releases/SampleDir-1.0.4-x64.exe",
+      "github": "https://github.com/huoleihu/SampleDir/releases/download/v1.0.4/SampleDir-1.0.4-x64.exe"
     }
   },
   "notes": {
