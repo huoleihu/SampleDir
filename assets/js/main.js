@@ -651,7 +651,29 @@
     // 用同标签导航而非 btn.click()：自动点击发生在 fetch/setTimeout 回调里（非用户手势），
     // 浏览器弹窗拦截器会拦截 target=_blank 的新标签打开，表现为「点了但没反应」。
     // 同标签 assign 不被拦截；且当 href 是真实文件直链时浏览器会直接下载该文件。
-    window.location.assign(href);
+    //
+    // ⚠️ 必须先「瞬间滚到下载区」再导航，否则用户会停在页面顶部（只有 Hero，看不到下载面板）：
+    // 站点 CSS 是 html{scroll-behavior:smooth}，锚点 #download 的滚动是平滑动画；而
+    // Windows 的 dlWinR2 链接是写死的真实 exe 地址，脚本在解析阶段就 location.assign 导航，
+    // 平滑滚动动画被导航打断 → 滚不动。mac 侧 #dlR2 初始是 '#'、要等 version.json 那一拍，
+    // 平滑滚动早已跑完，所以 mac 看起来正常（行为保持 100% 不变）。
+    var fireDownload = function () {
+      var sec = document.getElementById('download');
+      if (sec) {
+        // behavior:'instant' 强制瞬时滚动，绕开 CSS 的 smooth；老浏览器退回 'auto'/'默认'
+        try { sec.scrollIntoView({ block: 'start', behavior: 'instant' }); }
+        catch (e) {
+          try { sec.scrollIntoView({ block: 'start' }); } catch (e2) {}
+        }
+      }
+      window.location.assign(href);
+    };
+    // 等文档加载完成（布局稳定）后再滚 + 触发下载，留一拍让滚动先渲染出来
+    if (document.readyState === 'complete') {
+      setTimeout(fireDownload, 120);
+    } else {
+      window.addEventListener('load', function () { setTimeout(fireDownload, 120); }, { once: true });
+    }
   }
   window.addEventListener('hashchange', tryAutoDownload);
   tryAutoDownload(); // 直接带锚点打开页面时初次触发
