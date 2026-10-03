@@ -310,9 +310,11 @@ select.lang:focus { border-color: var(--green); }
 .dl-tab:hover { color: var(--text); border-color: var(--green); }
 .dl-tab.is-active { background: var(--green-soft); border-color: var(--green); color: var(--green); }
 .dl-tab:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
-.downloads { display: grid; grid-template-columns: repeat(4,1fr); gap: 22px; max-width: 1100px; margin: 0 auto; }
+/* flex + justify-content:center：卡片数量变化时整组居中，不残留空列（旧版固定 4 列 → 卡片靠左） */
+.downloads { display: flex; flex-wrap: wrap; justify-content: center; gap: 22px; max-width: 1100px; margin: 0 auto; }
 .downloads[hidden] { display: none; }
-.dl { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px 24px; text-align: center; }
+.dl { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px 24px; text-align: center;
+  flex: 1 1 240px; max-width: 264px; }
 .dl__icon { width: 52px; height: 52px; border-radius: 14px; background: var(--green-soft); display: grid; place-items: center; margin: 0 auto 16px; }
 .dl__icon svg { width: 26px; height: 26px; fill: none; stroke: var(--green); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .dl--github .dl__icon svg { fill: var(--green); stroke: none; }
@@ -365,7 +367,7 @@ select.lang:focus { border-color: var(--green); }
   .pricing { grid-template-columns: 1fr; max-width: 440px; }
 }
 @media (max-width: 960px) {
-  .downloads { grid-template-columns: repeat(2,1fr); }
+  .dl { flex: 1 1 300px; max-width: 340px; }
 }
 @media (max-width: 720px) {
   .nav__links { display: none; position: absolute; top: 100%; left: 0; right: 0;
@@ -374,7 +376,7 @@ select.lang:focus { border-color: var(--green); }
   .nav__cta.btn--disabled { display: none; }
   .lang { margin-left: auto; }
   .nav__toggle { display: flex; }
-  .downloads { grid-template-columns: 1fr; }
+  .dl { flex: 1 1 100%; max-width: 420px; }
   .mock__body { grid-template-columns: 90px 1fr; }
   .mock__detail { display: none; }
 }
