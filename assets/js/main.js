@@ -58,6 +58,7 @@
       'step3.h': '随时检索', 'step3.p': '搜索框输入关键词，或点左侧标签 / 收藏夹秒筛；元数据随文件夹永久保存。',
       'dl.h2': '下载 SampleDir',
       'dl.p': '支持 Apple Silicon（M 系列）macOS。官方 CDN 与 GitHub Release 两种渠道，按你的网络环境选。',
+      'dl.p.win': '支持 Windows 10+ x64。官方 CDN 与 GitHub Release 两种渠道，按你的网络环境选。',
       'dl3.h': 'GitHub Release', 'dl3.p': '从 GitHub Release 下载最新版 dmg，适合海外网络或需要历史版本的用户。',
       'dl3.btn': 'GitHub 下载', 'dl3.req': '约 160 MB · macOS 11+',
       'dl5.h': '官方下载', 'dl5.p': '由官方服务器全球直发，不限速、无需提取码，支持 macOS 11+（Apple Silicon）。',
@@ -140,6 +141,7 @@
       'step3.h': 'Retrieve anytime', 'step3.p': 'Type a keyword in the search box, or click a tag / favorite folder to filter instantly; metadata is saved with the folder forever.',
       'dl.h2': 'Download SampleDir',
       'dl.p': 'For Apple Silicon (M-series) macOS. Official CDN and GitHub Release — pick what works for your network.',
+      'dl.p.win': 'For Windows 10+ x64. Official CDN and GitHub Release — pick what works for your network.',
       'dl3.h': 'GitHub Release', 'dl3.p': 'Download the latest dmg from GitHub Release. Best for overseas networks or users who want older releases.',
       'dl3.btn': 'Download from GitHub', 'dl3.req': '~160 MB · macOS 11+',
       'dl5.h': 'Official Download', 'dl5.p': 'Served directly from our global CDN — no speed limits, no extraction code. Supports macOS 11+ (Apple Silicon).',
@@ -222,6 +224,7 @@
       'step3.h': '언제든 검색', 'step3.p': '검색창에 키워드를 입력하거나 태그 / 즐겨찾기 폴더를 클릭해 즉시 필터. 메타데이터는 폴더와 함께 영구 저장됩니다.',
       'dl.h2': 'SampleDir 다운로드',
       'dl.p': 'Apple Silicon(M 시리즈) macOS를 지원합니다. 공식 CDN과 GitHub Release 중 네트워크에 맞는 방법을 선택하세요.',
+      'dl.p.win': 'Windows 10 이상 x64를 지원합니다. 공식 CDN과 GitHub Release 중 네트워크에 맞는 방법을 선택하세요.',
       'dl3.h': 'GitHub Release', 'dl3.p': 'GitHub Release에서 최신 dmg를 다운로드. 해외 네트워크 또는 이전 버전이 필요한 사용자에게 적합.',
       'dl3.btn': 'GitHub에서 다운로드', 'dl3.req': '약 160 MB · macOS 11+',
       'dl5.h': '공식 다운로드', 'dl5.p': '공식 서버에서 전 세계로 직접 전송하며 속도 제한 없이 추출 코드도 필요 없습니다. macOS 11+(Apple Silicon) 지원.',
@@ -304,6 +307,7 @@
       'step3.h': 'いつでも検索', 'step3.p': '検索ボックスにキーワードを入力するか、タグ / お気に入りフォルダをクリックして即フィルター。メタデータはフォルダと一緒に永久保存されます。',
       'dl.h2': 'SampleDir をダウンロード',
       'dl.p': 'Apple Silicon（Mシリーズ）macOSに対応。公式CDNとGitHub Releaseから、ネットワーク環境に合わせて選べます。',
+      'dl.p.win': 'Windows 10+ x64に対応。公式CDNとGitHub Releaseから、ネットワーク環境に合わせて選べます。',
       'dl3.h': 'GitHub Release', 'dl3.p': 'GitHub Releaseから最新のdmgをダウンロード。海外ネットワークや過去のバージョンが必要なユーザー向け。',
       'dl3.btn': 'GitHubからダウンロード', 'dl3.req': '約160 MB · macOS 11+',
       'dl5.h': '公式ダウンロード', 'dl5.p': '公式サーバーから全世界へ直接配信。速度制限なし、抽出コード不要。macOS 11+（Apple Silicon）対応。',
@@ -420,6 +424,26 @@
 
     // 语言切换时同步重渲染「更新日志」（数据来自 version.json.notes）
     if (typeof renderReleaseNotes === 'function') renderReleaseNotes();
+
+    // 平台化导语：Windows 访客显示 dl.p.win，macOS 保持原来的 dl.p（逻辑零变化）
+    applyPlatformIntro();
+  }
+
+  // 浏览器是否为 Windows（客户端「检查更新」的自动下载也靠这个判定分流）
+  function isWinBrowser() {
+    return /Windows|Win32|Win64|Trident/.test(navigator.userAgent || '');
+  }
+
+  // 下载区导语按平台切换：仅 Windows 访客替换文案，其余平台不动。
+  function applyPlatformIntro() {
+    var el = document.getElementById('dlIntro');
+    if (!el) return;
+    var lang = typeof current !== 'undefined' && current ? current : getLang();
+    var dict = I18N[lang] || I18N.zh;
+    var isWin = isWinBrowser();
+    var useWinCopy = isWin && dict['dl.p.win'] != null;
+    var key = useWinCopy ? 'dl.p.win' : 'dl.p';
+    if (dict[key] != null) el.textContent = dict[key];
   }
 
   var current = getLang();
@@ -506,19 +530,29 @@
     if (!tabs.length) return;
     var panelMacos = document.getElementById('dlPanelMacos');
     var panelWin = document.getElementById('dlPanelWindows');
+
+    // 切换（或初始化）到指定平台 tab：Windows 访客默认落在 Windows 面板，
+    // macOS 访客保持 HTML 默认的 macOS 面板 —— mac 侧行为与改动前完全一致。
+    function selectPlatform(platform) {
+      var isMac = platform !== 'windows';
+      tabs.forEach(function (t) {
+        var on = t.getAttribute('data-platform') === platform;
+        t.classList.toggle('is-active', on);
+        if (on) t.setAttribute('aria-selected', 'true'); else t.setAttribute('aria-selected', 'false');
+      });
+      if (panelMacos) panelMacos.hidden = !isMac;
+      if (panelWin) panelWin.hidden = isMac;
+      applyPlatformIntro();
+    }
+
     tabs.forEach(function (tab) {
       tab.addEventListener('click', function () {
-        tabs.forEach(function (t) {
-          t.classList.remove('is-active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        tab.classList.add('is-active');
-        tab.setAttribute('aria-selected', 'true');
-        var isMac = tab.getAttribute('data-platform') === 'macos';
-        if (panelMacos) panelMacos.hidden = !isMac;
-        if (panelWin) panelWin.hidden = isMac;
+        selectPlatform(tab.getAttribute('data-platform'));
       });
     });
+
+    // 首次进入按浏览器平台预选 tab（用户不手动点则一直保持）
+    selectPlatform(isWinBrowser() ? 'windows' : 'macos');
   })();
 
   (function fetchVersionJson() {
@@ -606,8 +640,7 @@
     // Windows 访客从 App 点「下载」→ 自动跳 exe 直链；macOS 仍走 dlR2（dmg）。
     // 客户端 DOWNLOAD_PAGE_URL 是 mac/windows 共用的，这里按浏览器平台分流，
     // 保证 Windows 用户不会误下到 macOS dmg。
-    var isWin = /Windows|Win32|Win64|Trident/.test(navigator.userAgent || '');
-    var btn = document.getElementById(isWin ? 'dlWinR2' : 'dlR2');
+    var btn = document.getElementById(isWinBrowser() ? 'dlWinR2' : 'dlR2');
     if (!btn) return;
     var href = btn.getAttribute('href');
     if (!href || href === '#') {
