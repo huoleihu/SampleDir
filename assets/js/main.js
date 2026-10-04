@@ -25,6 +25,7 @@
       'hero.title': '把采样素材库<br/>整理得像作品一样干净',
       'hero.sub': 'SampleDir 是一款本地优先的采样素材库管理器。可视化波形、智能试听、标签与收藏，所有备注和标记都随文件夹一起走——换电脑也不丢。',
       'hero.download': '下载 for macOS',
+      'hero.download.win': '下载 for Windows',
       'hero.explore': '了解功能',
       'hero.free': '免费',
       'hero.nocloud': '无账号 · 无云端',
@@ -108,6 +109,7 @@
       'hero.title': 'Keep your sample library<br/>as tidy as your productions',
       'hero.sub': 'SampleDir is a local-first sample library manager. Visual waveforms, smart audition, tags & favorites — all notes and marks travel with your folders, so nothing is lost when you switch machines.',
       'hero.download': 'Download for macOS',
+      'hero.download.win': 'Download for Windows',
       'hero.explore': 'Explore features',
       'hero.free': 'Free',
       'hero.nocloud': 'No account · No cloud',
@@ -191,6 +193,7 @@
       'hero.title': '샘플 라이브러리를<br/>작업물처럼 깔끔하게',
       'hero.sub': 'SampleDir은 로컬 우선 샘플 라이브러리 매니저입니다. 시각적 파형, 스마트 프리뷰, 태그와 즐겨찾기 — 모든 메모와 표시가 폴더와 함께 이동하므로 컴퓨터를 바꿔도 잃어버리지 않습니다.',
       'hero.download': 'macOS용 다운로드',
+      'hero.download.win': 'Windows용 다운로드',
       'hero.explore': '기능 알아보기',
       'hero.free': '무료',
       'hero.nocloud': '계정 없음 · 클라우드 없음',
@@ -274,6 +277,7 @@
       'hero.title': 'サンプルライブラリを<br/>作品のようにきれいに',
       'hero.sub': 'SampleDirはローカル優先のサンプルライブラリマネージャーです。視覚的な波形、スマート試聴、タグとお気に入り — すべてのメモとマークはフォルダと一緒に移動するので、パソコンを変えても失いません。',
       'hero.download': 'macOS版をダウンロード',
+      'hero.download.win': 'Windows版をダウンロード',
       'hero.explore': '機能を見る',
       'hero.free': '無料',
       'hero.nocloud': 'アカウント不要 · クラウドなし',
@@ -446,8 +450,28 @@
     if (dict[key] != null) el.textContent = dict[key];
   }
 
+  // Hero 区下载按钮同样按 UA 分流：Windows 访客把「下载 for Windows」提为主按钮（亮绿）并排到前面，
+  // 与下载区按 UA 预选 Windows 面板、自动下载按 UA 点 dlWinR2 三处保持一致。
+  // 其余平台维持 macOS 为主按钮（DOM 里本来就是这个顺序，不动）。
+  function applyHeroPlatform() {
+    var mac = document.getElementById('heroDlMac');
+    var win = document.getElementById('heroDlWin');
+    if (!mac || !win) return;
+    var actions = mac.parentNode;
+    if (isWinBrowser()) {
+      mac.classList.remove('btn--primary');
+      mac.classList.add('btn--ghost');
+      win.classList.remove('btn--ghost');
+      win.classList.add('btn--primary');
+      if (mac.nextSibling !== win) actions.insertBefore(win, mac);
+    } else {
+      if (win.nextSibling !== mac) actions.insertBefore(mac, win);
+    }
+  }
+
   var current = getLang();
   applyLang(current);
+  applyHeroPlatform();
 
   var sel = document.getElementById('langSelect');
   if (sel) {
