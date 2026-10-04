@@ -350,6 +350,28 @@ select.lang:focus { border-color: var(--green); }
   box-shadow: 0 8px 26px rgba(0, 230, 118, .36);
   transform: translateY(-2px);
 }
+/* 互斥：鼠标（或键盘焦点）在某张卡上时，其余卡的按钮压回灰黑，
+   连默认常绿的第一张也一起变灰，保证"只有一张亮绿"。
+   用 :has() 判定整个下载区里有没有卡被悬停，降级浏览器不支持时只是少了压灰，不影响上面那条变绿。 */
+.downloads:has(.dl:hover) .dl:not(:hover) .btn,
+.downloads:has(.dl:focus-within) .dl:not(:focus-within) .btn {
+  background: var(--surface-2);
+  color: var(--text);
+  border-color: var(--border);
+  box-shadow: none;
+  transform: none;
+}
+/* 同样互斥地把"没被悬停的卡"的图标也压回默认（不被绿光抢焦点） */
+.downloads:has(.dl:hover) .dl:not(:hover) .dl__icon,
+.downloads:has(.dl:focus-within) .dl:not(:focus-within) .dl__icon {
+  background: var(--green-soft);
+  transform: none;
+}
+.downloads:has(.dl:hover) .dl:not(:hover) .dl__icon svg,
+.downloads:has(.dl:focus-within) .dl:not(:focus-within) .dl__icon svg {
+  fill: var(--green);
+  transform: none;
+}
 .dl__req { display: block; margin-top: 14px; font-size: 12px; color: var(--text-mute); }
 .downloads__note {
   max-width: 1100px; margin: 30px auto 0; padding: 16px 20px; font-size: 14px; color: var(--text-dim);
