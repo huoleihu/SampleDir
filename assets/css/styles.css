@@ -325,19 +325,15 @@ select.lang:focus { border-color: var(--green); }
   transform: translateY(-4px);
   box-shadow: 0 14px 34px rgba(0, 0, 0, .3);
 }
-.downloads .dl:hover .dl__icon,
-.downloads .dl:focus-within .dl__icon { background: var(--green); transform: scale(1.08); }
-.downloads .dl:hover .dl__icon svg,
-.downloads .dl:focus-within .dl__icon svg { fill: #06231a; stroke: #06231a; }
 .dl__icon { transition: transform .2s ease, background .2s ease; }
+/* 图标不参与悬停高亮：一律保持默认（淡绿底 + 亮绿徽标），
+   下载卡只有"整卡描边/上浮 + 下载按钮变亮绿"在变，视觉焦点只在按钮上。 */
 .dl__icon { width: 52px; height: 52px; border-radius: 14px; background: var(--green-soft); display: grid; place-items: center; margin: 0 auto 16px; }
 .dl__icon svg { width: 26px; height: 26px; fill: none; stroke: var(--green); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .dl--github .dl__icon svg { fill: var(--green); stroke: none; }
 /* Windows 徽标：实心四格窗（index.html 里用 4 个 rect，格与格之间真有 2 单位缝隙）。
    旧 path 是 4 段互相重叠的子路径，一 fill 就把四格糊成一整块（用户截图里的黑方块）。
-   默认态用亮绿：在淡绿图标底（--green-soft）上清晰可辨；
-   鼠标悬停整卡时底变实心亮绿（.downloads .dl:hover .dl__icon svg 那条 fill:#06231a 特异性更高）
-   徽标自动转为深色，一浅一深两态分明，不会出现"没选中"也没法分辨的情况。 */
+   图标常态即亮绿，始终不变色（悬停也不变），淡绿图标底上清晰可辨。 */
 .dl--windows .dl__icon svg { fill: var(--green); stroke: none; }
 .dl h3 { font-size: 19px; margin-bottom: 10px; }
 .dl p { font-size: 14px; color: var(--text-dim); margin-bottom: 20px; }
@@ -363,17 +359,6 @@ select.lang:focus { border-color: var(--green); }
   color: var(--text);
   border-color: var(--border);
   box-shadow: none;
-  transform: none;
-}
-/* 同样互斥地把"没被悬停的卡"的图标也压回默认（不被绿光抢焦点） */
-.downloads:has(.dl:hover) .dl:not(:hover) .dl__icon,
-.downloads:has(.dl:focus-within) .dl:not(:focus-within) .dl__icon {
-  background: var(--green-soft);
-  transform: none;
-}
-.downloads:has(.dl:hover) .dl:not(:hover) .dl__icon svg,
-.downloads:has(.dl:focus-within) .dl:not(:focus-within) .dl__icon svg {
-  fill: var(--green);
   transform: none;
 }
 .dl__req { display: block; margin-top: 14px; font-size: 12px; color: var(--text-mute); }
