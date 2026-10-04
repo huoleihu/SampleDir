@@ -333,8 +333,10 @@ select.lang:focus { border-color: var(--green); }
 .dl__icon { width: 52px; height: 52px; border-radius: 14px; background: var(--green-soft); display: grid; place-items: center; margin: 0 auto 16px; }
 .dl__icon svg { width: 26px; height: 26px; fill: none; stroke: var(--green); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .dl--github .dl__icon svg { fill: var(--green); stroke: none; }
-.dl--windows { border-style: dashed; }
-.dl--windows .dl__icon svg { fill: var(--green); stroke: none; }
+/* Windows 徽标：实心深绿四格窗。此前是 fill:none + 绿 stroke，
+   悬停时图标底变实心绿（.downloads .dl:hover .dl__icon），绿描边直接隐形，
+   只剩中间那块空心黑四边形。改成深色实心后在淡绿/亮绿底上都清晰。 */
+.dl--windows .dl__icon svg { fill: #06231a; stroke: none; }
 .dl h3 { font-size: 19px; margin-bottom: 10px; }
 .dl p { font-size: 14px; color: var(--text-dim); margin-bottom: 20px; }
 .dl code, .downloads__note code { background: var(--bg-3); padding: 2px 7px; border-radius: 5px; font-size: 13px; color: var(--green-2); }
