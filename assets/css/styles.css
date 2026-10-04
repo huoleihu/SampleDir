@@ -339,6 +339,20 @@ select.lang:focus { border-color: var(--green); }
 .dl p { font-size: 14px; color: var(--text-dim); margin-bottom: 20px; }
 .dl code, .downloads__note code { background: var(--bg-3); padding: 2px 7px; border-radius: 5px; font-size: 13px; color: var(--green-2); }
 .dl .btn { width: 100%; }
+/* 下载卡内所有按钮统一为亮绿色主按钮：此前只有第一张 btn--primary 常驻亮绿，
+   其余 btn--ghost 恒为灰黑底，视觉上"第一个永远亮、别的永远黑"。 */
+.dl .btn {
+  background: linear-gradient(135deg, var(--green), var(--green-2));
+  color: #06231a;
+  border-color: transparent;
+  box-shadow: 0 8px 24px rgba(0, 230, 118, .28);
+}
+.dl .btn:hover,
+.dl .btn:focus-visible {
+  transform: translateY(-2px);
+  filter: brightness(1.07);
+  box-shadow: 0 14px 32px rgba(0, 230, 118, .45);
+}
 .dl__req { display: block; margin-top: 14px; font-size: 12px; color: var(--text-mute); }
 .downloads__note {
   max-width: 1100px; margin: 30px auto 0; padding: 16px 20px; font-size: 14px; color: var(--text-dim);
