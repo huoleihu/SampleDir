@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 语言变体一律用真实路径（/ 、/en/ 、/ko/ 、/ja/），不用 ?lang= 参数：
+     参数 URL 会被 Google 判为低优先级，长期停在「已发现 - 尚未编入索引」。
+     这些路径由 Cloudflare Pages 的 _redirects 以 200 代理回同一份 index.html。 -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.sampledir.com/?lang=zh</loc>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://www.sampledir.com/?lang=zh"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sampledir.com/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sampledir.com/?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sampledir.com/?lang=ja"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sampledir.com/?lang=zh"/>
+    <loc>https://www.sampledir.com/</loc>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.sampledir.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sampledir.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sampledir.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sampledir.com/ja/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sampledir.com/"/>
   </url>
   <url>
-    <loc>https://www.sampledir.com/?lang=en</loc>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://www.sampledir.com/?lang=zh"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sampledir.com/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sampledir.com/?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sampledir.com/?lang=ja"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sampledir.com/?lang=zh"/>
+    <loc>https://www.sampledir.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.sampledir.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sampledir.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sampledir.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sampledir.com/ja/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sampledir.com/"/>
   </url>
   <url>
-    <loc>https://www.sampledir.com/?lang=ko</loc>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://www.sampledir.com/?lang=zh"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sampledir.com/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sampledir.com/?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sampledir.com/?lang=ja"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sampledir.com/?lang=zh"/>
+    <loc>https://www.sampledir.com/ko/</loc>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.sampledir.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sampledir.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sampledir.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sampledir.com/ja/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sampledir.com/"/>
   </url>
   <url>
-    <loc>https://www.sampledir.com/?lang=ja</loc>
-    <xhtml:link rel="alternate" hreflang="zh" href="https://www.sampledir.com/?lang=zh"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.sampledir.com/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sampledir.com/?lang=ko"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sampledir.com/?lang=ja"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sampledir.com/?lang=zh"/>
+    <loc>https://www.sampledir.com/ja/</loc>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://www.sampledir.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.sampledir.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://www.sampledir.com/ko/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://www.sampledir.com/ja/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.sampledir.com/"/>
   </url>
 </urlset>

@@ -1,0 +1,15 @@
+# 语言路径 → 同一份 index.html 的 200 代理（Cloudflare Pages rewrite，不跳转、URL 保持干净路径）
+#
+# 为什么这么做：语言变体必须用「真实路径」才能被 Google 稳定收录，
+# ?lang= 参数形式会长期卡在「已发现 - 尚未编入索引」。
+# 页面内部的语言判定读 location.pathname 前缀（见 index.html 头部脚本与 main.js getLang()），
+# 因此目标文件不需要带 query；canonical / hreflang 也在页面里按路径生成。
+#
+# 注意：_redirects 的代理目标必须是本站相对路径；静态规则写在动态规则之前。
+
+/en  /index.html  200
+/en/ /index.html  200
+/ko  /index.html  200
+/ko/ /index.html  200
+/ja  /index.html  200
+/ja/ /index.html  200

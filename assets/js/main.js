@@ -347,10 +347,23 @@
   var LANGS = ['zh', 'en', 'ko', 'ja'];
   var LANG_MAP = { zh: 'zh-CN', en: 'en', ko: 'ko', ja: 'ja' };
 
+  // 语言路径映射：中文（主语言）在根，其余在 /en/ /ko/ /ja/。
+  // URL 即语言 —— 与 index.html head 里的重定向脚本、canonical/hreflang 生成保持一致。
+  function pathLang() {
+    var m = (location.pathname || '/').match(/^\/(en|ko|ja)(\/|$)/);
+    return m ? m[1] : null;
+  }
+  function langPath(lang) {
+    return lang === 'zh' ? '/' : '/' + lang + '/';
+  }
+
   function getLang() {
-    // ① URL 参数 ?lang= 最高优先级 —— SEO 关键。
-    //    让 Google 抓 ?lang=en 渲染英文版、抓 ?lang=zh 渲染中文版，
-    //    两种语言各自独立索引，互不被对方吞权重（中英文搜索都能命中）。
+    // ① 路径前缀最高优先级：URL 就是语言（SEO 关键）。
+    //    Google 抓 / 渲染中文版、抓 /en/ 渲染英文版，各自独立索引、互不吞权重。
+    var p = pathLang();
+    if (p) return p;
+
+    // ② 旧 ?lang= 参数（兼容老外链；head 脚本通常已把人换成新路径）
     var params = null;
     try { params = new URLSearchParams(location.search); } catch (e) {}
     if (params) {
@@ -358,40 +371,10 @@
       if (LANGS.indexOf(ql) !== -1) return ql;
     }
 
-    // ② 本机手动选过的语言偏好（localStorage）
-    var saved = null;
-    try { saved = localStorage.getItem(STORE_KEY); } catch (e) {}
-    if (LANGS.indexOf(saved) !== -1) return saved;
-
-    // ③ 爬虫（无 lang 参数、无本地偏好）：根 URL 是主入口，回退主语言 zh，
-    //    保证 Google 抓根 URL 索引中文版（中文搜索需求）；英文由 ?lang=en 单独承载。
-    var ua = (navigator.userAgent || '').toLowerCase();
-    if (/bot|spider|crawl|slurp|google|bing|baidu|yandex|duckduck|teoma|ia_archiver|facebookexternalhit|preview/.test(ua)) {
-      return 'zh';
-    }
-
-    // ④ 真实用户：按机器区域 / 浏览器语言自动选择（与原有逻辑一致）
-    // Intl 的 resolvedOptions 反映系统区域设置（比 navigator.language 更接近"机器区域"）
-    var locale = '';
-    try { locale = (Intl.DateTimeFormat().resolvedOptions().locale || '').toLowerCase(); } catch (e) {}
-    if (locale.indexOf('zh') === 0) return 'zh';
-    if (locale.indexOf('ko') === 0) return 'ko';
-    if (locale.indexOf('ja') === 0) return 'ja';
-
-    // 时区兜底：系统时区在上海/首尔/东京时区，语言大概率也对应（浏览器可能被设成英文）
-    var tz = '';
-    try { tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '').toLowerCase(); } catch (e) {}
-    if (tz.indexOf('shanghai') !== -1 || tz.indexOf('chongqing') !== -1 ||
-        tz.indexOf('harbin') !== -1 || tz.indexOf('urumqi') !== -1) return 'zh';
-    if (tz.indexOf('seoul') !== -1) return 'ko';
-    if (tz.indexOf('tokyo') !== -1) return 'ja';
-
-    // 最后兜底浏览器语言
-    var nav = (navigator.language || '').toLowerCase();
-    if (nav.indexOf('zh') === 0) return 'zh';
-    if (nav.indexOf('ko') === 0) return 'ko';
-    if (nav.indexOf('ja') === 0) return 'ja';
-    return 'en';
+    // ③ 根路径：head 脚本已按访客习惯重定向到对应语言路径，
+    //    走到这里的是中文访客或爬虫 —— 一律按主语言中文渲染，
+    //    保证「根 URL 渲染中文 + canonical 指根」，不再出现语言与 canonical 错配。
+    return 'zh';
   }
 
   function applyLang(lang) {
@@ -416,9 +399,14 @@
     var metaEl = document.querySelector('[data-i18n-meta]');
     if (metaEl && dict['meta.desc'] != null) metaEl.setAttribute('content', dict['meta.desc']);
 
-    // 帮助页链接跟随语言（韩/日暂指向英文帮助页）
+    // 页脚静态页链接跟随语言（韩/日暂指向英文帮助页）；用绝对路径，
+    // 这样在 /en/、/ja/ 这类语言路径下也不会解析成 /en/help.html 而 404。
     var helpLink = document.getElementById('helpLink');
-    if (helpLink) helpLink.setAttribute('href', lang === 'zh' ? 'help.html' : 'help_en.html');
+    if (helpLink) helpLink.setAttribute('href', lang === 'zh' ? '/help.html' : '/help_en.html');
+    var termsLink = document.getElementById('termsLink');
+    if (termsLink) termsLink.setAttribute('href', lang === 'zh' ? '/terms.html' : '/terms_en.html');
+    var privacyLink = document.getElementById('privacyLink');
+    if (privacyLink) privacyLink.setAttribute('href', lang === 'zh' ? '/privacy.html' : '/privacy_en.html');
 
     // 语言下拉框同步
     var sel = document.getElementById('langSelect');
@@ -477,13 +465,13 @@
   if (sel) {
     sel.addEventListener('change', function () {
       current = sel.value;
-      applyLang(current);
-      // 把当前语言写进 URL（不刷新、不跳锚点），便于分享与 SEO 索引 ?lang=xx
-      try {
-        var url = new URL(location.href);
-        url.searchParams.set('lang', current);
-        history.replaceState(null, '', url);
-      } catch (e) {}
+      applyLang(current); // 立即切换文案，并把偏好写进 localStorage
+      // 语言切换 = 跳到对应语言路径（/ 、/en/ 、/ko/ 、/ja/）：
+      // 让 URL 与 canonical 始终一致，切换后的地址也能直接分享/被搜到。
+      var target = langPath(current) + (location.hash || '');
+      if ((location.pathname + location.search + location.hash) !== target) {
+        location.assign(target);
+      }
     });
   }
 

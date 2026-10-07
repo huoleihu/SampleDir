@@ -18,71 +18,114 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n-title="meta.title">SampleDir · macOS 采样素材库管理器</title>
   <meta name="description" data-i18n-meta="meta.desc" content="SampleDir 是一款为音乐制作人打造的 macOS 采样素材库管理器：本地优先、可视化波形、智能试听、标签收藏，所有元数据随文件夹走。" />
-  <!-- 多语言 SEO：按 ?lang= 动态注入 canonical / hreflang，并把 title/description 提前写成对应语言。
-       关键：中文搜"mac 采样管理"走 ?lang=zh、英文搜"mac sample manager"走 ?lang=en，
-       两个语言页 canonical 各自指向自己 + 互相 hreflang 标注，Google 分别独立索引、互不吞权重。 -->
+  <!-- 语言变体走「真实路径」而非 ?lang= 参数：/ 中文、/en/ 英文、/ko/ 韩文、/ja/ 日文。
+       原因：Google 对带参数的 URL 收录优先级极低，?lang= 形式会长期卡在「已发现-尚未编入索引」；
+       路径式 URL 才能稳定拿到独立收录。Cloudflare Pages 侧由仓库根目录的 _redirects
+       把 /en/ /ko/ /ja/ 以 200 代理回同一份 index.html（URL 保持干净路径）。
+       旧的 ?lang=xx 链接在此处一次性换成新路径，老外链、老书签不会 404。 -->
+  <script>
+    (function () {
+      var m = (location.pathname || '/').match(/^\/(en|ko|ja)(\/|$)/);
+      var pathLang = m ? m[1] : null;
+      var params = null;
+      try { params = new URLSearchParams(location.search); } catch (e) {}
+      var ql = params ? params.get('lang') : null;
+
+      // ① 旧的 ?lang=xx 链接 → 新路径（老外链、老书签不 404）
+      if (!pathLang && (ql === 'en' || ql === 'ko' || ql === 'ja')) {
+        location.replace('/' + ql + '/' + location.search.replace(/([?&])lang=[^&]*&?/, '$1').replace(/[?&]$/, '') + (location.hash || ''));
+        return;
+      }
+      if (pathLang && ql === 'zh') {
+        location.replace('/' + (location.hash || ''));
+        return;
+      }
+      // ② 非语言路径页（根 / 或 /index.html）按访客习惯一次性落到对应语言路径。
+      //    目的：让「URL 决定语言」始终成立 —— 根路径永远是中文版（canonical 指向自己），
+      //    英文/韩文/日文访客直接进 /en/ /ko/ /ja/，不会再出现"渲染英文、canonical 指中文"的错配。
+      //    爬虫（bot UA）一律留中文根页；带 autodl 的 App 更新跳转不打扰。
+      if (pathLang) return;
+      if (params && params.has('autodl')) return;
+      var isRoot = (location.pathname === '/' || location.pathname === '/index.html' || location.pathname === '');
+      if (!isRoot) return;
+
+      var saved = null;
+      try { saved = localStorage.getItem('sampledir_lang'); } catch (e) {}
+      if (saved !== 'zh' && saved !== 'en' && saved !== 'ko' && saved !== 'ja') saved = null;
+
+      var guess = 'zh';
+      if (!saved) {
+        var ua = (navigator.userAgent || '').toLowerCase();
+        var isBot = /bot|spider|crawl|slurp|google|bing|baidu|yandex|duckduck|teoma|ia_archiver|facebookexternalhit|preview/.test(ua);
+        if (!isBot) {
+          var locale = '', tz = '', nav = '';
+          try { locale = (Intl.DateTimeFormat().resolvedOptions().locale || '').toLowerCase(); } catch (e) {}
+          try { tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '').toLowerCase(); } catch (e) {}
+          nav = (navigator.language || '').toLowerCase();
+          // 前缀匹配 locale/nav、精确匹配时区，避免 Asia/Kolkata 这类子串误判成 ko
+          var isKo = locale.indexOf('ko') === 0 || nav.indexOf('ko') === 0 || tz === 'asia/seoul';
+          var isJa = locale.indexOf('ja') === 0 || nav.indexOf('ja') === 0 || tz === 'asia/tokyo';
+          var isZh = locale.indexOf('zh') === 0 || nav.indexOf('zh') === 0 ||
+                     tz === 'asia/shanghai' || tz === 'asia/chongqing' || tz === 'asia/harbin' || tz === 'asia/urumqi';
+          guess = isKo ? 'ko' : (isJa ? 'ja' : (isZh ? 'zh' : 'en'));
+        }
+      }
+      var want = saved || guess;
+      if (want !== 'zh') {
+        location.replace('/' + want + '/' + location.search + (location.hash || ''));
+      }
+    })();
+  </script>
+  <!-- 多语言 SEO：canonical / hreflang 全部按路径生成，每个语言版本自指 + 互相标注。
+       关键：中文搜"mac 采样管理"走 /、英文搜"mac sample manager"走 /en/，Google 分别独立索引。 -->
   <script>
     (function () {
       var LANGS = ['zh', 'en', 'ko', 'ja'];
       var BASE = 'https://www.sampledir.com/';
+      // 语言路径：中文（主语言）在根，其余在 /en/ /ko/ /ja/
+      function langUrl(lang) { return lang === 'zh' ? BASE : BASE + lang + '/'; }
+      // 当前页面属于哪种语言：先看路径前缀（爬虫/用户都一致），再看旧 ?lang= 参数
+      function pathLangOf() {
+        var mm = (location.pathname || '/').match(/^\/(en|ko|ja)(\/|$)/);
+        if (mm) return mm[1];
+        return null;
+      }
       var META = {
         zh: { t: 'SampleDir · macOS 采样素材库管理器', d: 'SampleDir 是一款为音乐制作人打造的 macOS 采样素材库管理器：本地优先、可视化波形、智能试听、标签收藏，所有元数据随文件夹走。' },
         en: { t: 'SampleDir · macOS Sample Library Manager', d: 'SampleDir is a macOS sample library manager for music producers: local-first, visual waveforms, smart audition, tags & favorites — all metadata travels with your folders.' },
         ko: { t: 'SampleDir · macOS 샘플 라이브러리 매니저', d: 'SampleDir은 음악 프로듀서를 위한 macOS 샘플 라이브러리 매니저입니다: 로컬 우선, 시각적 파형, 스마트 프리뷰, 태그 & 즐겨찾기 — 모든 메타데이터가 폴더와 함께 이동합니다.' },
         ja: { t: 'SampleDir · macOS サンプルライブラリマネージャー', d: 'SampleDirは音楽プロデューサーのためのmacOSサンプルライブラリマネージャーです：ローカル優先、視覚的な波形、スマート試聴、タグ＆お気に入り — すべてのメタデータがフォルダと一緒に移動します。' }
       };
-      // resolveLang：必须与 assets/js/main.js 的 getLang() 逻辑一致，
-      // 保证 head 注入的 canonical / title / description 与实际渲染语言对齐，
-      // 否则真实英文访客访问根 URL 会「渲染英文却 canonical 指中文」导致 Google 混淆。
-      // 优先级：① ?lang= ② localStorage ③ 爬虫回退 zh ④ 真实用户按区域/浏览器语言。
+      // resolveLang：必须与 assets/js/main.js 的 getLang() 逻辑一致。
+      // 优先级：① 路径前缀（URL 即语言，/ = zh、/en/ /ko/ /ja/）② 旧 ?lang= 参数
+      //        （爬虫无 path/参数时回退 zh；上面的重定向脚本已保证真实用户不会被错配）。
       function resolveLang() {
+        var p = pathLangOf();
+        if (p) return p;
         var params = null;
         try { params = new URLSearchParams(location.search); } catch (e) {}
         if (params) {
           var ql = params.get('lang');
           if (LANGS.indexOf(ql) !== -1) return ql;
         }
-        try {
-          var saved = localStorage.getItem('sampledir_lang');
-          if (LANGS.indexOf(saved) !== -1) return saved;
-        } catch (e) {}
-        var ua = (navigator.userAgent || '').toLowerCase();
-        if (/bot|spider|crawl|slurp|google|bing|baidu|yandex|duckduck|teoma|ia_archiver|facebookexternalhit|preview/.test(ua)) {
-          return 'zh';
-        }
-        var locale = '';
-        try { locale = (Intl.DateTimeFormat().resolvedOptions().locale || '').toLowerCase(); } catch (e) {}
-        if (locale.indexOf('zh') === 0) return 'zh';
-        if (locale.indexOf('ko') === 0) return 'ko';
-        if (locale.indexOf('ja') === 0) return 'ja';
-        var tz = '';
-        try { tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '').toLowerCase(); } catch (e) {}
-        if (tz.indexOf('shanghai') !== -1 || tz.indexOf('chongqing') !== -1 ||
-            tz.indexOf('harbin') !== -1 || tz.indexOf('urumqi') !== -1) return 'zh';
-        if (tz.indexOf('seoul') !== -1) return 'ko';
-        if (tz.indexOf('tokyo') !== -1) return 'ja';
-        var nav = (navigator.language || '').toLowerCase();
-        if (nav.indexOf('zh') === 0) return 'zh';
-        if (nav.indexOf('ko') === 0) return 'ko';
-        if (nav.indexOf('ja') === 0) return 'ja';
-        return 'en';
+        return 'zh';
       }
 
       var lang = resolveLang();
 
-      // canonical 指向当前语言 URL（每个语言页自指，不被对方吞权重）
+      // canonical 指向当前语言路径（每个语言版本自指，不被对方吞权重）
       var can = document.createElement('link');
       can.rel = 'canonical';
-      can.href = BASE + '?lang=' + lang;
+      can.href = langUrl(lang);
       document.head.appendChild(can);
 
-      // hreflang 互相标注：同一内容有 4 个语言版，按用户语言投递；x-default 落主语言中文版
+      // hreflang 互相标注：同一内容有 4 个语言版本，按用户语言投递；x-default 落主语言中文版
       var alts = [['zh', 'zh'], ['en', 'en'], ['ko', 'ko'], ['ja', 'ja'], ['x-default', 'zh']];
       alts.forEach(function (a) {
         var l = document.createElement('link');
         l.rel = 'alternate';
         l.hreflang = a[0];
-        l.href = BASE + '?lang=' + a[1];
+        l.href = langUrl(a[1]);
         document.head.appendChild(l);
       });
 
@@ -92,8 +135,8 @@
       if (m) m.setAttribute('content', META[lang].d);
     })();
   </script>
-  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
-  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
 </head>
 <body>
 
@@ -262,7 +305,7 @@
 
     <div class="showcase">
       <img
-        src="assets/img/screenshot.png"
+        src="/assets/img/screenshot.png"
         alt="SampleDir 主界面"
         class="screenshot reveal"
         width="1960"
@@ -458,19 +501,19 @@
         <a href="#features" data-i18n="nav.features">功能</a>
         <a href="#showcase" data-i18n="nav.showcase">界面</a>
         <a href="#download" data-i18n="nav.download">下载</a>
-        <a href="help.html" id="helpLink" data-i18n="footer.help" data-track="help-footer">帮助文档</a>
-        <a href="terms.html" id="termsLink" data-i18n="footer.terms" data-track="terms-footer">用户协议</a>
-        <a href="privacy.html" id="privacyLink" data-i18n="footer.privacy" data-track="privacy-footer">隐私政策</a>
+        <a href="/help.html" id="helpLink" data-i18n="footer.help" data-track="help-footer">帮助文档</a>
+        <a href="/terms.html" id="termsLink" data-i18n="footer.terms" data-track="terms-footer">用户协议</a>
+        <a href="/privacy.html" id="privacyLink" data-i18n="footer.privacy" data-track="privacy-footer">隐私政策</a>
       </nav>
       <p class="footer__langs" style="margin-top:14px;font-size:13px;opacity:.8">
-        <a href="https://www.sampledir.com/?lang=zh">中文</a> · <a href="https://www.sampledir.com/?lang=en">English</a> · <a href="https://www.sampledir.com/?lang=ko">한국어</a> · <a href="https://www.sampledir.com/?lang=ja">日本語</a>
+        <a href="https://www.sampledir.com/">中文</a> · <a href="https://www.sampledir.com/en/">English</a> · <a href="https://www.sampledir.com/ko/">한국어</a> · <a href="https://www.sampledir.com/ja/">日本語</a>
       </p>
       <p class="footer__copy" data-i18n="footer.copy">© 2026 SampleDir · 本地优先的采样素材库管理器 · Made for music producers</p>
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <script src="/assets/js/main.js"></script>
   <!-- 访问/点击统计：复用 macdh 后端接口；data-site 标识站点，异步加载、失败静默，不影响页面 -->
-  <script src="assets/js/track.js" data-site="sampledir" async></script>
+  <script src="/assets/js/track.js" data-site="sampledir" async></script>
 </body>
 </html>
