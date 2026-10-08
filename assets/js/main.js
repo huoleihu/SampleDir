@@ -569,6 +569,26 @@
     selectPlatform(isWinBrowser() ? 'windows' : 'macos');
   })();
 
+  // 下载区卡片高亮跟随：悬停（或键盘聚焦）哪张，哪张的下载按钮亮绿；
+  // 鼠标移开后高亮停留在最后一张（每个 tab 面板独立记忆），不再弹回第一张。
+  (function initLitCard() {
+    document.querySelectorAll('.downloads').forEach(function (panel) {
+      var cards = panel.querySelectorAll('.dl');
+      if (!cards.length) return;
+      function lit(target) {
+        cards.forEach(function (c) { c.classList.toggle('is-lit', c === target); });
+      }
+      cards.forEach(function (card, i) {
+        var btn = card.querySelector('.btn');
+        // 默认亮绿原本写死在第一张的 btn--primary 上，改为统一由 is-lit 控制
+        if (btn) btn.classList.remove('btn--primary');
+        if (i === 0) card.classList.add('is-lit');
+        card.addEventListener('mouseenter', function () { lit(card); });
+        card.addEventListener('focusin', function () { lit(card); });
+      });
+    });
+  })();
+
   (function fetchVersionJson() {
     fetch('version.json')
       .then(function (r) { return r.json(); })

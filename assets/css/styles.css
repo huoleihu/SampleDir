@@ -361,6 +361,14 @@ select.lang:focus { border-color: var(--green); }
   box-shadow: none;
   transform: none;
 }
+/* 离开后保持：最后被悬停/聚焦的那张卡常亮（JS 打 is-lit，每个面板独立记忆），
+   视觉与悬停预览一致；不加 transform，避免常亮状态下按钮一直浮起。 */
+.downloads .dl.is-lit .btn {
+  background: linear-gradient(135deg, var(--green), var(--green-2));
+  color: #06231a;
+  border-color: transparent;
+  box-shadow: 0 8px 26px rgba(0, 230, 118, .36);
+}
 .dl__req { display: block; margin-top: 14px; font-size: 12px; color: var(--text-mute); }
 .downloads__note {
   max-width: 1100px; margin: 30px auto 0; padding: 16px 20px; font-size: 14px; color: var(--text-dim);
