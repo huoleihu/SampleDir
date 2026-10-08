@@ -438,19 +438,15 @@
     if (dict[key] != null) el.textContent = dict[key];
   }
 
-  // Hero 区下载按钮同样按 UA 分流：Windows 访客把「下载 for Windows」提为主按钮（亮绿）并排到前面，
-  // 与下载区按 UA 预选 Windows 面板、自动下载按 UA 点 dlWinR2 三处保持一致。
-  // 其余平台维持 macOS 为主按钮（DOM 里本来就是这个顺序，不动）。
+  // Hero 区下载按钮按 UA 分流：只调顺序（Windows 访客把「下载 for Windows」排前面），
+  // 不再切换 primary/ghost——hero 区按用户要求全部用描边样式，不做亮绿填充（2026-10-08 定稿）。
+  // 与下载区按 UA 预选 Windows 面板、自动下载按 UA 点 dlWinR2 保持一致。
   function applyHeroPlatform() {
     var mac = document.getElementById('heroDlMac');
     var win = document.getElementById('heroDlWin');
     if (!mac || !win) return;
     var actions = mac.parentNode;
     if (isWinBrowser()) {
-      mac.classList.remove('btn--primary');
-      mac.classList.add('btn--ghost');
-      win.classList.remove('btn--ghost');
-      win.classList.add('btn--primary');
       if (mac.nextSibling !== win) actions.insertBefore(win, mac);
     } else {
       if (win.nextSibling !== mac) actions.insertBefore(mac, win);
