@@ -559,6 +559,12 @@
       });
     });
 
+    // hero 区两个下载按钮：点击后除锚点跳转到 #download 外，同步把下载区 tab 切到对应平台
+    var heroMac = document.getElementById('heroDlMac');
+    var heroWin = document.getElementById('heroDlWin');
+    if (heroMac) heroMac.addEventListener('click', function () { selectPlatform('macos'); });
+    if (heroWin) heroWin.addEventListener('click', function () { selectPlatform('windows'); });
+
     // 首次进入按浏览器平台预选 tab（用户不手动点则一直保持）
     selectPlatform(isWinBrowser() ? 'windows' : 'macos');
   })();
