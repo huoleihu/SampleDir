@@ -380,6 +380,7 @@
   function applyLang(lang) {
     var dict = I18N[lang] || I18N.zh;
     document.documentElement.lang = LANG_MAP[lang] || 'zh-CN';
+    document.documentElement.setAttribute('data-lang', lang);
 
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
       var k = el.getAttribute('data-i18n');
