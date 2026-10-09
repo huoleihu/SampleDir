@@ -303,10 +303,13 @@ select.lang:focus { border-color: var(--green); }
 /* ====== 下载 ====== */
 .dl-tabs { display: flex; justify-content: center; gap: 10px; margin: 0 auto 28px; }
 .dl-tab {
+  display: inline-flex; align-items: center; gap: 8px;
   padding: 10px 30px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface);
   color: var(--text-dim); font-size: 15px; font-weight: 600; font-family: inherit; cursor: pointer;
   transition: color .2s ease, border-color .2s ease, background .2s ease;
 }
+/* tab 内平台图标跟随文字颜色（激活绿 / 默认灰） */
+.dl-tab svg { width: 16px; height: 16px; fill: currentColor; flex: none; }
 .dl-tab:hover { color: var(--text); border-color: var(--green); }
 .dl-tab.is-active { background: var(--green-soft); border-color: var(--green); color: var(--green); }
 .dl-tab:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
