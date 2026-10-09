@@ -16,61 +16,34 @@
   <title data-i18n-title="meta.title">SampleDir · 更新日志</title>
   <meta name="description" data-i18n-meta="meta.desc" content="SampleDir 版本更新日志：每个版本的新增功能与问题修复。" />
   <link rel="canonical" href="https://www.sampledir.com/changelog.html" />
-  <link rel="stylesheet" href="/assets/css/styles.css" />
   <style>
-    /* 页面级补充样式：单栏窄版，复用主站变量与配色 */
-    .cl-wrap { max-width: 760px; margin: 0 auto; padding: 56px 24px 80px; }
-    .cl-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 26px; }
-    .cl-head h1 { font-size: clamp(26px, 4vw, 34px); letter-spacing: -.5px; }
-    .cl-version { color: var(--green); font-weight: 800; font-size: 15px; background: var(--green-soft); border: 1px solid rgba(0,230,118,.25); border-radius: 999px; padding: 4px 14px; }
-    .cl-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 28px; }
-    .cl-box ul { list-style: none; margin: 0; padding: 0; }
-    .cl-box li { position: relative; padding-left: 20px; margin-bottom: 12px; font-size: 15px; color: var(--text-dim); line-height: 1.7; }
-    .cl-box li::before { content: ""; position: absolute; left: 4px; top: 11px; width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
-    .cl-empty, .cl-error { color: var(--text-mute); font-size: 14px; }
-    .cl-back { display: inline-block; margin-top: 30px; color: var(--text-dim); font-size: 14px; }
-    .cl-back:hover { color: var(--green); }
-    .lang { margin-left: auto; }
+    /* 纯色单栏页面：与隐私政策 / 服务条款一致（浅底、蓝强调、无深色卡片） */
+    body { font-family: "PingFang SC", -apple-system, BlinkMacSystemFont, "Hiragino Sans GB", "Microsoft YaHei", sans-serif; max-width: 760px; margin: 40px auto; padding: 0 20px; color: #333; line-height: 1.75; }
+    h1 { font-size: 24px; border-bottom: 2px solid #3b82f6; padding-bottom: 8px; }
+    .ver { display: inline-block; margin: 14px 0 0; color: #3b82f6; font-weight: 700; font-size: 14px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 999px; padding: 3px 14px; }
+    ul.notes { margin: 24px 0 0; padding: 0; list-style: none; }
+    ul.notes li { position: relative; padding-left: 18px; margin: 10px 0; font-size: 14px; }
+    ul.notes li::before { content: ""; position: absolute; left: 2px; top: 10px; width: 6px; height: 6px; border-radius: 50%; background: #3b82f6; }
+    .empty, .error { color: #888; font-size: 14px; margin-top: 22px; }
+    .back { display: inline-block; margin-bottom: 18px; color: #3b82f6; font-size: 14px; text-decoration: none; }
+    .back:hover { text-decoration: underline; }
+    .switch { margin: 18px 0 0; font-size: 13px; text-align: right; }
+    .switch select { font-family: inherit; font-size: 13px; padding: 4px 8px; border: 1px solid #cbd5e1; border-radius: 6px; color: #333; background: #fff; }
   </style>
 </head>
 <body>
-  <header class="nav" id="nav">
-    <div class="nav__inner">
-      <a class="brand" href="/">
-        <img src="/assets/img/logo.svg" alt="SampleDir" width="34" height="34" />
-        <span class="brand__name">SampleDir</span>
-      </a>
-      <nav class="nav__links" id="navLinks">
-        <a href="/" data-i18n="nav.back">返回首页</a>
-        <a href="/#download" data-i18n="nav.download">下载</a>
-      </nav>
-      <select class="lang" id="langSelect" aria-label="Language / 语言">
-        <option value="zh">中文</option>
-        <option value="en">English</option>
-        <option value="ko">한국어</option>
-        <option value="ja">日本語</option>
-      </select>
-    </div>
-  </header>
-
-  <main class="cl-wrap">
-    <div class="cl-head">
-      <h1 data-i18n="cl.h1">更新日志</h1>
-      <span class="cl-version" id="clVersion" hidden></span>
-    </div>
-    <div class="cl-box">
-      <ul id="clList"></ul>
-      <p class="cl-empty" id="clEmpty" hidden data-i18n="cl.empty">暂无更新记录。</p>
-      <p class="cl-error" id="clError" hidden data-i18n="cl.error">更新记录加载失败，请稍后刷新重试。</p>
-    </div>
-    <a class="cl-back" href="/" data-i18n="cl.back">← 返回首页</a>
-  </main>
-
-  <footer class="footer">
-    <div class="footer__inner">
-      <p class="footer__copy" data-i18n="footer.copy">© 2026 SampleDir · 本地优先的采样素材库管理器</p>
-    </div>
-  </footer>
+  <a class="back" href="/" data-i18n="cl.back">← 返回 SampleDir</a>
+  <h1 data-i18n="cl.h1">SampleDir 更新日志</h1>
+  <span class="ver" id="clVersion" hidden></span>
+  <ul class="notes" id="clList"></ul>
+  <p class="empty" id="clEmpty" hidden data-i18n="cl.empty">暂无更新记录。</p>
+  <p class="error" id="clError" hidden data-i18n="cl.error">更新记录加载失败，请稍后刷新重试。</p>
+  <p class="switch"><select id="langSelect" aria-label="Language / 语言">
+    <option value="zh">中文</option>
+    <option value="en">English</option>
+    <option value="ko">한국어</option>
+    <option value="ja">日本語</option>
+  </select></p>
 
   <script>
     // 独立页轻量 i18n：与主站共用 localStorage 偏好键 sampledir_lang，
@@ -81,38 +54,30 @@
         zh: {
           'meta.title': 'SampleDir · 更新日志',
           'meta.desc': 'SampleDir 版本更新日志：每个版本的新增功能与问题修复。',
-          'nav.back': '返回首页', 'nav.download': '下载',
-          'cl.h1': '更新日志', 'cl.empty': '暂无更新记录。',
+          'cl.h1': 'SampleDir 更新日志', 'cl.empty': '暂无更新记录。',
           'cl.error': '更新记录加载失败，请稍后刷新重试。',
-          'cl.back': '← 返回首页', 'cl.ver': 'v{v}',
-          'footer.copy': '© 2026 SampleDir · 本地优先的采样素材库管理器'
+          'cl.back': '← 返回 SampleDir', 'cl.ver': 'v{v}'
         },
         en: {
           'meta.title': 'SampleDir · Changelog',
           'meta.desc': 'SampleDir release notes: new features and fixes in every version.',
-          'nav.back': 'Home', 'nav.download': 'Download',
-          'cl.h1': 'Changelog', 'cl.empty': 'No release notes yet.',
+          'cl.h1': 'SampleDir Changelog', 'cl.empty': 'No release notes yet.',
           'cl.error': 'Failed to load release notes. Please refresh and try again.',
-          'cl.back': '← Back to home', 'cl.ver': 'v{v}',
-          'footer.copy': '© 2026 SampleDir · Local-first sample library manager'
+          'cl.back': '← Back to SampleDir', 'cl.ver': 'v{v}'
         },
         ko: {
           'meta.title': 'SampleDir · 업데이트 내역',
           'meta.desc': 'SampleDir 릴리스 노트: 버전별 새 기능과 수정 사항.',
-          'nav.back': '홈으로', 'nav.download': '다운로드',
-          'cl.h1': '업데이트 내역', 'cl.empty': '업데이트 기록이 없습니다.',
+          'cl.h1': 'SampleDir 업데이트 내역', 'cl.empty': '업데이트 기록이 없습니다.',
           'cl.error': '업데이트 기록을 불러오지 못했습니다. 새로고침 후 다시 시도하세요.',
-          'cl.back': '← 홈으로', 'cl.ver': 'v{v}',
-          'footer.copy': '© 2026 SampleDir · 로컬 우선 샘플 라이브러리 관리자'
+          'cl.back': '← SampleDir로', 'cl.ver': 'v{v}'
         },
         ja: {
           'meta.title': 'SampleDir · 更新履歴',
           'meta.desc': 'SampleDir リリースノート：バージョンごとの新機能と修正。',
-          'nav.back': 'ホームへ', 'nav.download': 'ダウンロード',
-          'cl.h1': '更新履歴', 'cl.empty': '更新記録はまだありません。',
+          'cl.h1': 'SampleDir 更新履歴', 'cl.empty': '更新記録はまだありません。',
           'cl.error': '更新記録の読み込みに失敗しました。更新して再試行してください。',
-          'cl.back': '← ホームへ', 'cl.ver': 'v{v}',
-          'footer.copy': '© 2026 SampleDir · ローカルファーストのサンプルライブラリ管理'
+          'cl.back': '← SampleDirへ', 'cl.ver': 'v{v}'
         }
       };
 
@@ -121,7 +86,6 @@
           var saved = localStorage.getItem(STORE_KEY);
           if (saved && UI[saved]) return saved;
         } catch (e) {}
-        // 无偏好时按浏览器语言；路径式语言页在 changelog 上不区分（本页 URL 唯一）
         var nav = (navigator.language || 'zh-CN').slice(0, 2).toLowerCase();
         return UI[nav] ? nav : 'zh';
       }
@@ -158,7 +122,6 @@
           verEl.hidden = false;
         }
         var notes = json.notes || {};
-        // 与主站 renderReleaseNotes 相同的回退链：当前语言 → en → zh
         var arr = notes[current] || notes.en || notes.zh || [];
         if (!arr.length) { empty.hidden = false; return; }
         list.innerHTML = '';
@@ -177,11 +140,11 @@
           current = sel.value;
           try { localStorage.setItem(STORE_KEY, current); } catch (e) {}
           applyUI();
-          // 语言切换后重新渲染列表（notes 语言随 UI 走）
-          if (window.__CL_JSON) { 
+          if (window.__CL_JSON) {
             var list = document.getElementById('clList');
             list.innerHTML = '';
             document.getElementById('clEmpty').hidden = true;
+            document.getElementById('clError').hidden = true;
             renderNotes(window.__CL_JSON);
           }
         });
