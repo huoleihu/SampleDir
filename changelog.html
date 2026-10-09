@@ -22,7 +22,7 @@
   </style>
 </head>
 <body>
-  <a class="back" href="/" data-i18n="cl.back">← 返回 SampleDir</a>
+  <a class="back" href="./" data-i18n="cl.back">← 返回 SampleDir</a>
   <h1 data-i18n="cl.h1">SampleDir 更新日志</h1>
   <span class="ver" id="clVersion" hidden></span>
   <ul class="notes" id="clList"></ul>
@@ -140,7 +140,9 @@
         });
       }
 
-      fetch('/version.json')
+      // GitHub Pages 镜像站挂在 /SampleDir/ 子路径下，根相对路径会 404；主站保持绝对路径。
+      var SITE_PREFIX = location.hostname.indexOf('.github.io') !== -1 ? '/SampleDir' : '';
+      fetch(SITE_PREFIX + '/version.json')
         .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
         .then(function (json) {
           window.__CL_JSON = json;
@@ -149,6 +151,6 @@
         .catch(function () { renderNotes(null); });
     })();
   </script>
-  <script src="/assets/js/track.js" data-site="sampledir" async></script>
+  <script src="assets/js/track.js" data-site="sampledir" async></script>
 </body>
 </html>

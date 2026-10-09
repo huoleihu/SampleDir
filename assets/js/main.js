@@ -400,14 +400,15 @@
     var metaEl = document.querySelector('[data-i18n-meta]');
     if (metaEl && dict['meta.desc'] != null) metaEl.setAttribute('content', dict['meta.desc']);
 
-    // 页脚静态页链接跟随语言（韩/日暂指向英文帮助页）；用绝对路径，
-    // 这样在 /en/、/ja/ 这类语言路径下也不会解析成 /en/help.html 而 404。
+    // 页脚静态页链接跟随语言（韩/日暂指向英文帮助页）。
+    // 固定用主站绝对 URL：GitHub Pages 镜像站下根相对路径会 404（文档页只在主站）。
+    var DOCS_BASE = 'https://www.sampledir.com';
     var helpLink = document.getElementById('helpLink');
-    if (helpLink) helpLink.setAttribute('href', lang === 'zh' ? '/help.html' : '/help_en.html');
+    if (helpLink) helpLink.setAttribute('href', lang === 'zh' ? DOCS_BASE + '/help.html' : DOCS_BASE + '/help_en.html');
     var termsLink = document.getElementById('termsLink');
-    if (termsLink) termsLink.setAttribute('href', lang === 'zh' ? '/terms.html' : '/terms_en.html');
+    if (termsLink) termsLink.setAttribute('href', lang === 'zh' ? DOCS_BASE + '/terms.html' : DOCS_BASE + '/terms_en.html');
     var privacyLink = document.getElementById('privacyLink');
-    if (privacyLink) privacyLink.setAttribute('href', lang === 'zh' ? '/privacy.html' : '/privacy_en.html');
+    if (privacyLink) privacyLink.setAttribute('href', lang === 'zh' ? DOCS_BASE + '/privacy.html' : DOCS_BASE + '/privacy_en.html');
 
     // 语言下拉框同步
     var sel = document.getElementById('langSelect');
@@ -463,6 +464,8 @@
     sel.addEventListener('change', function () {
       current = sel.value;
       applyLang(current); // 立即切换文案，并把偏好写进 localStorage
+      // GitHub Pages 镜像站没有 /en/ 等语言路径，切换只原地生效不跳转。
+      if (location.hostname.indexOf('.github.io') !== -1) return;
       // 语言切换 = 跳到对应语言路径（/ 、/en/ 、/ko/ 、/ja/）：
       // 让 URL 与 canonical 始终一致，切换后的地址也能直接分享/被搜到。
       var target = langPath(current) + (location.hash || '');
@@ -594,8 +597,9 @@
   (function fetchVersionJson() {
     // 用绝对路径：语言路径 /en/ /ko/ /ja/ 下，相对 fetch('version.json')
     // 会解析成 /en/version.json（_redirects 只代理裸语言路径），导致 404、
-    // 下载按钮 href 不被填充、版本号与更新日志不渲染。绝对路径在任何语言路径下都正确。
-    fetch('/version.json')
+    // 例外：GitHub Pages 镜像站挂在 /SampleDir/ 子路径下，根绝对路径同样 404，需补前缀。
+    var SITE_PREFIX = location.hostname.indexOf('.github.io') !== -1 ? '/SampleDir' : '';
+    fetch(SITE_PREFIX + '/version.json')
       .then(function (r) { return r.json(); })
       .then(function (json) {
         var v = json.version || '';

@@ -13,3 +13,15 @@
 /ko/ /index.html  200
 /ja  /index.html  200
 /ja/ /index.html  200
+
+# 页内资源/子页改用相对路径后（为兼容 GitHub Pages 镜像站 /SampleDir/ 子路径），
+# 语言子路径下的相对引用由以下规则代理回根（与上面同一份内容，200 不跳转）。
+/en/assets/*  /assets/:splat  200
+/ko/assets/*  /assets/:splat  200
+/ja/assets/*  /assets/:splat  200
+/en/changelog.html /changelog.html 200
+/ko/changelog.html /changelog.html 200
+/ja/changelog.html /changelog.html 200
+/en/version.json /version.json 200
+/ko/version.json /version.json 200
+/ja/version.json /version.json 200

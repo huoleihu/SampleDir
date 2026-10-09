@@ -11,7 +11,9 @@
        把 /en/ /ko/ /ja/ 以 200 代理回同一份 index.html（URL 保持干净路径）。
        旧的 ?lang=xx 链接在此处一次性换成新路径，老外链、老书签不会 404。 -->
   <script>
-    (function () {
+    // GitHub Pages 镜像站（huoleihu.github.io/SampleDir/，项目子路径）不做语言跳转：
+    // 路径式语言 URL（/en/ 等）只在主站存在，镜像站一律原地渲染，?lang= 也不重定向。
+    if (location.hostname.indexOf('.github.io') === -1) (function () {
       var m = (location.pathname || '/').match(/^\/(en|ko|ja)(\/|$)/);
       var pathLang = m ? m[1] : null;
       var params = null;
@@ -122,8 +124,8 @@
       if (m) m.setAttribute('content', META[lang].d);
     })();
   </script>
-  <link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg" />
-  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
 
@@ -140,7 +142,7 @@
         <a href="#how" data-i18n="nav.how">上手</a>
         <a href="#pricing" data-i18n="nav.pricing">价格</a>
         <a href="#download" data-i18n="nav.download">下载</a>
-        <a href="/changelog.html" data-i18n="nav.changelog" data-track="changelog-nav">更新日志</a>
+        <a href="changelog.html" data-i18n="nav.changelog" data-track="changelog-nav">更新日志</a>
         <a href="#contact" data-i18n="nav.contact">联系方式</a>
         <a href="https://github.com/huoleihu/SampleDir" target="_blank" rel="noopener" data-i18n="nav.github" data-track="gh-nav">GitHub</a>
       </nav>
@@ -293,7 +295,7 @@
 
     <div class="showcase">
       <img
-        src="/assets/img/screenshot.png"
+        src="assets/img/screenshot.png"
         alt="SampleDir 主界面"
         class="screenshot reveal"
         width="1960"
@@ -496,8 +498,8 @@
     </div>
   </footer>
 
-  <script src="/assets/js/main.js"></script>
+  <script src="assets/js/main.js"></script>
   <!-- 访问/点击统计：复用 macdh 后端接口；data-site 标识站点，异步加载、失败静默，不影响页面 -->
-  <script src="/assets/js/track.js" data-site="sampledir" async></script>
+  <script src="assets/js/track.js" data-site="sampledir" async></script>
 </body>
 </html>
