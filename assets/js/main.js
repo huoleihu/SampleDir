@@ -580,8 +580,9 @@
       }
       cards.forEach(function (card, i) {
         var btn = card.querySelector('.btn');
-        // 默认亮绿原本写死在第一张的 btn--primary 上，改为统一由 is-lit 控制
-        if (btn) btn.classList.remove('btn--primary');
+        // 默认亮绿原本写死在第一张的 btn--primary 上，改为统一由 is-lit 控制；
+        // 必须补上 btn--ghost，否则裸 .btn 透明无边框，亮绿移走后左侧按钮只剩文字。
+        if (btn) { btn.classList.remove('btn--primary'); btn.classList.add('btn--ghost'); }
         if (i === 0) card.classList.add('is-lit');
         card.addEventListener('mouseenter', function () { lit(card); });
         card.addEventListener('focusin', function () { lit(card); });
