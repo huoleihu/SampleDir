@@ -591,7 +591,10 @@
   })();
 
   (function fetchVersionJson() {
-    fetch('version.json')
+    // 用绝对路径：语言路径 /en/ /ko/ /ja/ 下，相对 fetch('version.json')
+    // 会解析成 /en/version.json（_redirects 只代理裸语言路径），导致 404、
+    // 下载按钮 href 不被填充、版本号与更新日志不渲染。绝对路径在任何语言路径下都正确。
+    fetch('/version.json')
       .then(function (r) { return r.json(); })
       .then(function (json) {
         var v = json.version || '';
