@@ -475,6 +475,29 @@
     });
   }
 
+  /* ============ 主题切换（深色 / 浅色） ============ */
+  (function initThemeToggle() {
+    var btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    // 太阳：当前深色时显示（点击切到浅色）；月亮：当前浅色时显示（点击切到深色）
+    var SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2 12h2.5M19.5 12H22M4.2 19.8l1.8-1.8M18 6l1.8-1.8"/></svg>';
+    var MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8z"/></svg>';
+    function paint() {
+      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      btn.innerHTML = isLight ? MOON : SUN;
+      btn.setAttribute('aria-label', isLight ? '切换到深色' : '切换到浅色');
+      btn.setAttribute('title', isLight ? '切换深色 / 浅色' : '切换深色 / 浅色');
+    }
+    paint(); // 首屏图标与当前主题一致（data-theme 已由 head 引导脚本设好）
+    btn.addEventListener('click', function () {
+      var isLight = document.documentElement.getAttribute('data-theme') === 'light';
+      var next = isLight ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('sampledir_theme', next); } catch (e) {}
+      paint();
+    });
+  })();
+
   /* ============ 2. 移动端菜单 ============ */
   var navToggle = document.getElementById('navToggle');
   var navLinks = document.getElementById('navLinks');
