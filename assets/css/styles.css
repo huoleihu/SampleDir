@@ -54,7 +54,7 @@ a { color: inherit; text-decoration: none; }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; flex-shrink: 0; }
 .brand img { border-radius: 8px; }
 /* 间距/字号按英文等较长文案取值：保证 Features…GitHub + Buy + Download 全放得下 */
-.nav__links { display: flex; gap: 15px; margin-left: auto; font-size: 14px; color: var(--text-dim); flex-shrink: 0; }
+.nav__links { display: flex; gap: 15px; margin-left: auto; margin-right: auto; font-size: 14px; color: var(--text-dim); flex-shrink: 0; }
 .nav__links a { transition: color .2s; white-space: nowrap; }
 .nav__links a:hover { color: var(--green); }
 .nav__links a.is-current { color: var(--green); }
