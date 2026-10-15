@@ -363,15 +363,7 @@
     var p = pathLang();
     if (p) return p;
 
-    // ② 旧 ?lang= 参数（兼容老外链；head 脚本通常已把人换成新路径）
-    var params = null;
-    try { params = new URLSearchParams(location.search); } catch (e) {}
-    if (params) {
-      var ql = params.get('lang');
-      if (LANGS.indexOf(ql) !== -1) return ql;
-    }
-
-    // ③ 根路径：head 脚本已按访客习惯重定向到对应语言路径，
+    // ② 根路径：head 脚本已按访客习惯重定向到对应语言路径，
     //    走到这里的是中文访客或爬虫 —— 一律按主语言中文渲染，
     //    保证「根 URL 渲染中文 + canonical 指根」，不再出现语言与 canonical 错配。
     return 'zh';
