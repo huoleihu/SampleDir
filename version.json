@@ -7,8 +7,8 @@
     "r2": "https://dl.sampledir.com/releases/SampleDir-1.0.3-arm64.dmg",
     "github": "https://github.com/huoleihu/SampleDir/releases/download/v1.0.3/SampleDir-1.0.3-arm64.dmg",
     "windows": {
-      "exe": "https://dl.sampledir.com/releases/SampleDir-1.0.2-x64.exe",
-      "github": "https://github.com/huoleihu/SampleDir/releases/download/v1.0.2/SampleDir-1.0.2-x64.exe"
+      "exe": "https://dl.sampledir.com/releases/SampleDir-1.0.3-x64.exe",
+      "github": "https://github.com/huoleihu/SampleDir/releases/download/v1.0.3/SampleDir-1.0.3-x64.exe"
     }
   },
   "notes": {
