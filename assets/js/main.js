@@ -415,41 +415,17 @@
     applyPlatformIntro();
   }
 
-  // 浏览器是否为 Windows（客户端「检查更新」的自动下载也靠这个判定分流）
-  function isWinBrowser() {
-    return /Windows|Win32|Win64|Trident/.test(navigator.userAgent || '');
-  }
-
-  // 下载区导语按平台切换：仅 Windows 访客替换文案，其余平台不动。
+  // 下载区导语：站点只提供 macOS 版，统一用 dl.p（Windows 文案与面板已移除）。
   function applyPlatformIntro() {
     var el = document.getElementById('dlIntro');
     if (!el) return;
     var lang = typeof current !== 'undefined' && current ? current : getLang();
     var dict = I18N[lang] || I18N.zh;
-    var isWin = isWinBrowser();
-    var useWinCopy = isWin && dict['dl.p.win'] != null;
-    var key = useWinCopy ? 'dl.p.win' : 'dl.p';
-    if (dict[key] != null) el.textContent = dict[key];
-  }
-
-  // Hero 区下载按钮按 UA 分流：只调顺序（Windows 访客把「下载 for Windows」排前面），
-  // 不再切换 primary/ghost——hero 区按用户要求全部用描边样式，不做亮绿填充（2026-10-08 定稿）。
-  // 与下载区按 UA 预选 Windows 面板、自动下载按 UA 点 dlWinR2 保持一致。
-  function applyHeroPlatform() {
-    var mac = document.getElementById('heroDlMac');
-    var win = document.getElementById('heroDlWin');
-    if (!mac || !win) return;
-    var actions = mac.parentNode;
-    if (isWinBrowser()) {
-      if (mac.nextSibling !== win) actions.insertBefore(win, mac);
-    } else {
-      if (win.nextSibling !== mac) actions.insertBefore(mac, win);
-    }
+    if (dict['dl.p'] != null) el.textContent = dict['dl.p'];
   }
 
   var current = getLang();
   applyLang(current);
-  applyHeroPlatform();
 
   var sel = document.getElementById('langSelect');
   if (sel) {
@@ -551,43 +527,6 @@
     box.hidden = false;
   }
 
-  // 下载区平台 tab 切换 (macOS / Windows)
-  (function initPlatformTabs() {
-    var tabs = document.querySelectorAll('.dl-tab');
-    if (!tabs.length) return;
-    var panelMacos = document.getElementById('dlPanelMacos');
-    var panelWin = document.getElementById('dlPanelWindows');
-
-    // 切换（或初始化）到指定平台 tab：Windows 访客默认落在 Windows 面板，
-    // macOS 访客保持 HTML 默认的 macOS 面板 —— mac 侧行为与改动前完全一致。
-    function selectPlatform(platform) {
-      var isMac = platform !== 'windows';
-      tabs.forEach(function (t) {
-        var on = t.getAttribute('data-platform') === platform;
-        t.classList.toggle('is-active', on);
-        if (on) t.setAttribute('aria-selected', 'true'); else t.setAttribute('aria-selected', 'false');
-      });
-      if (panelMacos) panelMacos.hidden = !isMac;
-      if (panelWin) panelWin.hidden = isMac;
-      applyPlatformIntro();
-    }
-
-    tabs.forEach(function (tab) {
-      tab.addEventListener('click', function () {
-        selectPlatform(tab.getAttribute('data-platform'));
-      });
-    });
-
-    // hero 区两个下载按钮：点击后除锚点跳转到 #download 外，同步把下载区 tab 切到对应平台
-    var heroMac = document.getElementById('heroDlMac');
-    var heroWin = document.getElementById('heroDlWin');
-    if (heroMac) heroMac.addEventListener('click', function () { selectPlatform('macos'); });
-    if (heroWin) heroWin.addEventListener('click', function () { selectPlatform('windows'); });
-
-    // 首次进入按浏览器平台预选 tab（用户不手动点则一直保持）
-    selectPlatform(isWinBrowser() ? 'windows' : 'macos');
-  })();
-
   // 下载区卡片高亮跟随：悬停（或键盘聚焦）哪张，哪张的下载按钮亮绿；
   // 鼠标移开后高亮停留在最后一张（每个 tab 面板独立记忆），不再弹回第一张。
   (function initLitCard() {
@@ -635,20 +574,6 @@
         var dlR2 = document.getElementById('dlR2');
         if (dlR2 && downloads.r2) dlR2.setAttribute('href', downloads.r2);
 
-        // 更新 Windows 下载按钮 (version.json 的 downloads.windows 由 win 发布脚本 step5 写入)
-        var winDl = downloads.windows || {};
-        var dlWinR2 = document.getElementById('dlWinR2');
-        if (dlWinR2 && winDl.exe) dlWinR2.setAttribute('href', winDl.exe);
-        var dlWinGithub = document.getElementById('dlWinGithub');
-        if (dlWinGithub && winDl.github) dlWinGithub.setAttribute('href', winDl.github);
-        var dlWinMsi = document.getElementById('dlWinMsi');
-        var dlWinMsiCard = document.getElementById('dlWinMsiCard');
-        // 仅当发布脚本确实产出了 msi 时才显示该卡（默认 HTML 里是 hidden）
-        if (dlWinMsi && winDl.msi) {
-          dlWinMsi.setAttribute('href', winDl.msi);
-          if (dlWinMsiCard) dlWinMsiCard.hidden = false;
-        }
-
         // 若是从 App「检查更新」带 #download 锚点进来的，href 填好即自动触发下载
         tryAutoDownload();
 
@@ -695,10 +620,8 @@
     var params = new URLSearchParams(location.search);
     if ((h !== '#download' && h !== '#downloads') || !params.has('autodl')) return;
     if (sessionStorage.getItem(AUTO_DL_FLAG)) return; // 本标签页已下载过，不再触发
-    // Windows 访客从 App 点「下载」→ 自动跳 exe 直链；macOS 仍走 dlR2（dmg）。
-    // 客户端 DOWNLOAD_PAGE_URL 是 mac/windows 共用的，这里按浏览器平台分流，
-    // 保证 Windows 用户不会误下到 macOS dmg。
-    var btn = document.getElementById(isWinBrowser() ? 'dlWinR2' : 'dlR2');
+    // 站点只提供 macOS 版：自动下载固定走 dlR2（dmg 直链）。
+    var btn = document.getElementById('dlR2');
     if (!btn) return;
     var href = btn.getAttribute('href');
     if (!href || href === '#') {

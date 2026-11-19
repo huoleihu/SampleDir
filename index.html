@@ -173,7 +173,6 @@
       </p>
       <div class="hero__actions">
         <a id="heroDlMac" href="#download" class="btn btn--ghost" data-i18n="hero.download" data-track="dl-hero" data-for="macos">下载 for macOS</a>
-        <a id="heroDlWin" href="#download" class="btn btn--ghost" data-i18n="hero.download.win" data-track="dl-hero-win" data-for="windows">下载 for Windows</a>
         <!-- TODO: 购买暂未开放（置灰）。开放时移除 btn--disabled 并替换 href 为真实商店地址 -->
         <a href="#" class="btn btn--ghost btn--disabled" data-i18n="hero.buy" title="暂不支持购买" aria-disabled="true" tabindex="-1">购买</a>
         <a href="#features" class="btn btn--ghost" data-i18n="hero.explore" data-track="explore-hero">了解功能</a>
@@ -401,10 +400,6 @@
       <p id="dlIntro" data-i18n="dl.p">支持 Apple Silicon（M 系列）macOS。官方 CDN 与 GitHub Release 两种渠道，按你的网络环境选。</p>
       <p class="beta-note" data-i18n="dl.pricingNote">买断 89 USD · 或年付 49 USD/年 · 均支持 14 天免费试用</p>
     </div>
-    <div class="dl-tabs" role="tablist" aria-label="平台">
-      <button class="dl-tab is-active" data-platform="macos" role="tab" aria-selected="true" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.03 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>macOS</button>
-      <button class="dl-tab" data-platform="windows" role="tab" aria-selected="false" type="button"><svg viewBox="0 0 24 24" class="ico-win" aria-hidden="true"><rect x="3" y="3" width="8" height="8" rx="1.2"/><rect x="13" y="3" width="8" height="8" rx="1.2"/><rect x="3" y="13" width="8" height="8" rx="1.2"/><rect x="13" y="13" width="8" height="8" rx="1.2"/></svg>Windows</button>
-    </div>
     <div class="downloads" id="dlPanelMacos">
       <div class="dl reveal">
         <div class="dl__icon">
@@ -423,35 +418,6 @@
         <p data-i18n="dl3.p">从 GitHub Release 下载最新版 dmg，适合海外网络或需要历史版本的用户。</p>
         <a id="dlGithub" href="https://github.com/huoleihu/SampleDir/releases" class="btn btn--ghost" target="_blank" rel="noopener" data-track="dl-github" data-i18n="dl3.btn">GitHub 下载</a>
         <span class="dl__req" data-i18n="dl3.req">约 160 MB · macOS 11+</span>
-      </div>
-    </div>
-    <div class="downloads" id="dlPanelWindows" hidden>
-      <div class="dl reveal dl--windows">
-        <div class="dl__icon">
-          <svg viewBox="0 0 24 24" class="ico-win"><rect x="3" y="3" width="8" height="8" rx="1.2"/><rect x="13" y="3" width="8" height="8" rx="1.2"/><rect x="3" y="13" width="8" height="8" rx="1.2"/><rect x="13" y="13" width="8" height="8" rx="1.2"/></svg>
-        </div>
-        <h3 data-i18n="dl.win.h">Windows 版</h3>
-        <p data-i18n="dl.win.p">Windows x64 安装包由官方 CDN 全球直发，不限速、无需提取码，支持 Windows 10+。</p>
-        <a id="dlWinR2" href="https://dl.sampledir.com/releases/SampleDir-1.0.4-x64.exe" class="btn btn--primary" target="_blank" rel="noopener" data-track="dl-win-official" data-i18n="dl.win.btn">本站下载</a>
-        <span class="dl__req" data-i18n="dl.win.req">约 102 MB · Windows 10+ · x64 · 全球直发</span>
-      </div>
-      <div class="dl reveal dl--github">
-        <div class="dl__icon">
-          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.28 1.08 2.84.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.8-.22 1.65-.33 2.5-.33.85 0 1.7.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.33 4.67-4.55 4.92.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12c0-5.52-4.48-10-10-10z"/></svg>
-        </div>
-        <h3 data-i18n="dl.wingh.h">GitHub Release</h3>
-        <p data-i18n="dl.wingh.p">从 GitHub Release 下载 Windows 安装包，适合海外网络或需要历史版本的用户。</p>
-        <a id="dlWinGithub" href="https://github.com/huoleihu/SampleDir/releases" class="btn btn--ghost" target="_blank" rel="noopener" data-track="dl-win-github" data-i18n="dl.wingh.btn">GitHub 下载</a>
-        <span class="dl__req" data-i18n="dl.wingh.req">约 102 MB · Windows 10+ · x64</span>
-      </div>
-      <div class="dl reveal dl--windows" id="dlWinMsiCard" hidden>
-        <div class="dl__icon">
-          <svg viewBox="0 0 24 24" class="ico-win"><rect x="3" y="3" width="8" height="8" rx="1.2"/><rect x="13" y="3" width="8" height="8" rx="1.2"/><rect x="3" y="13" width="8" height="8" rx="1.2"/><rect x="13" y="13" width="8" height="8" rx="1.2"/></svg>
-        </div>
-        <h3 data-i18n="dl.winmsi.h">Windows MSI 安装包</h3>
-        <p data-i18n="dl.winmsi.p">面向企业批量部署的 MSI 安装包，同样支持 Windows 10+ x64。</p>
-        <a id="dlWinMsi" href="#" class="btn btn--ghost" target="_blank" rel="noopener" data-track="dl-win-msi" data-i18n="dl.winmsi.btn">MSI 下载</a>
-        <span class="dl__req" data-i18n="dl.winmsi.req">仅当发布脚本产出 msi 时显示</span>
       </div>
     </div>
     <p class="downloads__note" data-i18n-html="dl.note">
