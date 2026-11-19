@@ -634,10 +634,9 @@
     // 同标签 assign 不被拦截；且当 href 是真实文件直链时浏览器会直接下载该文件。
     //
     // ⚠️ 必须先「瞬间滚到下载区」再导航，否则用户会停在页面顶部（只有 Hero，看不到下载面板）：
-    // 站点 CSS 是 html{scroll-behavior:smooth}，锚点 #download 的滚动是平滑动画；而
-    // Windows 的 dlWinR2 链接是写死的真实 exe 地址，脚本在解析阶段就 location.assign 导航，
-    // 平滑滚动动画被导航打断 → 滚不动。mac 侧 #dlR2 初始是 '#'、要等 version.json 那一拍，
-    // 平滑滚动早已跑完，所以 mac 看起来正常（行为保持 100% 不变）。
+    // 站点 CSS 是 html{scroll-behavior:smooth}，锚点 #download 的滚动是平滑动画；
+    // 滚动动画没结束就 location.assign 会把它打断，表现是「点了但页面没跳下去」。
+    // 所以先强制瞬时滚动（behavior:'instant'）再导航。
     var fireDownload = function () {
       var sec = document.getElementById('download');
       if (sec) {
