@@ -68,7 +68,7 @@ Turn the audio samples scattered across your disks into a searchable, auditionab
 
 ## Contact
 
-For feedback, feature ideas, or business inquiries: **hhztiger@gmail.com**.
+For feedback, feature ideas, or business inquiries: **support@macdh.com**.
 
 ## License
 
