@@ -1,14 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
-  <channel>
-    <title>SampleDir</title>
-    <item>
-      <title>1.0.4</title>
-      <pubDate>Fri, 20 Nov 2026 10:13:28 +0800</pubDate>
-      <pubCnDate>2026-11-20 10:13:28</pubCnDate>
-      <sparkle:version>1.0.4</sparkle:version>
-      <sparkle:shortVersionString>1.0.4</sparkle:shortVersionString>
-    <enclosure url="https://dl.sampledir.com/releases/SampleDir-1.0.4-arm64(9).dmg" sparkle:os="macos" installerType="dmg" length="2875461" type="application/octet-stream" sparkle:version="1.0.4" sha256="0bb7c69005fdbac7f12cfe6ee6b9d3a8cc6c0b78040b0c337fb0b6ca0d366a8e" />
-    </item>
-  </channel>
+    <channel>
+        <title>SampleDir</title>
+        <item>
+            <title>1.0.4</title>
+            <pubDate>Fri, 20 Nov 2026 11:07:27 +0800</pubDate>
+            <sparkle:version>12</sparkle:version>
+            <sparkle:shortVersionString>1.0.4</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <enclosure url="https://dl.sampledir.com/releases/SampleDir-1.0.4-arm64(12).dmg" length="3676712" type="application/octet-stream" sparkle:edSignature="LTlXEsdQcO+Dnyb1gqZyoAnlsKU56d+NixxQnM6TPF98oHTLlAyo8ecf6JFXxpEJn+N4F9thhrBeoVYChrd5Aw=="/>
+        </item>
+        <item>
+            <title>1.0.4</title>
+            <pubDate>Fri, 20 Nov 2026 11:04:35 +0800</pubDate>
+            <sparkle:version>11</sparkle:version>
+            <sparkle:shortVersionString>1.0.4</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <enclosure url="https://dl.sampledir.com/releases/SampleDir-1.0.4-arm64(11).dmg" length="3676695" type="application/octet-stream" sparkle:edSignature="yJ+ShCgg+8rRL+T+Vid9BSosQcqMEBEJkHWZKt58K3vyEIib4SB9N0Ow5ZlTwpES4VyWJh1hKCNcrLj3aEldAg=="/>
+        </item>
+        <item>
+            <title>1.0.4</title>
+            <pubDate>Fri, 20 Nov 2026 11:00:14 +0800</pubDate>
+            <sparkle:version>10</sparkle:version>
+            <sparkle:shortVersionString>1.0.4</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <enclosure url="https://dl.sampledir.com/releases/SampleDir-1.0.4-arm64(10).dmg" length="3676718" type="application/octet-stream"/>
+        </item>
+        <item>
+            <title>1.0.4</title>
+            <pubDate>Fri, 20 Nov 2026 10:13:28 +0800</pubDate>
+            <pubCnDate>2026-11-20 10:13:28</pubCnDate>
+            <sparkle:version>1.0.4</sparkle:version>
+            <sparkle:shortVersionString>1.0.4</sparkle:shortVersionString>
+            <enclosure url="https://dl.sampledir.com/releases/SampleDir-1.0.4-arm64(9).dmg" sparkle:os="macos" installerType="dmg" length="2875461" type="application/octet-stream" sparkle:version="1.0.4" sha256="0bb7c69005fdbac7f12cfe6ee6b9d3a8cc6c0b78040b0c337fb0b6ca0d366a8e"/>
+        </item>
+    </channel>
 </rss>
