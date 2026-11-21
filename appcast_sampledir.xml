@@ -4,6 +4,15 @@
         <title>SampleDir</title>
         <item>
             <title>1.0.4</title>
+            <pubDate>Sat, 21 Nov 2026 22:35:55 +0800</pubDate>
+            <sparkle:version>18</sparkle:version>
+            <sparkle:shortVersionString>1.0.4</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
+            <enclosure url="https://dl.sampledir.com/releases/SampleDir-1.0.4-arm64(18).dmg" length="3865938" type="application/octet-stream" sparkle:edSignature="GDj85VAh14bQaIaKqqgwz4fWl9WCSqWgRCVcrdospY9FDs2n+EkolDcyLtLj9nWxOZREptC0Bi2pqsTDG+DXDQ=="/>
+        </item>
+        <item>
+            <title>1.0.4</title>
             <pubDate>Fri, 20 Nov 2026 23:42:37 +0800</pubDate>
             <sparkle:version>17</sparkle:version>
             <sparkle:shortVersionString>1.0.4</sparkle:shortVersionString>
@@ -19,15 +28,6 @@
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
             <enclosure url="https://dl.sampledir.com/releases/SampleDir-1.0.4-arm64(16).dmg" length="3858270" type="application/octet-stream" sparkle:edSignature="Z2+mfDBNX7anQYy0AxoejQVTDRnK9hiyIPr7JrpXMp8yr48gnoSe07e00S6vf/kaheLnVsBqt1DHu697hw90Cw=="/>
-        </item>
-        <item>
-            <title>1.0.4</title>
-            <pubDate>Fri, 20 Nov 2026 17:16:54 +0800</pubDate>
-            <sparkle:version>15</sparkle:version>
-            <sparkle:shortVersionString>1.0.4</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://dl.sampledir.com/releases/SampleDir-1.0.4-arm64(15).dmg" length="3858302" type="application/octet-stream" sparkle:edSignature="HNcc7dcilVX+AqkEgHwDlGOgyfL6qAsvhb9kDzkSq8apWnrX4UhHMRIosCCJXaGswzxIREUh2ESVpeV0o4iWBQ=="/>
         </item>
         <item>
             <title>1.0.4</title>
