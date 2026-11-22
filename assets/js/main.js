@@ -5,8 +5,8 @@
   /* ============ 1. 多语字典 ============ */
   var I18N = {
     zh: {
-      'meta.title': 'SampleDir · macOS 采样素材库管理器',
-      'meta.desc': 'SampleDir 是一款为音乐制作人打造的 macOS 采样素材库管理器：本地优先、可视化波形、智能试听、标签收藏，所有元数据随文件夹走。',
+      'meta.title': 'SampleDir · Mac 采样管理器（macOS 采样素材库）',
+      'meta.desc': 'SampleDir 是一款为音乐制作人打造的 Mac 采样管理器（macOS 采样素材库）：本地优先、可视化波形、智能试听、标签收藏，所有元数据随文件夹走。',
       'nav.home': 'SampleDir 首页',
       'nav.features': '功能',
       'nav.showcase': '界面',
@@ -23,7 +23,7 @@
       'hero.pill': '为音乐制作人打造',
       'hero.buy': '购买',
       'hero.title': '把采样素材库<br/>整理得像作品一样干净',
-      'hero.sub': 'SampleDir 是一款本地优先的采样素材库管理器。可视化波形、智能试听、标签与收藏，所有备注和标记都随文件夹一起走——换电脑也不丢。',
+      'hero.sub': 'SampleDir 是一款本地优先的 Mac 采样管理器，帮你把 macOS 采样素材库整理得井井有条。可视化波形、智能试听、标签与收藏，所有备注和标记都随文件夹一起走——换电脑也不丢。',
       'hero.download': '下载 for macOS',
       'hero.download.win': '下载 for Windows',
       'hero.explore': '了解功能',
@@ -89,8 +89,8 @@
       'footer.copy': '© 2026 SampleDir · 本地优先的采样素材库管理器 · Made by ssxm'
     },
     en: {
-      'meta.title': 'SampleDir · macOS Sample Library Manager',
-      'meta.desc': 'SampleDir is a macOS sample library manager for music producers: local-first, visual waveforms, smart audition, tags & favorites — all metadata travels with your folders.',
+      'meta.title': 'SampleDir · Mac Sample Manager (macOS Sample Library)',
+      'meta.desc': 'SampleDir is a Mac sample manager and macOS sample library for music producers: local-first, visual waveforms, smart audition, tags & favorites — all metadata travels with your folders.',
       'nav.home': 'SampleDir Home',
       'nav.features': 'Features',
       'nav.showcase': 'Interface',
@@ -107,7 +107,7 @@
       'hero.pill': 'Built for music producers',
       'hero.buy': 'Buy',
       'hero.title': 'Keep your sample library<br/>as tidy as your productions',
-      'hero.sub': 'SampleDir is a local-first sample library manager. Visual waveforms, smart audition, tags & favorites — all notes and marks travel with your folders, so nothing is lost when you switch machines.',
+      'hero.sub': 'SampleDir is a local-first Mac sample manager for your macOS sample library. Visual waveforms, smart audition, tags & favorites — all notes and marks travel with your folders, so nothing is lost when you switch machines.',
       'hero.download': 'Download for macOS',
       'hero.download.win': 'Download for Windows',
       'hero.explore': 'Explore features',
