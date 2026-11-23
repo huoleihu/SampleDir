@@ -5,8 +5,8 @@
   /* ============ 1. 多语字典 ============ */
   var I18N = {
     zh: {
-      'meta.title': 'SampleDir · Mac 采样管理器（macOS 采样素材库）',
-      'meta.desc': 'SampleDir 是一款为音乐制作人打造的 Mac 采样管理器（macOS 采样素材库）：本地优先、可视化波形、智能试听、标签收藏，所有元数据随文件夹走。',
+      'meta.title': 'SampleDir · Mac 采样管理器（macOS 采样管理软件）',
+      'meta.desc': 'SampleDir 是一款为音乐制作人打造的 Mac 采样管理器，也是 macOS 采样管理软件：本地优先、可视化波形、智能试听、标签收藏，所有元数据随文件夹走。',
       'nav.home': 'SampleDir 首页',
       'nav.features': '功能',
       'nav.showcase': '界面',
@@ -23,7 +23,7 @@
       'hero.pill': '为音乐制作人打造',
       'hero.buy': '购买',
       'hero.title': '把采样素材库<br/>整理得像作品一样干净',
-      'hero.sub': 'SampleDir 是一款本地优先的 Mac 采样管理器，帮你把 macOS 采样素材库整理得井井有条。可视化波形、智能试听、标签与收藏，所有备注和标记都随文件夹一起走——换电脑也不丢。',
+      'hero.sub': 'SampleDir 是一款本地优先的 Mac 采样管理器，也是 macOS 采样管理软件，帮你把采样素材库整理得井井有条。可视化波形、智能试听、标签与收藏，所有备注和标记都随文件夹一起走——换电脑也不丢。',
       'hero.download': '下载 for macOS',
       'hero.download.win': '下载 for Windows',
       'hero.explore': '了解功能',
